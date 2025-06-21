@@ -1,0 +1,204 @@
+Download the tesydisk
+	wget https://www.cgsecurity.org/testdisk-7.3-WIP.linux26-x86_64.tar.bz2
+	sudo tar xvjf testdisk-7.3-WIP.linux26-x86_64.tar.bz2
+
+burner phone
+	A low-cost, prepaid mobile phone.
+	Often used without registration or under a fake identity.
+	Can be disposed of easily after use.
+	Usually has limited functionality—call, SMS, basic apps.
+
+does your mobile provider have sms information
+	Sender and receiver phone numbers
+	Date and time of message sent/received
+	Message status (sent, failed, delivered)
+	Location data (cell tower used during sending)
+	
+what is mobile cloning and sim-card cloning in details what it dies
+	📱 1. Mobile Cloning
+		Definition:
+			Mobile cloning is the process of copying the identity of one mobile phone to another.
+			It duplicates the phone’s unique identifiers (like the IMEI, ESN, or MEID) so the clone behaves like the original.
+			
+	📶 2. SIM Card Cloning
+		Definition:
+			SIM card cloning is the process of copying the International Mobile Subscriber Identity (IMSI) and authentication key (Ki) 
+			from one SIM card to another. The result is two SIMs with the same identity.
+
+SIEM
+	centralise logging system
+	attacker does not have the access of the ceantralise log machine
+	
+port voilation --> mac binding
+
+disk image
+	copying data sector by sector
+	if we delete , we are only delete the entry from table but data still present.
+	
+fdisk -l 
+	shows the partition type either linux or windows.
+			
+First Responder procedures
+	first person to visit crime scene.
+	first responder important role to be played.
+	he should be prepared to handle the situation and his actttion should be planned.
+	dont touch anything directly, fisrt click all the photos and videos, in videos take some peoples in videos for guaranteed. take one camera with you at that time.
+	if a mobile or laptop don't turn it on/off (don't change their state) there is chances to erase or currupt/format the data. remove their hard disk and operate this hard disk.
+	some necessary things with you
+		evidence stickers
+		labels
+		tags
+		crime scene tape
+		permanent marker
+		non-magnetic tools
+		radio frequency-sheilding material
+		flash light
+		magnifier
+		empty hard diskall users information
+		type of internet
+		network informationmessanger s/w 
+		social n/w accounts
+		
+working on live system AND DEAD SYSTEM
+	depend on crime scene
+	dead system analysis provide substantial amount of evidence
+	hybernation -> ram data store in folder and shut down the system.
+	live system first find any destructive program is running or not.
+	if os infected data is also infected.
+	
+forensic imaging and verification
+
+
+
+
+> sudo fdisk -l        # ssee partition
+> sudo kpartx -av ~/rocky1.img
+> sudo dd if=/dev/sda of=rocky1.img bs=4M status=progress    # creating an image
+> uname -a       # which os and version
+> uname -r       # kernel version
+> md5sum /dev/sda
+> md5sum ~/rocky1.img
+> sudo rm -rf rocky1.img
+> mkdir /forensic
+> sudo apt install lvm2        # after install restart system
+> sudo mount -t auto -o ro /dev/sda2 /forensic/
+> cat etc/os-release     # os information
+> sudo lvdisplay         # shows volume names , use this name to mount
+> sudo mount -t auto -o ro /dev/rl/home /new-home/
+> sudo mount -t auto -o ro /dev/rl/root /abhi/
+> cat etc/fstab      # check what is automatically mounting
+> cat etc/passwd      # check how many users using the system
+> ls var/             # check what services installed like apache ftp or any other services
+> cat etc shadow | less                  # which user allows to login the system
+> cat etc/sudoers | less			# which users have the sudo permission
+> cat etc/group | less         # find in that wheel
+> cd /new-home/    and ls
+> cat .bash_history | less      # commands stored / history of the commands
+> sudo ls -all james
+> cd /forensic/          cd var/          cd log                    # to check the history if anyone deleted from the .bash_history
+> cat lastlog        # it is in different format
+> last     # shows previous login
+> cat hostnamectl		# full system and network information
+> cat proc/mounts   	# Runtime mounts
+> last -f /var/log/wtmp	# log-in history
+> last -f var/log/btmp	# failed log-in history
+> cat proc/version		# kernel version and compiler info.
+
+
+
+
+partition is not deleted only some files should be deleted
+	cmd -> run as administrator
+	running testdisk
+	
+	tools for data recovery (free)
+	- recuva
+	- stellae pheonix
+	but i have some limitations of size
+	
+delete the entry from .bash_history files
+	nano .bash_history
+	
+---------------------------------------------------------------------------------------------------------------------------------------------------
+ABSENT ON DAY 3
+---------------------------------------------------------------------------------------------------------------------------------------------------
+data analysis
+	- it involves logical and physical analysis.
+	- logical analysis investigator uses graphical tools
+	- physical analysis
+	
+
+if the web server is hacked
+	- isolate the server.
+	- denied the all users.
+	- get the backup of the server
+	- checks the logs
+	- checks the port for incoming traffic
+	- getting the various solutions.
+	- apply the effective solutions.
+	- start the web server.
+	
+	
+how do you know it hacked.
+	
+---------------------------------------------------
+wireshark
+
+kerberose   -> as-req packer -> cname
+---------------------------------------------
+folder 
+	test.txt
+	
+in cmd	
+	cd\
+		cd folder
+			notepad test.txt:hidden.txt -> create new 
+			
+	in chrome -> sysinternal suite
+	
+	cd sisinternals> streams.exe /?     # to know syntax
+	> streams.exe -s c:\folder			# showing the hidden files
+	> streams.exe -s -d c:\folder    # delete hidden files
+	
+	>tcpvcon64.exe 
+	> tcpview64.exe			# GUI based
+	>provmon64.exe			# tells all process running 
+	> procexp64.exe			# process explorer, system info which process getting how many cpu like this
+	> pslist.exe			# list the all processes
+	> psloggedon.exe 		# login information
+	> pspasswd64.exe 		# account information
+	> RamMap64.exe			# memory mapping shows
+	> sdelete64.exe			# we can delete data, no one can recover it
+	>
+	
+Memory forensic
+	python vol.py -h 											# to test the configuration
+	python vol.py -f MemoryDump_Lab1.raw windows.sessions		# get the information about the all running sessions
+	python vol.py -f MemoryDump_Lab1.raw windows.netscan		# get the all open ports
+	python vol.py -f MemoryDump_Lab1.raw windows.info.Info		# windows information
+	python vol.py -f MemoryDump_Lab1.raw windows.hashdump		# get the all passwords in hash 
+	python vol.by -f MemoryDump_Lab1.raw windows.psList			# get all active process lists
+	python vol.by -f MemoryDump_Lab1.raw windows.psscan			# scanning raw memory which helps identify Hidden or unlinked processes, Terminated processes, Malware.
+	python vol.by -f MemoryDump_Lab1.raw windows.cmdscan		# shows cmd commands					
+	
+	
+	
+	
+
+vol.py -f /home/user/Desktop/memdump.raw windows.info           # Displays Windows OS details
+vol.py -f /home/user/Desktop/memdump.raw windows.pslist         # Lists all active processes
+vol.py -f /home/user/Desktop/memdump.raw windows.pstree         # Shows process tree
+vol.py -f /home/user/Desktop/memdump.raw windows.psscan         # Scans for hidden/terminated processes
+vol.py -f /home/user/Desktop/memdump.raw windows.cmdline        # Lists command line arguments for processes
+vol.py -f /home/user/Desktop/memdump.raw windows.getservicesids # Shows service SIDs
+vol.py -f /home/user/Desktop/memdump.raw windows.svcscan        # Lists Windows services
+vol.py -f /home/user/Desktop/memdump.raw windows.hashdump       # Dumps user hashes (needs SYSTEM and SAM files)
+vol.py -f /home/user/Desktop/memdump.raw windows.filescan       # Scans memory for file objects
+vol.py -f /home/user/Desktop/memdump.raw windows.dumpfiles      # Extracts files from memory
+vol.py -f /home/user/Desktop/memdump.raw windows.registry.hivelist  # Lists registry hives
+vol.py -f /home/user/Desktop/memdump.raw windows.registry.printkey  # Prints registry key values
+vol.py -f /home/user/Desktop/memdump.raw windows.netstat        # Shows network connections
+vol.py -f /home/user/Desktop/memdump.raw windows.malfind        # Detects malicious code injection
+vol.py -f /home/user/Desktop/memdump.raw windows.driverscan     # Finds loaded drivers
+vol.py -f /home/user/Desktop/memdump.raw windows.envars         # Displays environment variables
+vol.py -f /home/user/Desktop/memdump.raw windows.dlllist        # Lists DLLs loaded by processes

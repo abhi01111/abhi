@@ -1,0 +1,38 @@
+INFORMATION TECHNOLOGY INFRASTRUCTURE LIBRARY
+
+INFRASTRUCTURE
+	- machine
+	- s/w
+	- n/w
+	- resources
+	
+what is itil ? -> Best Practices
+	crateted by CCTA but now it owned by Axelos
+	itil started at 1980
+	it is framework design for select, plan, delivery, maintainance and overall lifecycle of IT services
+	it is for improve efficiency and service delivery
+	CCTA relesed ITIL v1 in 1989
+	CCTA relesed ITIL v2 in 2001
+	CCTA relesed ITIL v3 in 2007 -> updated on 2011
+	CCTA relesed ITIL v4 in 2017 -> 2023
+
+	provide the services based on needs of the customer 
+		-	internal
+		-	external
+		
+		
+best practices approaches
+	-	proprietary knowledge/internak experience
+		other companies does not sharing their knowledge but you have know it using negotiations or any other stuff
+	-	standars/industry practices
+		multiple orgnizations get together and discuss their knowledge, learns lessons together
+	- training and education/ academic research
+		organization train their people to educated, perform well, they arrange different trainings, certifications
+		
+		
+services, customers, and stakeholders
+	services
+		means of delivering value to customer such as a email server
+	customers
+	stakeholders
+		who is interested in the product

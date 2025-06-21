@@ -1,0 +1,259 @@
+what is docker ?
+	Docker is an open-source platform that allows you to build, ship, and run applications in containers.
+
+	what is container ?
+		A container packages an application with all its dependencies (libraries, runtime, config files) so it can run consistently across different environments — whether it's your laptop, a server, or the cloud.
+	# install docker
+	> sudo apt-get update
+	> sudo apt-get install ca-certificates curl
+	> sudo install -m 0755 -d /etc/apt/keyrings
+	> sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+	> sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+	# Add the repository to Apt sources:
+	echo \
+		"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+		$(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+	> sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	> sudo apt-get update
+	> for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+	> sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+	
+	# creating the images
+	> sudo docker image pull httpd
+	> sudo docker images ls
+	> sudo docker image inspect httpd
+	
+	# creating container
+	> sudo docker container run -d --name httpd httpd      
+	> sudo docker container run httpd
+	> sudo docker container run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -v mysql-volume:/var/lib/mysql mysql
+	> sudo docker exec -it my-mysql mysql -uroot -p
+	> sudo docker run --name myadmin -d --link my-mysql:db -p 8080:80 -e PMA_HOST=db -e PMA_PORT=3306 phpmyadmin/phpmyadmin      # username and password => root
+	
+	# create volume
+	> sudo docker volume create myvol
+	> sudo docker volume ls
+	> sudo docker volume inspect <vol_name>
+	
+	
+	sudo docker run -d --name mysql --network mynet -e MYSQL_ROOT_PASSWORD=root -v "/var/lib/docker/volumes/myvol/_data" mysql
+    sudo docker run -d --name phpmyadmin --network mynet -e PMA_HOST=mysql -p 8080:80 phpmyadmin/phpmyadmin                                                                                                         
+	
+	
+	
+	
+----------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------------	
+Kubernets
+
+	Namespace
+		minikube ssh
+		
+--------------------------------------------------------------------------------------------------------------	
+YAML
+	-case sensitive
+	10, person1, pune    ---->  raw data
+
+		convering it into meaningful information
+
+
+		xml								JSON					YAML
+
+		<person>					{							age:10
+			<age>10</age>				"age":10,				name:person1
+			<name>person1</name>		"name":"person1",		city:pune
+			<city>pune</city>			"city":"pune"
+		</person>					}
+---------------------------------------------------------------------------------------------------------------
+settings before write the yaml code
+	vim ~/.vimrc
+	set tabstop=2
+	set expandtab
+	syntax on
+	
+----------------------------------------------------------------------------------------------------------------------
+	
+jenkin
+	
+	The Jenkins server is the central hub that manages the automation processes, while the Jenkins slave is the worker machine that performs 
+	the actual automation tasks. The Jenkins server is responsible for managing the plugins, users, jobs, and security of the automation process.
+	It also provides a web interface that allows users to interact with the Jenkins server and monitor the automation process.
+	
+	On the other hand, the Jenkins slave is responsible for executing the automation tasks on the worker machine. The slave communicates with the 
+	Jenkins server to receive instructions and report back the status of the automation tasks.
+
+install jenkins
+sudo apt update
+
+sudo apt install openjdk-17-jdk -y
+
+curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt update
+sudo apt install jenkins -y
+
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+ 
+> sudo chmod -aG docker jenkins
+> sudo systemctl restart jenkins
+> index.html
+> Dockerfile
+	FRO
+> sudo docker build -t mywebsite .
+> sudo docker container run -d --name mywebsite -p 9090:80 mywebsite
+> edit index file push on github
+> when to curl localhost it can show the older version
+> go to jenkins
+	- crate job2
+	- github project
+		- project url 
+	- git ?
+		- repository link (code - copy link)
+	- branch specifier ( check branch master or main on github)
+	- build step
+		- docker container rm --force mywebsite
+		- docker image build -t mywebsite .
+		- sudo docker image run -d --name mywebsite -p 9090:80 mywebsite
+> curl localhost:9090
+
+sudo docker run -d --name mysql --network mynet -e MYSQL_ROOT_PASSWORD=root -v "/var/lib/docker/volumes/myvol/_data" mysql
+sudo docker run -d --name phpmyadmin --network mynet -e PMA_HOST=mysql -p 8080:80 phpmyadmin/phpmyadmin
+for automation
+> triggers
+	> poll scm ?
+	# *****
+		min hour day(month) month day(week)
+	
+	
+	
+	
+sudo apt-get install cron
+> crontab -e
+		add line
+			* * * * * echo date >> /tmp/date.txt
+			
+> docker service create --name mywebsite --replicas 2 -p 9090:80 mywebsite
+
+
+manually
+> docker service rm mywebsite
+> docker image build -t mywebsite
+> docker service update --force mywebsite
+> 
+
+jenkins website
+
+> docker image build -t sahaneabhishek54/website .
+> echo <dockerhub token> | docker login -u sahaneabhishek54 --password-stdin
+> docker image push sahaneabhishek54/mywebsite
+> docker service update --force wesite
+> 
+
+cmd
+> docker image push sahaneabhishek54/website
+> docker service create --name mywebsite -p 9090:80 mywebsite
+> curl 127.0.0.1:9090
+
+
+new job pipeline
+
+pipeline {
+	agent any
+	
+	stages {
+		stage('stage1') {
+			steps {
+				sh 'echo "abhishek sahane"'
+			}
+		}
+		stage('stage2') {
+			steps {
+				sh 'echo "abhishek sahane"'
+			}
+		}
+	}
+}
+-------------------------------------------------------------------------------------------------------------------------------------
+ansible
+
+control- node
+demo1.yaml
+- name: demo1
+  hosts: hosts
+  become: true
+  
+  tasks:
+  - name: install apache2
+    apt:
+	  name: apache2
+	  state: present
+	  
+demo2.yaml
+- name: demo1
+  hosts: hosts
+  become: true
+  
+  tasks:
+  - name: install nginx
+    apt:
+	  name: nginx
+	  state: present
+  - name: start and enable nginx
+    service:
+	  name: nginx
+	  state: started
+	  enabled: true
+	  
+demo3.yaml  
+- name: uninstall nginx
+  hosts: hosts
+  become: true
+  
+  tasks:
+  - name: remove nginx
+    apt:
+	  name: nginx
+	  state: absent
+	  
+python Dockerfile
+FROM python
+WORKDIR /src
+COPY . .
+RUN pip install flask 
+EXPOSE 4000
+CMD python server.py
+	  
+	  
+> ansible-playbook -i inventory.ini playbooks/demo1.yaml
+> ansible-playbook -i inventory.ini playbooks/demo2.yaml
+
+manage-node
+> sudo systemctl status nginx
+
+------------------------------------------------------------------------------------------------------------------
+Dockerfile
+FROM python
+WORKDIR
+
+docker build -t sahaneabhishek54/webabhi .
+DOCKER CONTAINER RUN -D --NAME MYAPP -P 4000:4000 sahaneabhishek54/webabhi
+git remote add---------
+git branch -M main
+git push -u origin main
+
+
+
+
+build
+docker login
+push on docker hub
+delete existing service
+create service

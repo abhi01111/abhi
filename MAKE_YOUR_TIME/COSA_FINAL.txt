@@ -1,0 +1,1335 @@
+--------------------
+WINDOWS ADMINISTRATION
+--------------------
+Hyper-V
+	It is virualization platform develop by microsoft.
+	It allows you to create and manage virtual machines (VMs) on a physical computer (called the host) so that you can run multiple operating systems simultaneously on a single hardware system.
+	
+	what is virtualization
+		Virtualization allows a single physical machine to run multiple OS or Application independently by abstracting ( remember we assign the storage, cpu cores) the hardware through a hypervisor.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Active Directory
+	Active Directory is like a centralized database that stores and manages:
+		User accounts, Computers, Groups, Printers, Security policies, Authentication/authorization.
+	It helps system administrators manage permissions and access to networked resources.
+	
+	Features
+		Centralized Resource Management
+			Manages all network resources (users, computers, printers, etc.) from a central location.
+		Hierarchical Structure
+			Organizes resources using forests, domains, trees, and OUs. This improves scalability and control.
+		Authentication & Authorization
+			Validates user identities and controls access to resources using credentials and security groups.
+		Single Sign-On (SSO)
+			Users can log in once and access multiple resources without re-entering credentials.
+		FSMO Roles (Flexible Single Master Operations)
+			Ensures that certain AD tasks are handled without conflict using 5 unique roles.
+			
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	FSMO (Flexible Single Master Operations) Roles
+		Forest-Wide Roles
+			1. Schema Master
+			2. Domain Naming Master			
+		Domain-Wide Roles
+			3. RID Master (Relative ID Master)
+			4. PDC Emulator
+			5. Infrastructure Master
+		
+		## Seizing FSMO roles means forcefully transferring a role from one Domain Controller (DC) to another when the original role holder is permanently offline or unrecoverable.
+		|------------------------------------------------------------------------------------------------------------------------|
+		|   Action     |              When to Use                           |               Risk                                 |
+		| ------------ | -------------------------------------------------- | -------------------------------------------------- |
+		| Transfer     | Original DC is online and healthy                  | Safe                                               |
+		| Seize        | Original DC is dead, crashed, or unrecoverable     | Risky (may corrupt AD if old DC comes back online) |
+		|------------------------------------------------------------------------------------------------------------------------|
+		
+		
+		- Schema Master
+			- Controls all changes to the Active Directory schema (i.e., structure of objects like users, groups, etc.).
+			- One per forest.
+			- When you extend AD schema (e.g., for Exchange or SCCM), only the schema master can process those updates.
+			- Example: Adding a new attribute to user objects like “BloodGroup” or “EmployeeID”.
+			
+		- Domain Naming Master
+			- Manages the addition or removal of domains and application partitions in the forest.
+			- One per forest.
+			- Ensures that domain names are unique in the forest.
+			- Example: Creating a new child domain like sales.company.com.
+			
+		- RID Master (Relative ID Master)
+			-  It allocates blocks of RIDs (Relative IDs) to domain controllers.
+			- One per Domain.
+			- Every object in AD has a unique SID (Security Identifier) = Domain SID + RID. The RID Master ensures no two objects get the same RID.
+			- Example: When a new user is created, the DC assigns them a RID from its block.
+			
+		- PDC Emulator (Primary Domain Controller Emulator)
+			- Function: Most critical role. Provides:
+				Time synchronization for all DCs.
+				Password change replication priority.
+				Acts as fallback authentication if a password fails on another DC.
+				Compatibility with old NT4 systems as the “PDC”.
+			- One per Domain.
+			- Keeps time consistent across systems (crucial for Kerberos), and resolves password mismatches quickly.
+			- Example: If a user just changed their password and logs in, PDC helps verify the new password.
+			
+		- Infrastructure Master
+			- Updates group membership across domains.
+			- One per Domain.
+			- Ensures that group members from other domains are updated if their names or info change.
+			- Example: A group in Domain A has a user from Domain B. If the user is renamed in Domain B, the Infrastructure Master updates the reference in Domain A.
+			
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+How to take Active-Directory Backup ?
+	to take the Active-Directory Backup we can use Use Windows Server Backup tool
+	
+	Install Windows Server Backup if not already installed:
+		Server Manager > Add Roles and Features > Features > Windows Server Backup
+	
+	Steps for taking Backup
+		- Open Windows Server Backup
+		- Click on "Backup Once..." or "Backup Schedule..." (for recurring backups)
+		- Choose Custom → Click Next
+		- Click Add Items → Check System State
+		- Choose the destination (e.g., a different drive or external storage)
+		- Click Backup
+		
+	what is included in backups
+		|---------------------------------------------------------------|
+		| Component              | Purpose                              |
+		| ---------------------- | ------------------------------------ |
+		| NTDS.dit               | The actual Active Directory database |
+		| SYSVOL                 | Holds Group Policy and login scripts |
+		| Registry               | Critical for system & AD configs     |
+		| COM+                   | Component Services database          |
+		| Boot files             | Boot.ini, BCD, etc.                  |
+		| Certificate Services   | If installed on the DC               |
+		|---------------------------------------------------------------|
+
+	🔁 Schedule Automatic Backups
+		- In Windows Server Backup, choose "Backup Schedule"
+		- Select System State
+		- Choose a time and frequency (e.g., daily at 2 AM)
+		
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DNS
+	DNS ( Domain Name System )
+		- DNS (Domain Name System) in Windows is a core networking service that 
+		  resolves hostnames to IP addresses and is critical to Active Directory and overall network functionality.
+		- DNS acts like a phonebook for computers. It translates user-friendly names (like www.microsoft.com) into IP addresses (like 40.112.72.205).
+		
+		Why DNS important in Windows Administration.
+			- Active Directory depends heavily on DNS for:
+				- Locating domain controllers
+				- Domain logons
+				- Group Policy application
+			- Required for name resolution across your internal network
+			- Supports SRV records used by AD to find services like Kerberos and LDAP
+		
+		Key-Features of DNS
+		
+			|-------------------------------------------------------------------------------------------|
+			| Feature                   | Description                                                   |
+			| ------------------------- | ------------------------------------------------------------- |
+			| Forward Lookup Zones 	    | Resolves names to IP addresses                                |
+			| Reverse Lookup Zones 		| Resolves IP addresses to names                                |
+			| Resource Records (RR) 	| Includes A, AAAA, CNAME, PTR, SRV, MX, etc.                   |
+			| Zone Transfers   			| Replicates DNS zones between DNS servers                      |
+			| Caching          			| Stores previous lookups to speed up performance               |
+			| Dynamic Updates       	| Clients can auto-register their names and IPs in DNS          |
+			| Scavenging         		| Automatically cleans old/stale DNS records                    |
+			| Integration with AD    	| Stores zones in Active Directory for replication and security |
+			|-------------------------------------------------------------------------------------------|
+			
+		Configure DNS
+			Step 1: Install DNS Role
+				- Open Server Manager
+				- Click Manage → Add Roles and Features
+				- Select:
+					- Role-based or feature-based installation
+					- Select your local server
+				- Under Server Roles, check DNS Server
+				- Click Next → Install
+			Step 2: Configure Forward Lookup Zone
+				- Go to Tools → DNS
+				- Expand your server → Right-click Forward Lookup Zones → New Zone
+				- Choose:
+					- Primary Zone
+					- Store the zone in Active Directory (if it’s a Domain Controller)
+				- Enter zone name: e.g., corp.local
+				- Allow secure dynamic updates (recommended for AD)
+				- Finish the wizard
+				Zone Created.....
+			Step 3: Add Host (A) Record
+				- Right-click on your new zone → New Host (A or AAAA)
+				- Enter:
+					- Name: server1
+					- IP: 192.168.1.10
+				- Check "Create associated PTR record"
+				- Click Add Host
+				Name server1.corp.local now resolves to 192.168.1.10
+			Step 4: Test DNS
+				- Open Command Prompt:
+					- nslookup server1.corp.local
+				You should see the correct IP address.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DHCP
+	- DHCP is a network service used in Windows Server environments to automatically assign IP addresses 
+		and other networking configuration details (like subnet mask, DNS, gateway) to client machines.
+	- This makes network management easier, especially in large networks, and helps avoid IP conflicts.
+	- Without DHCP, each device needs to be manually configured with a static IP address. DHCP automates this, ensuring:
+		- No IP conflicts
+		- Faster setup for clients
+		- Centralized IP management
+		- Automatic reconfiguration
+	
+	Components of DHCP
+		|-----------------------------------------------------------------------------------------------|
+		| Component         | Description                                                               |
+		| ----------------- | ------------------------------------------------------------------------- |
+		| Scope    		    | Range of IP addresses DHCP can assign (e.g., 192.168.1.100–192.168.1.200) |
+		| Lease      		| Temporary assignment of an IP to a client                                 |
+		| Reservation   	| Permanent IP assignment based on MAC address                              |
+		| Exclusion     	| IPs within scope that should **not** be assigned                          |
+		| Options       	| Extra settings like default gateway, DNS server, WINS, etc.               |
+		| Authorization	 	| In a domain, DHCP must be authorized before use                           |
+		|-----------------------------------------------------------------------------------------------|
+	
+		Configure DHCP
+			Step 1: Install DHCP Role
+				- Go to Server Manager → Manage → Add Roles and Features
+				- Select:
+					- DHCP Server under Server Roles
+				- Click Next → Install
+				- After install, click the flag notification on top → Complete DHCP configuration
+				- Authorize the DHCP server (needed for domain members)
+			 Step 2: Create DHCP Scope
+				- Go to Tools → DHCP
+				- Expand IPv4 → Right-click → New Scope
+				- Enter scope name: e.g., Office Network
+				- Set:
+					- Start IP: 192.168.1.100
+					- End IP: 192.168.1.200
+					- Subnet Mask: 255.255.255.0
+				- Add exclusions (e.g., 192.168.1.150–192.168.1.160 if reserved)
+				- Set Lease Duration (default: 8 days)
+				- Set default Gateway (router): e.g., 192.168.1.1
+				- Add DNS Server IP (your server IP, e.g., 192.168.1.10)
+				- Finish the wizard
+				✅ DHCP Scope is now active!
+			Step 3: Verify DHCP Functionality
+				- On a client (like Windows 10):
+					- Set IP settings to Obtain IP automatically
+				- Run:
+					- ipconfig /release
+					- ipconfig /renew
+				- Check
+					- ipconfig /all
+				You should get:
+				IP from your scope
+				Correct DNS and Gateway
+				
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DORA Process
+	⚙️ How DHCP Works (Process Flow)
+		- DHCP Discover: Client sends broadcast to find a DHCP server.
+		- DHCP Offer: Server replies with an available IP address.
+		- DHCP Request: Client requests the offered IP.
+		- DHCP Acknowledge (ACK): Server confirms and finalizes lease.
+		This process is called DORA.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Tree Domain & Child Domain
+	
+	Forest: example.com
+	│
+	├── Tree 1: corp.com
+	│   ├── Child: sales.corp.com
+	│   └── Child: hr.corp.com
+	│
+	└── Tree 2: company.net
+		├── Child: dev.company.net
+		└── Child: test.company.net
+		
+	- Multiple Trees can exist in a single forest (even with different namespaces).
+	- Each Tree can have multiple Child domains.
+	- A Child domain is a subdomain of another domain (the parent domain) in the tree hierarchy.
+	
+	- A Tree is a collection of one or more domains that share a contiguous namespace.
+	🔹 Example:
+		Root domain: corp.com
+		Child domain: sales.corp.com
+		Another child: hr.corp.com
+		
+	|------------------------------------------------------------------------------------------------------------|
+	| Feature    | Tree Domain                                        | Child Domain                             |
+	| ---------- | -------------------------------------------------- | ---------------------------------------- |
+	| Definition | Collection of domains in a DNS hierarchy           | Subdomain of an existing domain          |
+	| Namespace  | Contiguous                                         | Contiguous (inherits from parent)        |
+	| Trusts     | Two-way transitive between all domains in the tree | Inherits trust from parent               |
+	| Usage      | Expands domain structure                           | Divides departments, geography, or units |
+	| Example    | `corp.com`, `sales.corp.com`, `it.corp.com`        | `sales.corp.com` is child of `corp.com`  |
+	|------------------------------------------------------------------------------------------------------------|
+	
+	🛠️ How to Create a Child Domain (Step-by-Step)
+		- Promote a new server to Domain Controller
+		- Run Active Directory Domain Services Configuration Wizard
+		- Choose:
+			"Add a new domain to an existing forest"
+			Then select: Child Domain
+		- Enter:
+			- Parent Domain: corp.com
+			- Child Domain Name: sales
+			- FQDN becomes: sales.corp.com
+		- Set DSRM password and proceed
+		- After reboot, sales.corp.com becomes an AD domain in the tree
+		
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+what are built in groups-domain admins, enterprise admins, server, accounts, backup operator, Domain users 
+	- In Windows Active Directory, built-in groups are predefined security groups that simplify the assignment of common administrative rights and permissions. 
+	- These groups already exist in AD when you promote a server to a Domain Controller.
+		
+		👑 1. Domain Admins
+			- Location: corp.local\Domain Admins
+			- Scope: Global group
+			- Purpose: Has full control over all domain resources, including Domain Controllers.
+			- Membership: Automatically added to the Administrators group on every domain-joined computer.
+			- Use Case: Perform administrative tasks across the entire domain.
+		
+		🌐 2. Enterprise Admins
+			- Location: corp.local\Enterprise Admins
+			- Scope: Universal group
+			- Purpose: Has full control across the entire forest, including all domains.
+			- Membership: Only members of the forest root domain can belong.
+			- Use Case: Used to:
+				- Add/remove domains
+				- Modify forest-wide configurations
+				- Install forest-wide applications (e.g., Exchange, SCCM)
+		
+		🖥️ 3. Server Operators
+			- Location: BUILTIN\Server Operators (on DCs)
+			- Scope: Local to Domain Controllers
+			- Purpose: Can manage server functions but not security.
+			- Permissions:
+				- Start/stop services
+				- Log on locally to DCs
+				- Backup and restore files
+				- Shut down the server
+		
+		👤 4. Account Operators
+			- Location: BUILTIN\Account Operators
+			- Scope: Domain-wide (but limited)
+			- Purpose: Can manage user and group accounts, except those in Domain Admins, Enterprise Admins, or other sensitive groups.
+			- Use Case: Help desk or HR staff who need to create user accounts but shouldn’t be full admins.
+			
+		💾 5. Backup Operators
+			- Location: BUILTIN\Backup Operators
+			- Scope: Local on servers or domain controllers
+			- Purpose: Can backup and restore files, even if the user doesn’t have read permissions on those files.
+			- Use Case: Assign to users or services responsible for scheduled backups.
+			
+		👥 6. Domain Users
+			- Location: corp.local\Domain Users
+			- Scope: Global group
+			- Purpose: All normal users are members of this group by default when their account is created.
+			- Permissions: Very limited — can log in, use shared resources, and change their own password.
+			- Use Case: Baseline security group for all standard users in a domain.
+		|----------------------------------------------------------------------------------------------------|
+		| Group Name            | Privilege Level        | Scope          | Use Case                         |
+		| --------------------- | ---------------------- | -------------- | -------------------------------- |
+		| **Domain Admins**     | Full domain control    | Global         | Administer the domain            |
+		| **Enterprise Admins** | Full forest control    | Universal      | Forest-wide configuration        |
+		| **Server Operators**  | Server management only | Local (on DCs) | Restart services, manage servers |
+		| **Account Operators** | Create/manage users    | Domain-wide    | Delegate account creation        |
+		| **Backup Operators**  | Backup/restore access  | Local          | Perform backups/restores         |
+		| **Domain Users**      | Standard user rights   | Global         | Default group for users          |
+		|----------------------------------------------------------------------------------------------------|
+		
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+How to restore failed Domain Controller ?
+	🛠️ Method 1: Non-Authoritative Restore (Common Method)
+		🧾 Use This When:
+		You want to restore the failed DC, but replicate fresh data from other DCs.
+			🔧 Steps:
+				1. Reinstall Windows Server (same name + IP preferred)
+					- Or prepare the system to restore to same machine.
+				2. Restore System State Backup:
+					- Open Windows Server Backup
+					- Choose Local Backup → Recover
+					- Select System State as recovery item
+					- Reboot when prompted
+				3. Boot into DSRM (Directory Services Restore Mode):
+					- Press F8 or configure Safe Boot → Directory Services Repair
+					- Log in with DSRM credentials
+				4. Perform the Restore:
+					- wbadmin start systemstaterecovery -version:<BackupVersion> -quiet
+				5. After restore completes, reboot normally
+				6. Allow replication from other DCs
+					- DC will pull the latest AD data from a healthy Domain Controller
+				
+				✅ This is the safest method when at least one healthy DC exists in your domain.
+				
+	🛠️ Method 2: Authoritative Restore
+		🧾 Use This When:
+			You need to restore deleted objects (e.g., accidentally deleted OU or user)
+			You want to force this DC to overwrite others
+		
+		🔧 Steps:
+			1. Boot into DSRM
+			2. Perform System State Restore (as in Method 1)
+			3. Open Command Prompt, run:
+				ntdsutil
+				activate instance ntds
+				authoritative restore
+				restore object "cn=John Doe,ou=HR,dc=corp,dc=local"
+			4. Reboot the system
+			
+			⚠️ Use with caution — this will replicate restored data to other DCs!
+			
+	🔁 Method 3: Rebuild the Domain Controller (No Backup)
+		If no backup is available but another DC exists, simply:
+			1. Remove the failed DC from AD using metadata cleanup
+				- Use ntdsutil to delete its metadata
+			2. Install Windows Server on a new machine (same name recommended)
+			3. Promote to Domain Controller:
+				- Server Manager → Add Roles → AD DS → Promote this server to DC
+				- Join existing domain
+				- Syncs automatically from healthy DC
+			
+			✅ This restores the failed DC with a fresh copy of AD.
+			
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NPS ( Network Policy Server )
+	📡 What is NPS (Network Policy Server) in Windows?
+		- NPS (Network Policy Server) is Microsoft’s implementation of a RADIUS (Remote Authentication Dial-In User Service) server.
+		- It acts as a centralized authentication, authorization, and accounting server for network access — such as VPN, Wi-Fi, or 802.1X wired/wireless connections.
+			
+	🧠 Why Use NPS?
+		- Enforces network policies for authentication and authorization
+		- Integrates with Active Directory for user credentials
+		- Provides centralized logging for security and auditing
+		- Supports multi-factor authentication (MFA) when integrated with external tools
+		- Works with switches, wireless access points, VPN servers
+	
+	|----------------------------------------------------------------------------------|
+	| Function           | Description                                                 |
+	| ------------------ | ----------------------------------------------------------- |
+	|   Authentication	 | Verifies user identity via AD                               |
+	|   Authorization  	 | Applies policies to allow/deny access                       |
+	|   Accounting  	 | Logs connection attempts, successes, failures               |
+	|   RADIUS Server 	 | Communicates with network devices like Wi-Fi routers or VPN |
+	|   Proxy	         | Can forward requests to another RADIUS server               |
+	|----------------------------------------------------------------------------------|
+	
+	🛠️ How to Install and Configure NPS
+		✅ Step 1: Install NPS Role
+			- Open Server Manager → Add Roles and Features
+			- Choose:
+				- Role-based installation
+				- Add Network Policy and Access Services
+			- Select Network Policy Server
+			- Click Install
+		
+		✅ Step 2: Register with Active Directory
+			- After install:
+				- nps.msc
+			- Right-click NPS (Local) → Register server in Active Directory
+			
+			✅ Required to allow it to read AD user credentials.
+			
+		✅ Step 3: Add RADIUS Clients (e.g., Wi-Fi Access Point)
+			- In NPS console → Expand RADIUS Clients and Servers
+			- Right-click RADIUS Clients → New
+			- Add:
+				- Friendly Name: e.g., Cisco-WAP
+				- IP Address of the client
+				- Shared Secret (same used on the client device)
+		
+		✅ Step 4: Create a Network Policy
+			- Go to Policies → Network Policies
+			- Click New
+			- Name: e.g., WiFi Auth Policy
+			- Set conditions:
+				- Windows Group: Domain Users
+				- Or by NAS Port, client IP, time, etc.
+			- Set Access Permission to Grant Access
+			- Set authentication methods:
+				MS-CHAPv2 (for VPN)
+				EAP (for 802.1X Wi-Fi)
+				
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+FSRM
+	🗂️ What is FSRM (File Server Resource Manager) in Windows Server?
+		- FSRM is a Windows Server feature that allows administrators to manage and control storage usage on file servers.
+		- It provides quotas, file screening, and storage reports to help enforce storage policies, improve efficiency, and ensure compliance.
+		
+		- Key-Features of FSRM
+			|-----------------------------------------------------------------------------------------------|
+			| Feature                   | Description                                                       |
+			| ------------------------- | ----------------------------------------------------------------- |
+			|   Quotas                  | Set storage limits on folders (e.g., 2 GB per user)               |
+			|   File Screening          | Block or allow specific file types (e.g., prevent `.mp3`, `.exe`) |
+			|   Storage Reports         | Generate reports on usage, duplicate files, old files, etc.       |
+			|   Classification          | Tag files with metadata (e.g., PII, HR)                           |
+			|   File Management Tasks   | Automate file actions like move/delete after time period          |
+			|-----------------------------------------------------------------------------------------------|
+			
+		🧰 Why Use FSRM?
+			- Prevent users from filling up disk space
+			- Control what types of files are stored (e.g., block movies or games)
+			- Monitor file usage for security and compliance
+			- Automatically archive or delete stale data
+			- Generate alerts or email notifications
+		
+		📁 How to Use FSRM Features
+			1. 📏 Create Quotas
+				Limit the space users or departments can use.
+				- Open FSRM console (fsrm.msc)
+				- Go to Quota Management → Quotas → Create Quota
+				- Select folder (e.g., D:\Users)
+				- Choose:
+					- Hard quota: Prevents going over limit
+					- Soft quota: Allows over limit but logs event
+				- Set size (e.g., 2 GB)
+				- Add notification (email, event log, command)
+			
+			2. 🚫 Create File Screens
+				Prevent specific file types from being saved.
+				- Go to File Screening Management → File Screens
+				- Click Create File Screen
+				- Choose folder (e.g., D:\Public)
+				- Select template (e.g., Block Audio and Video Files)
+				- Add custom file types if needed (*.mp3, *.exe, etc.)
+				- Set alerts (email, log, etc.)
+
+			3. 📊 Generate Storage Reports
+				- Go to Storage Reports Management
+				- Click Generate Reports Now
+				- Choose folder and report types:
+				- Large files
+				- Duplicate files
+				- File by owner
+				- File by type
+				- View report in HTML or CSV
+			
+			Common Use Cases
+				|---------------------------------------------------------------|
+				| Scenario                               | FSRM Feature         |
+				| -------------------------------------- | -------------------- |
+				| Prevent users from saving games/videos | File Screening       |
+				| Limit each department to 5 GB          | Quotas               |
+				| Delete files older than 90 days        | File Management Task |
+				| Alert when disk usage exceeds 90%      | Email Notification   |
+				| Check who’s using most space           | Storage Reports      |
+				|---------------------------------------------------------------|
+				
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+IIS
+	🌐 What is IIS (Internet Information Services)?
+		- IIS is Microsoft’s web server software built into Windows Server.
+		- It allows you to host websites, web applications, and services (like APIs) using protocols such as HTTP, HTTPS, FTP, and more.
+	
+	🧠 Why Use IIS?
+		- Host internal or external websites/web apps
+		- Support for ASP.NET, PHP, and static content
+		- Integrates with Windows authentication and Active Directory
+		- Load balancing & scalability via web gardens/farms
+		- Centralized web hosting for Intranet portals, APIs, or CRMs
+	
+	🛠️ How to Install IIS on Windows Server
+		✅ Step-by-Step (GUI):
+		- Open Server Manager
+		- Go to Manage → Add Roles and Features
+		- Select:
+			- Role-based or feature-based installation
+			- Your local server
+		- Under Server Roles, check:
+			- Web Server (IIS)
+		- Optionally enable features:
+			- ASP.NET, FTP Server, WebDAV, etc.
+		- Click Install
+		
+		➡️ Access IIS: Open browser and go to http://localhost
+		You’ll see the IIS default start page.
+		
+	@ How to host 2 website on single Port
+		Create Site 1 in IIS
+			- Open IIS Manager (inetmgr)
+			- Right-click Sites → Add Website
+			- Enter:
+				- Site name: Site1
+				- Physical path: C:\site1
+				- Binding settings:
+					- IP address: All Unassigned (or specific IP)
+					- Port: 80
+					- Hostname: site1.local
+			- Click OK
+		
+		Create Site 2 in IIS
+			- Repeat the steps:
+			- Right-click Sites → Add Website
+			- Set:
+				- Site name: Site2
+				- Physical path: C:\site2
+				- Binding:
+					- IP address: All Unassigned
+					- Port: 80
+					- Hostname: site2.local
+			- Click OK
+		
+		# Edit hosts File (for Local Testing)
+			If you're testing on a local machine, edit the hosts file:
+			- Open C:\Windows\System32\drivers\etc\hosts in Notepad as Admin
+			- Add:
+				127.0.0.1 site1.local
+				127.0.0.1 site2.local
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+NLB
+	⚖️ What is NLB (Network Load Balancing) in Windows Server
+		- NLB (Network Load Balancing) is a high availability and scalability feature in Windows Server 
+			that distributes incoming network traffic across multiple servers (called nodes) in a load-balanced cluster.
+		- It ensures:
+			- High availability
+			- Scalability for web, FTP, VPN, or other TCP/UDP services
+			- Seamless failover (if one node goes down, others handle traffic)
+	
+	🧠 Why Use NLB?
+		
+		|--------------------------------------------------------------------------
+		| Benefit                            | Description                                                          |
+		| ---------------------------------- | -------------------------------------------------------------------- |
+		|   Load Balancing                   | Distributes requests (e.g., website traffic) across multiple servers |
+		|   High Availability                | If one server fails, others continue serving clients                 |
+		|   Scalability                      | Easily add more servers to the cluster                               |
+		|   No expensive hardware required   | NLB works with standard network adapters                             |
+		|-----------------------------------------------------------------------------------------------------------|
+	
+	🛠️ How to Configure NLB Server
+		
+		✅ Prerequisites
+			- 2 or more Windows Servers (same subnet)
+			- Static IPs assigned
+			- Same application (e.g., IIS with identical sites) on all servers
+		
+		⚙️ Step 1: Install NLB Feature
+			- On all servers:
+			- Open Server Manager → Add Roles and Features
+			- Add Network Load Balancing under Features
+			- Install → No reboot required
+		
+		⚙️ Step 2: Open NLB Manager
+			- On one server:
+				- Open Start → Network Load Balancing Manager
+		
+		⚙️ Step 3: Create NLB Cluster
+			- Cluster → New
+			- Enter the name or IP of the first server (Node 1)
+			- Select the network interface (usually the LAN NIC)
+			- Set Cluster IP address:
+				- Example: 192.168.1.100 (clients will access this address)
+			- Choose Cluster operation mode (Unicast or Multicast)
+			- Add the full internet name (e.g., nlb.local)
+			- Click Finish
+		
+		⚙️ Step 4: Add More Nodes
+			- Right-click on the cluster → Add Host to Cluster
+			- Enter the name of the second server (Node 2)
+			- Configure its NIC and port rules (usually TCP: 80 for web)
+			- Click Finish
+		
+		🧪 Step 5: Test NLB
+			- On both servers:
+				- Run IIS
+				- Create identical content (e.g., different text to identify node)
+			- From client browser, go to:
+				- http://192.168.1.100
+			
+			Refresh several times — you should see responses from both nodes
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Kerberos
+	🔐 What is Kerberos in Windows?
+		- Kerberos is the default authentication protocol used in Active Directory (AD) environments on Windows.
+		- It’s a ticket-based authentication system that enables secure, mutual authentication between users and services
+			without sending passwords over the network.
+		
+	🧠 Why Use Kerberos?
+		|--------------------------------------------------------------------------------------------------------|
+		| Benefit                  | Description                                                                 |
+		| ------------------------ | --------------------------------------------------------------------------- |
+		| 🔐 Secure                | Passwords are **never sent in plaintext**                                   |
+		| ⚡ Fast                  | Uses **tickets**, so after the first login, access is quick                 |
+		| 🔁 Mutual Authentication | Confirms both **user and service identities**                               |
+		| 🧭 SSO (Single Sign-On)  | Users log in **once** and access multiple services without reauthenticating |
+		|--------------------------------------------------------------------------------------------------------|
+	🔄 Kerberos Authentication Flow (Simplified)
+		🧾 Step-by-Step (Using SSO Example)
+			1. User Logs in to Domain
+				- Client sends request to AS on KDC
+				- AS sends back a TGT encrypted with the KDC’s key
+			2. User Wants to Access a Service (e.g., File Server)
+				- Client presents the TGT to TGS
+				- TGS sends a Service Ticket encrypted with the service's key
+			3. User Accesses the Service
+				- Client sends the Service Ticket to the server
+				- Server decrypts and verifies it
+				- User is granted access without typing credentials again
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+powershell
+	🔧 What is PowerShell?
+		- PowerShell combines:
+			- Command-line interface (CLI) like Command Prompt.
+			- Scripting language based on .NET.
+			- Access to WMI, COM, and .NET for deep system control.
+		
+		It’s used for automation, configuration, and system management.
+		
+	🔍 Key Uses of PowerShell in Windows Administration
+		
+		|---------------------------------------------------------------------------------------|
+		| Task                  | Example Command                                               |
+		| --------------------- | ------------------------------------------------------------- |
+		| View system info      | Get-ComputerInfo                                              |
+		| Manage services       | Get-Service, Start-Service, Stop-Service                      |
+		| Manage users          | Get-LocalUser, New-LocalUser, Add-LocalGroupMember            | 
+		| Manage processes      | Get-Process, Stop-Process                                     | 
+		| File management       | Get-ChildItem, Copy-Item, Remove-Item                         |
+		| Network configuration | Get-NetIPAddress, New-NetIPAddress                            |
+		| Disk management       | Get-Volume, Format-Volume, Get-Partition                      |
+		| Windows Updates       | Get-WindowsUpdateLog, Install-WindowsUpdate (with module)     |
+		| Remote management     | Enter-PSSession, Invoke-Command                               |
+		| Task Scheduler        | Get-ScheduledTask, Register-ScheduledTask                     |
+		|---------------------------------------------------------------------------------------|
+
+
+=============================================================================================================================================================
+--------------------
+LINUX ADMINISTRATION
+--------------------
+linux booting process
+	1> Power On and POST
+		The computer is powered on.
+		BIOS/UEFI performs Power-On Self Test (POST) to check hardware.
+	2> Bootloader Loading
+		BIOS/UEFI loads the bootloader from the boot device (usually from MBR or EFI partition).
+		Bootloader (e.g., GRUB) runs and shows the boot menu.
+	3> Kernel Loading
+		Bootloader loads the Linux kernel and optionally an initial RAM disk (initrd or initramfs) into memory.
+		Control is transferred to the kernel.
+	4> init Process Starts
+		Kernel starts the first user-space process called init (or systemd).
+	5> Runlevel/Target Reached
+		System enters a specific runlevel (SysVinit) or target (systemd) — for example, multi-user mode or graphical mode.
+	6> Login Prompt Displayed
+		Login screen appears (command-line or graphical).
+		User can now log in to the system.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+How to recover Forgotten password ?
+	🪜 Step-by-Step:
+		 Step 1: Reboot Your System
+			- On the boot screen, you'll see the GRUB menu.
+			- If not visible, press Esc or Shift quickly during boot to show it.
+		 Step 2: Edit the GRUB Boot Entry
+			- Use arrow keys to highlight the default boot entry (usually the first one).
+			- Press e to edit it.
+		Step 3: Modify Boot Parameters
+			- Find the line that starts with linux:
+				linux /boot/vmlinuz-... ro quiet splash
+			- Replace ro quiet splash with:
+				rw init=/bin/bash
+			- Now it looks like:
+				linux /boot/vmlinuz-... rw init=/bin/bash
+		Step 4: Boot into Shell
+			- Press Ctrl + X or F10 to boot with those settings.
+			- Now You’ll See a Shell Prompt:
+				root@(none):/# 
+		Step 5: Reset the Password
+			- passwd
+			- Enter new root password twice.
+		Step 6: Sync & Reboot
+			- sync
+			- reboot -f
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+how to create partition and file-system ? write command of it ?
+	🧮 Step 1: List Available Disks
+		- sudo fdisk -l
+	💿 Step 2: Start Partitioning the Disk
+		- sudo fdisk /dev/sdb
+		|-----------------------------|
+		| Key | Action                |
+		| --- | --------------------- |
+		|  n  | Create new partition  |
+		|  p  | Print partition table |
+		|  d  | Delete partition      |
+		|  w  | Write and exit        |
+		|  q  | Quit without saving   |
+		|-----------------------------|
+	🔁 Step 3: Inform Kernel of New Partition
+		- sudo kpartx -a /dev/sdb
+	🧾 Step 4: Create Filesystem on New Partition
+		- sudo mkfs.ext4 /dev/sdb1
+	📁 Step 5: Mount the Partition
+		- sudo mkdir /mnt/newdisk
+		- sudo mount /dev/sdb1 /mnt/newdisk
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Explain Linux Directory Structure in Detailed ?
+	
+	/
+	├── bin/   -> Essential binary executables (e.g., ls, cp, mv, cat, etc.) required for basic system operation. Available in single-user mode.
+	├── boot/  -> Contains boot loader files (e.g., GRUB), kernel files (vmlinuz), and initrd. System starts from here.
+	├── dev/   -> Contains device files (virtual files representing devices like /dev/sda, /dev/null, etc.).
+	├── etc/   -> Contains configuration files for the system and applications (e.g., /etc/passwd, /etc/fstab, /etc/hostname).
+	├── home/  -> User home directories. For example, /home/abhishek for user abhishek.
+	├── lib/   -> Shared library files needed by /bin and /sbin programs.
+	├── lib64/ -> 64-bit versions of shared libraries (on 64-bit systems).
+	├── media/ -> Mount point for removable media like USB drives or DVDs.
+	├── mnt/   -> Temporarily mounted filesystems (used by sysadmins for manual mounting).
+	├── opt/   -> Optional application software packages (3rd-party apps not part of the default system).
+	├── proc/  -> Virtual filesystem providing system info and process details (e.g., /proc/cpuinfo, /proc/meminfo).
+	├── root/  -> Home directory for the root user (not to be confused with /).
+	├── run/   -> Temporary filesystem for runtime data since the last boot (like PID files, lock files).
+	├── sbin/  -> System binaries for administrative tasks (e.g., fsck, reboot, mount). Usually only root can run these.
+	├── srv/   -> Contains data for services like web or FTP servers (e.g., /srv/www, /srv/ftp).
+	├── sys/   -> Interface to the kernel and hardware, used for system tuning and device management.
+	├── tmp/   -> Temporary files. Cleared on reboot. All users can write here.
+	├── usr/   -> User-level programs and data. Contains subdirectories like:
+	└── var/   -> Variable data files like logs, spools, caches, mail, and databases.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is SSH ? Why SSH is Secure ? Default port number ?
+	🔐 What is SSH?
+		- SSH (Secure Shell) is a network protocol used to securely access and manage remote systems over an unsecured network.
+		
+		🧰 It allows you to:
+			- Log into remote Linux machines (command-line or file transfer)
+			- Execute commands on remote servers
+			- Transfer files securely (scp, sftp)
+			- Tunnel or forward ports securely (for advanced use)
+	🔒 Why is SSH Secure?
+		- SSH is secure because it uses strong encryption and authentication methods to protect data and credentials.
+		
+		✅ Security Features:
+		|----------------------------------------------------------------------------------------------------------------------------------------------------------|	
+		|         Feature              |                                                     Description                                                           |
+		| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+		|   Encryption                 | All data (login, commands, file transfers) is encrypted using algorithms like AES or ChaCha20. Prevents eavesdropping.    |
+		|   Authentication             | Uses passwords,public-private key pairs, or even multi-factor authentication to ensure only authorized users can connect. |
+		|   Integrity                  | Ensures data is not tampered with using message authentication codes (MACs).                                              |
+		|   Resistance to MITM attacks | Uses server fingerprint verification to detect man-in-the-middle attacks.                                                 |
+		|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+	⚙️ Default Port Number
+		- Port: 22
+		- You can change it in the config file:
+			/etc/ssh/sshd_config → Port 22
+			
+	Basic Commands
+	|-----------------------------------------------------|
+	| Task                | Command                       |
+	| ------------------- | ----------------------------- |
+	| Connect to a server |  ssh user@ip_address          |
+	| Use custom port     |  ssh -p 2222 user@ip_address  |
+	| Copy file via SSH   |  scp file.txt user@ip:/path/  |
+	| Generate SSH key    |  ssh-keygen                   |
+	|-----------------------------------------------------|
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Explain each Field of /etc/passwd ? what is /etc/shadow ?
+	📁 1. /etc/passwd
+		📌 Format of /etc/passwd:
+			username:password:UID:GID:comment:home_directory:shell
+		example:
+			abhishek:x:1001:1001:Abhishek S:/home/abhishek:/bin/bash
+		
+		🔍 Field-by-Field Explanation:
+			|----------------------------------------------------------------------------------------------------------------------------------|
+			| Field # | Name              | Description                                                                                        |
+			| ------- | ----------------- | -------------------------------------------------------------------------------------------------- |
+			| 1️       |  username         | The login name of the user (e.g., `abhishek`)                                                      |
+			| 2       |  password         | An `x` indicates password is stored in `/etc/shadow`. (Older systems stored hashed password here.) |
+			| 3       |  UID              | User ID. `0` = root, `1000+` = regular users                                                       |
+			| 4       |  GID              | Primary Group ID. Maps to a group in `/etc/group`                                                  |
+			| 5       |  comment (GECOS)  | Full name or other info (often blank or "User Name")                                               |
+			| 6       |  home_directory   | Path to the user’s home (e.g., `/home/abhishek`)                                                   |
+			| 7       |  shell            | Default login shell (e.g., `/bin/bash`, `/sbin/nologin`)                                           |
+			|----------------------------------------------------------------------------------------------------------------------------------|	
+		
+	🔐 2. /etc/shadow
+		📌 Format:
+			username:password:lastchg:min:max:warn:inactive:expire:reserved
+		example:
+			abhishek:$6$8dknfY...:19130:0:90:7:30::
+		
+		🔍 Field-by-Field Explanation:
+			|----------------------------------------------------------------------------------|
+			| Field # | Name       | Description                                               |
+			| ------- | ---------- | --------------------------------------------------------- |
+			| 1️       | `username` | Must match `/etc/passwd` username                         |
+			| 2       | `password` | Encrypted password hash (or `!`/`*` if account is locked) |
+			| 3       | `lastchg`  | Days since Jan 1, 1970 when password was last changed     |
+			| 4       | `min`      | Minimum days before password can be changed               |
+			| 5       | `max`      | Maximum days password is valid                            |
+			| 6       | `warn`     | Days before expiration to warn user                       |
+			| 7       | `inactive` | Days after password expires before account is disabled    |
+			| 8       | `expire`   | Account expiration date (days since Jan 1, 1970)          |
+			| 9       | `reserved` | Usually empty                                             |
+			|----------------------------------------------------------------------------------|
+		############################################################
+			|-------------------------------------------------|
+			| File          | Purpose           | Readable by |
+			| ------------- | ----------------- | ----------- |
+			| `/etc/passwd` | User info         | All users   |
+			| `/etc/shadow` | Password + policy | Only `root` |
+			|-------------------------------------------------|
+	
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Why we use LVM in linux ? benefits of it ?
+	💡 Why Do We Use LVM in Linux?
+		- LVM allows you to manage storage more dynamically than traditional partitioning.
+		- Instead of using fixed-size partitions (/dev/sda1, /dev/sda2, etc.), LVM introduces a layer of abstraction that makes resizing, moving, 
+			and adding storage easier — especially useful for servers and enterprise environments.
+		- Systems that will need disk resizing, snapshots, or frequent storage change.
+		
+	✅ Key Benefits of LVM
+		|---------------------------------------------------------------------------------------------------------------------------|
+		| Benefit                          | Explanation                                                                            |
+		| -------------------------------- | -------------------------------------------------------------------------------------- |
+		| 🔄 Dynamic Resizing              | You can extend or shrink volumes on-the-fly without rebooting.                         |
+		| ➕ Add Disks Easily              | Combine multiple physical disks into a single volume group — scale storage easily.     |
+		| 📁 Flexible Volume Management    | Create, resize, and delete logical volumes without affecting others.                   |
+		| 📦 Snapshots                     | Create point-in-time snapshots for backup or testing without stopping the system.      |
+		| 🧱 No Partition Limitations      | Avoids limitations of primary/extended partitions.                                     |
+		| 🚀 Improved Disk Utilization     | Combines space from multiple disks — no wasted space.                                  |
+		| 🔐 Better with Encryption/RAID   | LVM works well with disk encryption (LUKS) and RAID setups.                            |
+		|---------------------------------------------------------------------------------------------------------------------------|
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Postfix-Mail Server ? Default port number ? 
+	📬 What is Postfix Mail Server?
+		- Postfix is a free, open-source mail transfer agent (MTA) used to send and receive emails.
+		- It is one of the most popular alternatives to Sendmail, known for being secure, fast, and easy to configure.
+		- Postfix handles:
+			- Sending emails locally and over the internet
+			- Receiving emails (if configured)
+			- Forwarding emails between hosts and users
+	
+	🔹 Postfix listens on port 25 by default, but you often enable 587 for clients and 465 for secure sending.
+	
+	📦 Step 1: Install Postfix
+		sudo apt update
+		sudo apt install postfix mailutils -y
+
+	📋 Step 2: Postfix Configuration Wizard
+		During installation, you’ll be asked a few questions:
+			
+			| Prompt                                   | Recommendation                           |
+			| ---------------------------------------- | ---------------------------------------- |
+			| **"General type of mail configuration"** | Choose `Internet Site`                   |
+			| **"System mail name"**                   | Use your FQDN (e.g., `mail.example.com`) |
+
+			- sudo dpkg-reconfigure postfix
+
+	⚙️ Step 3: Edit Postfix Configuration File
+		sudo nano /etc/postfix/main.cf
+
+		myhostname = mail.example.com
+		mydomain = example.com
+		myorigin = /etc/mailname
+		inet_interfaces = all
+		inet_protocols = all
+		mydestination = $myhostname, localhost.$mydomain, localhost
+		mynetworks = 127.0.0.0/8
+		relayhost =
+		home_mailbox = Maildir/
+
+
+	🧾 Step 4: Set Maildir Format (Optional but Recommended)
+		sudo postconf -e 'home_mailbox = Maildir/'
+		mkdir -p ~/Maildir/{cur,new,tmp}
+
+	🚀 Step 5: Restart Postfix
+		sudo systemctl restart postfix
+		sudo systemctl enable postfix
+
+	✉️ Step 6: Send a Test Email
+		echo "This is the body" | mail -s "Test Subject" your_email@example.com
+		mailq
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is Dovecot ? can it be used with Postfix ?
+	
+	📬 What is Dovecot?
+	Dovecot is a secure and high-performance IMAP and POP3 server that works with Postfix to deliver emails to users’ mailboxes.
+	
+	✅ Goal: Configure Dovecot to Serve Mail from Postfix
+	
+	📦 Step 1: Install Dovecot
+		- sudo apt update
+		- sudo apt install dovecot-core dovecot-imapd dovecot-pop3d -y
+
+	📁 Step 2: Ensure Mail Format is Maildir
+		- Postfix must deliver mail in Maildir format (which stores each mail as a file in a directory).
+		- Edit this line in /etc/postfix/main.cf:
+			# home_mailbox = Maildir/
+			If not already created, initialize Maildir for each user:
+			- mkdir -p /home/username/Maildir/{cur,new,tmp}
+			- chown -R username:username /home/username/Maildir
+
+	⚙️ Step 3: Dovecot Basic Configuration
+		- Edit Dovecot configuration:
+			- sudo nano /etc/dovecot/dovecot.conf
+		- Ensure it contains:
+			- protocols = imap pop3 lmtp
+
+	🗂️ Step 4: Configure Mail Location
+		- sudo nano /etc/dovecot/conf.d/10-mail.conf
+
+		Find and set:
+			- mail_location = maildir:~/Maildir
+
+	👤 Step 5: Enable System User Authentication
+		- sudo nano /etc/dovecot/conf.d/10-auth.conf
+
+		- Ensure: 
+			- disable_plaintext_auth = no
+			- auth_mechanisms = plain login
+			- !include auth-system.conf.ext
+
+	🌐 Step 6: Configure Listener
+		- sudo nano /etc/dovecot/conf.d/10-master.conf
+
+		- Look for this section and ensure it's enabled:
+			service imap-login {
+			  inet_listener imap {
+				port = 143
+			  }
+			  inet_listener imaps {
+				port = 993
+				ssl = yes
+			  }
+			}
+
+			service pop3-login {
+			  inet_listener pop3 {
+				port = 110
+			  }
+			  inet_listener pop3s {
+				port = 995
+				ssl = yes
+			  }
+			}
+
+	🔐 Step 7: Enable SSL (Optional for Secure Access)
+		- sudo nano /etc/dovecot/conf.d/10-ssl.conf
+
+		- Ensure: 
+			- ssl = yes
+			- ssl_cert = </etc/ssl/certs/ssl-cert-snakeoil.pem
+			- ssl_key = </etc/ssl/private/ssl-cert-snakeoil.key
+
+	🔄 Step 8: Restart Services
+		- sudo systemctl restart dovecot
+		- sudo systemctl enable dovecot
+
+		- sudo systemctl status dovecot
+
+	🧪 Step 9: Test IMAP/POP3 Ports
+		- sudo ss -tuln | grep -E '110|143|993|995'
+
+		- Expected open ports:
+			110 (POP3)
+			143 (IMAP)
+			993 (IMAPS)
+			995 (POP3S)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is mounting in LINUX ? write a command to mount FAT formatted pen drive in /mnt ? 
+How can you auto-mount it each time you boot the system ?
+	
+	📌 What is Mounting in Linux?
+		- In Linux, mounting means making a storage device (like a hard disk, partition, or USB drive) accessible to the system at a specific directory (called a mount point).
+		
+	✅ Mounting a FAT-Formatted Pen Drive to /mnt
+		Step 1: Plug in the USB and identify the device
+			- lsblk
+		Step 2: Mount the device
+			- sudo mount -t vfat /dev/sdb1 /mnt
+				- -t vfat → Specifies the FAT/FAT32 file system
+				- /dev/sdb1 → USB device partition
+				- /mnt → Mount point (can also use /media/usb or create your own)
+			
+	🔁 How to Auto-Mount on Boot
+		- sudo nano /etc/fstab
+		
+		Make a entry like 
+			/dev/sdb1    /mnt/abhishek    vfat    defaults    0    0
+			
+			|----------------------------------------------------------------------------------------|
+			| Field             | Description                                                        |
+			| ----------------- | ------------------------------------------------------------------ |
+			| `/dev/sdb1`       | Device name                                                        |
+			| `/mnt`            | Mount point                                                        |
+			| `vfat`            | Filesystem type (use `ext4`, `ntfs`, etc. as needed)               |
+			| `defaults,nofail` | Mount options. `nofail` prevents boot failure if device is missing |
+			| `0`               | Dump (backup utility) - usually 0 (not backup), & 1 for backup     |
+			| `0`               | fsck order - usually 0 for removable                               |
+			|----------------------------------------------------------------------------------------|
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is Hard-link & Symbolic-link ? how to create them ?
+	🔗 1. Hard Link
+		✅ Definition:
+			- A hard link is a direct pointer to the inode (data structure) of a file.
+			- Multiple filenames (hard links) point to the same inode, i.e., same data on disk.
+			- If the original file is deleted, the data still exists as long as at least one hard link exists.
+		📌 Create Hard Link:
+			- ln source_file hard_link_name
+		📂 Example:
+			echo "Hello World" > original.txt
+			ln original.txt hardlink.txt
+			
+			Now, original.txt and hardlink.txt point to the same data.
+			
+	🔗 2. Symbolic Link (Soft Link)
+		✅ Definition:
+			- A symbolic link is a special file that contains a path to another file or directory.
+			- Works like a shortcut.
+			- If the original file is deleted, the symlink becomes broken.
+		📌 Create Symbolic Link:
+			- ln -s target_file_or_directory symlink_name
+		📂 Example:
+			- ln -s original.txt symlink.txt
+			
+			Now, symlink.txt points to original.txt.		
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is SELinux ?
+	
+	🔐 What is SELinux?
+		- SELinux (Security-Enhanced Linux) is a mandatory access control (MAC) system integrated into the Linux kernel.
+		- It provides extra security by strictly controlling what users and processes can access on the system—even root.
+	
+	📌 Why Use SELinux?
+		- Standard Linux permissions (like rwx and ownership) are discretionary. That means:
+			- The file owner (or root) controls access.
+			- If a process is compromised, it can do anything the user or root is allowed to do.
+		- SELinux adds a second layer of defense by enforcing security policies that define:
+			- Who can access what
+			- How it can be accessed (read, write, execute)
+			- Which context the access occurs in
+	
+	✅ Benefits of SELinux:
+		- Protects the system even if an attacker gains root access.
+		- Isolates services from each other (e.g., Apache can't read SSH files).
+		- Prevents zero-day privilege escalation.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is NFS ? what is root_squash ?
+	
+	📦 What is NFS (Network File System)?
+		- NFS (Network File System) is a protocol developed by Sun Microsystems that allows remote file systems to be shared over a network and accessed as if they were local.
+		- It allows a client system to mount a directory from a remote server over the network and interact with it like a local directory.
+	
+	⚙️ How NFS Works:
+		- NFS Server: Exports (shares) one or more directories via /etc/exports.
+		- NFS Client: Mounts those directories using the mount command or /etc/fstab.
+	
+	🔐 What is root_squash?
+		- When an NFS client accesses files on the NFS share as root, the server converts that root user to a non-privileged user (nobody) for security reasons.
+		- This behavior is called: root_squash
+	
+	🔐 Why Use root_squash?
+		- To prevent the root user on a client machine from having root-level access to files on the NFS server, which could otherwise be a serious security risk.
+	
+		|------------------------------------------------------------------------------------------|
+		| Option           | Description                                                           |
+		| ---------------- | --------------------------------------------------------------------- |
+		| `root_squash`    | (Default) Maps root user on client to `nobody` on server              |
+		| `no_root_squash` | Allows root user on client to act as root on NFS server (⚠️ insecure) |
+		|------------------------------------------------------------------------------------------|	
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is NIS ( Network Information Service ) in LINUX ?
+	🌐 What is NIS (Network Information Service) in Linux?
+		- NIS (formerly called Yellow Pages / YP) is a centralized authentication and information service developed by Sun Microsystems.
+		- It allows multiple Linux/Unix machines to share user and system configuration files (like /etc/passwd, /etc/group, /etc/hosts) from a central NIS server.
+	
+	🧩 Why Use NIS?
+		- Imagine a network with 50 Linux systems. Instead of creating the same users on every system, you can:
+			- Create users once on the NIS server
+			- All clients automatically fetch user info from the server
+			- Users can log into any client with the same credentials
+	
+	🏗️ NIS Architecture
+		|-------------------------------------------------------------------|
+		| Role                     | Description                            |
+		| ------------------------ | -------------------------------------- |
+		| **NIS Server (Master)**  | Stores and distributes database (maps) |
+		| **NIS Clients**          | Request info from NIS server           |
+		| **NIS Slave (optional)** | Backup server for redundancy           |
+		|-------------------------------------------------------------------|
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is .bashrc & .profile in linux ?
+	- In Linux, ~/.bashrc and ~/.profile are configuration files used to initialize your shell environment when you log in or open a terminal.
+	
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Explain LINUX architecture. What is the name of the kernel ?
+	
+	🏗️ Main Layers of Linux Architecture
+		
+		+------------------------+
+		|   Applications         | ← User apps (e.g., Firefox, terminal)
+		+------------------------+
+		|   Shell                | ← Command interpreters (bash, zsh)
+		+------------------------+
+		|   System Call Interface|
+		+------------------------+
+		|   Kernel               | ← Core of Linux (manages everything)
+		+------------------------+
+		|   Hardware             |
+		+------------------------+
+		
+		🧱 1. Hardware Layer
+			- Actual physical devices: CPU, RAM, Hard Disks, Network cards, etc.
+			- The kernel interacts directly with this layer.
+		
+		🧠 2. Kernel Layer (Core of Linux)
+			- 📌 The kernel is the heart of the OS. It:
+				- Manages processes
+				- Allocates memory
+				- Controls device drivers
+				- Handles networking
+				- Provides security and file systems
+		
+			✅ The name of the kernel is:
+				- Linux kernel (often just called "Linux")
+		
+		💬 3. Shell Layer
+			- A command-line interpreter (CLI), e.g., bash, sh, zsh.
+			- It allows users to interact with the system by typing commands.
+		
+			Whatever command we write shell passes it to the kernel. (ex. ls -a )
+			
+		📦 4. Application Layer
+			- User-facing programs like:
+				- Firefox
+				- LibreOffice
+				- VS Code
+				- File Managers
+			- These use system calls via the shell or GUI libraries to interact with the kernel.		
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is user ? What are Groups? how to change logged in user ?
+	
+	👤 What is a User in Linux?
+		- In Linux, a user is any account that can log in and operate within the system.
+		|-------------------------------------------------------------|
+		| Type        | Description                                   |
+		| ----------- | --------------------------------------------- |
+		|   Root      | Superuser (UID 0), full system control        |
+		|   Regular   | Limited privileges, can only access own files |
+		|-------------------------------------------------------------|
+		
+	👥 What is a Group in Linux?
+		- A group is a collection of users.
+		- It helps manage permissions for multiple users at once.
+			- For example, if a file is owned by group devs, any user in the devs group can access it.
+	
+	🔄 How to Change the Logged-in User
+		- su <username>
+		- <password>
+		
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+what is root user & general user ? how to create a user? how to add user in group? how to change user privileges ?
+	
+	👑 What is Root User?
+		- The root user is the superuser in Linux with unlimited privileges.
+		- UID (User ID) = 0
+		- Can read, write, execute, or delete any file on the system.
+		- Can create, delete, or modify any user or group.
+	
+	👤 What is a General (Regular) User?
+		- A regular user is created for everyday tasks.
+		- Has a unique UID > 1000 (on most distros).
+		- Can only access files they own or have permissions for.
+		- Needs sudo access to perform system-level tasks.
+		
+	➕ How to Create a User
+		sudo adduser username
+		sudo passwd username
+		
+	➕ How to Add a User to a Group
+		sudo usermod -aG groupname username		
+		
+	🔁 How to Change User Privileges
+		🔸 1. Make a User Admin (add to sudo group):
+			sudo usermod -aG sudo username
+		🔸 2. Change User's Shell:
+			sudo chsh -s /bin/bash username
+		🔸 3. Change File Permissions for User:
+			sudo chown username filename
+			sudo chmod 755 filename
+		🔸 4. View User Info:
+			id username
+
+		
+		
+		
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is Default permissions of directory and files? how to change it? what is umask in linux?
+	
+	📁 What Are the Default Permissions of Files and Directories in Linux?
+		- When a file or directory is created in Linux, it gets default permissions based on two things:
+			- The file type (file or directory)
+			- The umask value
+		
+		✅ Default Base Permissions (Before umask)
+			|--------------------------------------------------------------------|
+			| Type          | Base Permissions                                   |
+			| ------------- | -------------------------------------------------- |
+			|   File        | `666` → `rw-rw-rw-` (read & write for all)         |
+			|   Directory   | `777` → `rwxrwxrwx` (read, write, execute for all) |
+			|--------------------------------------------------------------------|
+	
+	🔁 How to Change File or Directory Permissions
+		|------------------------------------------------------------------------|
+		| Task                    | Command              | Example               |
+		| ----------------------- | -------------------- | --------------------- |
+		| Set read/write for all  | `chmod 666 file.txt` | `chmod 666 notes.txt` |
+		| Make executable         | `chmod +x script.sh` |                       |
+		| Change directory to 755 | `chmod 755 mydir`    |                       |
+		|------------------------------------------------------------------------|
+		
+		- Or use symbolic mode:
+			chmod u+x file.sh   # Add execute to user
+			chmod g-w file.txt  # Remove write from group
+
+		
+	🧮 What is umask?
+		- umask (User Mask) defines which permission bits to turn off (subtract) from the default.
+		
+			- Default permission for file = 666
+			- umask = 022
+			
+				666 (default)  
+				- 022 (umask)
+				---------------
+				644 → rw-r--r--
+				
+			- For directories:
+				777 (default)
+				- 022 (umask)
+				---------------
+				755 → rwxr-xr-x
+
+=============================================================================================================================================================
+What is GRUB?
+	GRUB is a complete program for loading and managing the boot process. It is the most common bootloader for Linux distributions.
+	A bootloader is the first software that runs when a computer starts. 
+	It loads the kernel of the operating system and then the kernel initializes the rest of the 
+	operating system: shell, display manager, desktop environment, etc.
+
+-----------------------------------------------------------

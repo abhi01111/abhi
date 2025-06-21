@@ -1,0 +1,70 @@
+Subject: FCN MCQ 
+ 
+-----------------------------------------------------------------------
+			Topic : WAN Technologies
+
+			Questions Text : Which of the following WAN technologies uses fixed-length cells of 53 bytes?
+			A. Frame Relay
+			B. ATM
+			C. MPLS
+			D. X.25
+			ANSWER: ATM
+			Explanation : [ Chatgpt , https://chatgpt.com/c/67e66667-9770-800c-a08b-762d471b91bd ] , 
+						 Asynchronous Transfer Mode (ATM) is a WAN technology that uses fixed-length cells of 
+						 53 bytes—5 bytes for the header and 48 bytes for data. This structure helps in reducing 
+						 jitter and ensures efficient transmission in high-speed networks.
+			 
+			Questions Text : Which protocol is commonly used for establishing a secure VPN over the internet?
+			A. PPP
+			B. L2TP
+			C. IPsec
+			D. HDLC
+			ANSWER: IPsec
+			Explanation : [ Chatgpt , https://chatgpt.com/c/67e66667-9770-800c-a08b-762d471b91bd ] , 
+						 IPsec (Internet Protocol Security) is widely used for establishing secure VPN connections. 
+						 It provides encryption, authentication, and integrity for data transmitted over an IP network.
+
+			Questions Text : What is the primary function of the BGP (Border Gateway Protocol) in WAN networking?
+			A. Encrypts WAN traffic
+			B. Manages the routing between different ISPs and large networks
+			C. Establishes VPN connections
+			D. Converts analog signals to digital
+			ANSWER: Manages the routing between different ISPs and large networks
+			Explanation : [ Chatgpt , https://chatgpt.com/c/67e66667-9770-800c-a08b-762d471b91bd ] , 
+						 BGP is an exterior gateway protocol used to exchange routing information between different 
+						 autonomous systems (AS), making it essential for internet routing.
+
+			Questions Text : Which of the following is a packet-switched WAN technology?
+			A. ISDN
+			B. MPLS
+			C. SONET
+			D. T1
+			ANSWER: MPLS
+			Explanation : [ Chatgpt , https://chatgpt.com/c/67e66667-9770-800c-a08b-762d471b91bd ] , 
+						 MPLS is a packet-switched WAN technology that routes data efficiently using labels 
+						 rather than traditional IP routing.
+
+			Questions Text : What is the main purpose of a leased line in a WAN?
+			A. To provide dial-up internet access
+			B. To provide a dedicated and permanent connection between two locations
+			C. To establish a temporary network connection
+			D. To enable dynamic IP address allocation
+			ANSWER: To provide a dedicated and permanent connection between two locations
+			Explanation : [ Chatgpt , https://chatgpt.com/c/67e66667-9770-800c-a08b-762d471b91bd ] , 
+						 A leased line is a private, always-on connection that offers consistent bandwidth 
+						 between two endpoints, commonly used for corporate networks.
+
+			Questions Text : Which WAN protocol encapsulates multiple network layer protocols and is used for remote access?
+			A. PPP
+			B. HDLC
+			C. MPLS
+			D. ATM
+			ANSWER: PPP
+			Explanation : [ Chatgpt , https://chatgpt.com/c/67e66667-9770-800c-a08b-762d471b91bd ] , 
+						 The Point-to-Point Protocol (PPP) supports multiple network layer protocols and provides authentication, 
+						 compression, and error detection, making it ideal for remote access connections.
+
+COSA
+	WINDOWS
+	LINUX
+	

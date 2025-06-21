@@ -1,0 +1,787 @@
+OSI(Open System Interconnection) LAYER
+
+	1) APPLICATION LAYER
+		FORMAT : Data
+		WORKING:i) Interfaces for end-user services
+						It provides the interface for the end-user to interact with the network.
+				ii) data processing for transmission
+						The application layer formats data appropriately (e.g., HTML, JSON, XML) and passes it to the presentation 
+						layer (in the OSI model) or directly to the transport layer (in TCP/IP).
+				iii) interaction with lower layers
+						The data prepared by the application layer is handed off to lower layers (transport, network, etc.) for actual 
+						transmission over the network.
+		PROTOCOLS:  HTTP/HTTPS (web browsing)
+					SMTP,IMAP,POP3 (email)
+					FTP/SFTP (file transfer)
+					DNS (domain name resolution)
+					Telnet/SSH (Remote login)
+		ATTACKS:DOS (Overloads the application with requests to make it unavailable.)(ex.Crashes or slows down the website or service.)
+				SQL Injection (Attacker injects malicious SQL code into input fields to manipulate the database.)(ex.Extract, modify, or delete sensitive data from a database.)
+				Cross-Site Scripting (XSS) (Malicious scripts are injected into web pages viewed by other users.)(ex.Steal cookies, session tokens, or deface websites.)
+				Session Hijacking (Steals or predicts valid session tokens to impersonate users.)(ex.Unauthorized access to user accounts.)
+				Phishing (Credential theft, identity fraud.)
+
+	2)PRESENTATION LAYER
+		FORMAT: Data
+		WORKING:ensure that the data sent by the application layer of one system can be understood by the application layer of another system,
+				regardless of differences in data formats, encoding, or encryption.
+				it is a simply translator between the application layer and the other layers. it ensures that the data is sent by the application layer is readble by the other layers. 
+		PROTOCOLS: SSL/TLS (encryption for secure communication or the secure data transmission over the internet)
+				   ASCII, Unicode (Encoding, translation)
+				   JPEG,GIF (data compression)
+		ATTACKS: SSL/TLS Exploits (Attacks on weaknesses in encryption protocols like SSL or improperly configured TLS or simply it takes the advantage of weakness to steal the data and bypass the encryption a secure server.)
+		
+	3)SESSION LAYER
+		FORMAT: data
+		WORKING:The Session Layer is responsible for establishing, managing, and terminating sessions between two communicating devices. It ensures that communication sessions
+				are controlled and synchronized, especially for long-running processes or interactive connections.
+		PROTOCOLS:NetBIOS (It enabling communication between applications on different devices.)
+				  SQL (Manages database connection sessions to maintain a persistent connection between the application and database server for query execution.)
+		ATTACKS:Session Hijacking (An attacker takes control of a valid session)
+				Denial of Service (DoS) (Attackers flood the session layer with fake or excessive requests to disrupt or disable the session management process.)
+				Cookie Hijacking (Attackers steal session cookies from a user's browser to take control of an active session or taking the data of login information about any particular website.)
+
+	4)TRANSPORT LAYER
+		FORMAT:Segment
+		WORKING:Responsible for providing end-to-end communication between devices on a network. It ensures that data is delivered accurately and reliably,
+				and it manages data segmentation, flow control, error detection, and error recovery.
+			Data Transfer process
+				The client sends data segments (with sequence numbers) to the server.
+				The server acknowledges each segment (with an acknowledgment number).
+				If a segment is lost or corrupted, the receiver requests a retransmission.
+		PROTOCOLS: TCP (ensures reliable data transmission between devices)
+				UDP (provides fast, lightweight communication)
+		ATTACKS:SYN Flood Attack (type of Denial of Service (DoS) attack that exploits the three-way handshake process in TCP)
+				Port Scanning (Port scanning is a technique where an attacker sends packets to a range of ports on a target machine to determine which ports
+								are open and listening for incoming connections.)
+				TCP Session Hijacking (Session hijacking involves an attacker intercepting an established TCP session and taking over the session to impersonate the legitimate user.)
+
+	5)NETWORK LAYER
+		FORMAT:Packets
+		WORKING:The Network Layer (Layer 3) is responsible for the routing of data packets from the source to the destination across different networks.
+				It ensures that data can travel from one device to another on different networks.The Network Layer is responsible for forwarding packets
+				from the source to the destination based on the destination IP address. Routers are responsible for forwarding these packets from one network to another.
+		PROTOCOLS:IP (IP is responsible for delivering packets from the source to the destination based on their IP addresses.)
+				ICMP (ICMP is used for error reporting)
+				ARP (ARP is used to map IP addresses to MAC addresses in local networks)
+				Routing Protocols Like RIP, OSPF, BGP, EIGRP.
+		ATTACKS:IP Spoofing (Attackers send packets with a false source IP address, making it appear as though the packet is coming from a trusted device.)
+				DOS (Making services or devices unavailable to legitimate users.)
+
+	6)DATA-LINK LAYER
+		FORMAT:Frames
+		WORKING:The Data Link Layer is responsible for node-to-node communication on the same local network.
+				Its main responsibility is to ensure error-free transmission of data frames between two directly connected nodes.
+				Adds the MAC (Media Access Control) addresses of the source and destination devices into the frame.
+				It breaks up data from the Network Layer into manageable units called frames.
+		PROTOCOLS:ETHERNET (Uses MAC addressing to identify devices.)
+				 WIFI/Wireless LAN (Uses CSMA/CA instead of CSMA/CD.)
+				 PPP (Point-to-Point Protocol) (Used for direct connection between two network nodes)
+				 Frame Relay (encapsulating network layer packets into frames.)
+		ATTACKS:MAC Spoofing (An attacker changes their device’s MAC address to impersonate another device on the network. to bypass mac filters,intercept traffic or hijack session.)
+				MAC Flooding (The attacker sends a flood of frames with fake MAC addresses to a switch.to Overflow the switch's MAC address table.)
+				ARP Spoofing / ARP Poisoning (The attacker sends fake ARP messages associating their MAC address with the IP address of another device.
+						to Perform Man-in-the-Middle (MITM) attacks or traffic redirection.)
+				 
+	7)PHYSICAL LAYER
+		FORMAT:Bits
+		WORKING:It deals with the physical connection between devices and the transmission of raw binary data (0s and 1s) over a communication medium.
+				The Physical Layer gets raw bits (binary stream) from the Data Link Layer (as frames).
+		PROTOCOLS:Bluetooth (Short-range wireless communication)
+				USB (Defines connectors, cables, and data transfer speeds)
+				ISDN (Integrated Services Digital Network) (Digital transmission over telephone lines)
+		ATTACKS:Signal Jamming (Deliberately emitting radio signals to disrupt wireless communication)
+				Port Access Attack (Connecting an unauthorized device)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+IPV4 ADDRESSING
+	CLASS A
+		Range: 1.0.0.0 to 126.255.255.255
+		Default Subnet Mask: 255.0.0.0 (/8)
+		First Octet Range: 1 to 126
+		Leading Bits: 0
+		Number of Networks: 128 (though 0 and 127 are reserved)
+		Hosts per Network: ~16 million
+		Use: Very large networks (e.g., large corporations)
+	CLASS B
+		Range: 128.0.0.0 to 191.255.255.255
+		Default Subnet Mask: 255.255.0.0 (/16)
+		First Octet Range: 128 to 191
+		Leading Bits: 10
+		Number of Networks: ~16,000
+		Hosts per Network: ~65,000
+		Use: Medium to large organizations
+	CLASS C
+		Range: 192.0.0.0 to 223.255.255.255
+		Default Subnet Mask: 255.255.255.0 (/24)
+		First Octet Range: 192 to 223
+		Leading Bits: 110
+		Number of Networks: ~2 million
+		Hosts per Network: 254
+		Use: Small networks
+	CLASS D
+		Range: 224.0.0.0 to 239.255.255.255
+		First Octet Range: 224 to 239
+		Leading Bits: 1110
+		Use: Multicasting (one-to-many communication)
+	CLASS E
+		Range: 240.0.0.0 to 255.255.255.255
+		First Octet Range: 240 to 255
+		Leading Bits: 1111
+		Use: Reserved for research, experimental purposes (not for general use)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PRIVATE IP ADDRESSING
+	CLASS A
+		Range: 10.0.0.0 to 10.255.255.255
+		Subnet Mask: 255.0.0.0 (/8)
+		Total Addresses: ~16.7 million
+	CLASS B
+		Range: 172.16.0.0 to 172.31.255.255
+		Subnet Mask: 255.240.0.0 (/12)
+		Total Addresses: ~1 million
+	CLASS C
+		Range: 192.168.0.0 to 192.168.255.255
+		Subnet Mask: 255.255.0.0 (/16)
+		Total Addresses: ~65,000
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+APIPA
+	APIPA stands for Automatic Private IP Addressing.It is a feature in Windows (and some other OSes) that allows a device to assign itself an IP address automatically
+	when it cannot get one from a DHCP server.
+	Why is APIPA Used?
+		When a device is set to obtain an IP automatically (via DHCP) but no DHCP server responds, APIPA steps in.
+		It allows basic local network communication without requiring manual IP configuration.
+		This is helpful in peer-to-peer networks, small workgroups, or during network troubleshooting.
+	When Does APIPA Activate?
+		When your computer is set to "Obtain an IP address automatically"
+		And fails to get a response from a DHCP server
+		Then, it assigns itself an IP from a predefined APIPA range
+	APIPA IP Address Range
+		Range: 169.254.0.1 to 169.254.255.254
+		Subnet Mask: 255.255.0.0 (/16)
+		These addresses are not routable on the internet or across routers — they are local-only.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+LOOPBACK SERIES
+	The loopback address is used for a device to send traffic to itself, bypassing the network hardware (like routers, switches).
+	Range: 127.0.0.0 to 127.255.255.255
+	Subnet Mask: 255.0.0.0 (/8)
+	Self-Testing: Helps to test the network stack, ensuring that the TCP/IP protocols are working correctly on the machine.
+	Troubleshooting: Helps diagnose network issues on the local machine, ensuring that the IP stack is functioning properly.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PORT Numbers
+	HTTP	-->		80
+	HTTPS	-->		443
+	FTP		-->		20/21	Data=20		control=21
+	SMTP	-->		25
+	POP3	-->		110
+	IMAP	-->		143
+	DNS		-->		53
+	SMTPs	-->		465
+	IMAPs	-->		993
+	POP3s	-->		995
+	DHCP	-->		67(server)/68(client)
+	SNMP	-->		161
+	SNMP(trap >		162
+	TELNET	-->		23
+	SSH		-->		22
+	TFTP	-->		69
+	SFTP	-->		22
+	LDAP	-->		389
+	LDAPs	-->		636
+	MYSQL	-->		3306
+	Remote(Desktop) 3389
+	NTP		-->		123			( network time protocol )
+	MongoDB -->		27017
+	Redis	-->		6379
+	SMB		-->		445			( windows file sharing )
+	Kerberos ->		88
+	
+	
+	Ports 	0–1023: 		system ports
+	Ports 	1024–49151: 	Registered ports (used by software/applications)
+	Ports 	49152–65535: 	Dynamic/private ports (ephemeral)
+	
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+route poisioning
+	Route Poisoning is a method used in distance-vector routing protocols to prevent routing loops by marking a route as unreachable
+	when a router detects that the destination is no longer reachable.
+	To inform other routers quickly that the destination is no longer reachable.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+split horizon
+	Split Horizon is a technique that prevents a router from advertising a route back out of the interface from which it was learned.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Latency
+	latency is the time it takes for data to travel from the source to the destination.
+	Latency = Delay between sending a request and receiving a response.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+Sub-netting
+	Subnetting (short for sub-networking) is the process of dividing a larger network into smaller, more manageable subnetworks (subnets).
+	It helps organize and optimize IP address allocation and improve network performance and security.
+	Network part (identifies the network)
+	Host part (identifies the device on the network)
+	
+	why it is needed
+		Subnetting is the process of dividing a large IP network into smaller, more manageable sub-networks (subnets). 
+		It’s essential in both small and large networks for efficiency, security, and scalability.
+	
+	1. Fixed Length Subnetting (FLSM)
+		Also called Equal Subnetting
+		All subnets have the same size (same number of hosts)
+		Simple and consistent
+		Common in traditional networks
+	
+	2. Variable Length Subnetting (VLSM)
+		Subnets of different sizes
+		Allows for more efficient IP allocation
+		Common in modern networks
+		Used in CIDR (Classless Inter-Domain Routing)
+	
+	3. Classful Subnetting
+		Based on fixed IP classes:
+			Class A: /8 (large networks)
+			Class B: /16 (medium networks)
+			Class C: /24 (small networks)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Differences Between IPv4 and IPv6
+	IPV4
+		32 bits
+		Address Format Decimal
+		Number of Addresses	~4.3 billion
+		Broadcast Supported
+		DNS Uses A records
+		IPSec is optional
+		addressing-Manual, DHCP
+	IPv6
+		128 bits
+		Address Format Hexadecimal
+		Number of Addresses ~340 undecillion
+		not Supports Broadcast
+		DNS Uses AAAA records
+		IPSec is mandatory
+		addressing-Stateless, stateful, manual
+		
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CSMA/CD (Carrier Sense Multiple Access with Collision Detection)
+	It is a network protocol used to manage how devices share a communication channel.
+	CSMA/CD is designed to:
+		Avoid collisions on a shared network medium.
+		Detect collisions when they happen.
+		Recover from collisions using a backoff algorithm.
+			CS
+				The device listens to the network to check if it is idle.
+			MA
+				Multiple devices shares the same network.
+			CD
+				While transmitting, it monitors the medium to detect if a collision occurs.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TTL (Time To Live)
+	It is an 8-bit field in the IPv4 header that limits the lifetime of a packet in a network to prevent it from circulating indefinitely.
+	Without TTL, a packet could loop forever in the case of routing errors.
+	
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+tracert / traceroute
+	The route (hops) packets take to reach a destination.
+	Latency (delay) at each hop.
+	If there are routing issues, timeouts, or unreachable devices.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SDN (Software Defined Networking)
+	SDN is a modern network architecture approach that separates the control plane from the data plane in networking equipment.
+	control plane
+		Builds and maintains routing tables.
+		Determines the best path for packet delivery.
+	data plane
+		Forwards packets based on the rules from the control plane.
+		Moves data from source to destination as quickly as possible.
+	
+	Architecture
+			┌─────────────────────────────┐
+			│     Application Layer       │ ◄─── (Firewall, QoS, Routing, etc.)
+			└────────▲────────────────────┘
+					 │  Northbound API (REST, etc.)
+			┌────────▼────────────────────┐
+			│       Control Layer         │ ◄─── SDN Controller (e.g., OpenDaylight)
+			└────────▲────────────────────┘
+					 │  Southbound API (OpenFlow, etc.)
+			┌────────▼────────────────────┐
+			│  Infrastructure Layer       │ ◄─── Switches, Routers, Devices
+			└─────────────────────────────┘
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SYSLOG
+	System logging protocol
+		It is used to collect, store and analyze system logs from network devices.
+	Why it is used ?
+		Centralized log management
+		Network monitoring and troubleshooting.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Access Port And Trunk port
+	Access port
+		An Access Port is a port on a switch that is assigned to a single VLAN
+		It carries traffic for only one VLAN.
+		It is typically used for end devices like computers, printers, and IP phones
+	Trunk port
+		A Trunk Port is a port on a switch that can carry traffic for multiple VLANs.
+		Trunk ports are typically used to connect switches to each other.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ACL (access control list)
+	An Access Control List (ACL) is a set of rules used to filter network traffic on routers.
+	ACLs allow network administrators to define which traffic is allowed or denied to enter or exit a
+		network interface based on various criteria, such as IP address, protocol, port number, or other factors.
+	ACLs are primarily used for:
+		Traffic filtering (allowing or denying traffic)
+		Network security
+		Traffic routing control
+		
+	Named ACL creation: A(config)# ip access-list extended blockweb
+						This command creates an Extended ACL named blockweb.
+						Extended ACLs allow filtering based on various factors like source/destination IP, protocols, port numbers, etc.
+	Permit rule for TCP traffic: A(config-ext-nacl)# permit tcp any host 172.16.30.100 eq 80
+						This allows TCP traffic from any source to the specific destination IP address 172.16.30.100 on port 80 (HTTP).
+	Deny rule for all IP traffic: A(config-ext-nacl)# deny ip any host 172.16.30.100
+						This blocks all other IP traffic (regardless of protocol) from reaching the same destination IP 172.16.30.100.
+	Permit all remaining traffic: A(config-ext-nacl)# permit ip any any
+						This ensures that all remaining traffic is permitted after the previous deny rule. It prevents unintended traffic blocking.
+	Applying the ACL: A(config-if)# ip access-group blockweb in
+						The ACL blockweb is applied inbound on the interface g0/0, meaning it filters traffic entering the interface.
+		
+	Types of ACLs
+	1. Standard ACL
+		Standard ACLs filter traffic based solely on the source IP address.
+		Range 1–99
+		access-list 10 permit 192.168.1.0 0.0.0.255
+		access-list 10 deny any
+	2. Extended ACL
+		Extended ACLs allow filtering based on multiple criteria, including source and destination IP addresses,
+		protocol types (TCP, UDP, ICMP), and port numbers (HTTP, SSH).
+		Range 100-199
+		access-list 101 permit tcp 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255 eq 80
+		access-list 101 deny ip any any
+
+	Where are ACLs Applied?
+		ACLs can be applied to various network interfaces or routers to control the flow of traffic:
+			Inbound Traffic: Traffic that enters an interface (e.g., from a device to a router).
+			Outbound Traffic: Traffic that exits an interface (e.g., from a router to a device).
+			
+	ACL Use Cases
+		1)Traffic Filtering
+		2)Remote Access Control
+		3)Limiting Network Access
+		4)Routing Control
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+VPN (Virtual Private Network)
+	A VPN is a secure, encrypted connection between your device (e.g., computer, smartphone, tablet)
+	and the internet or another network, usually over a public network like the internet. It allows users to send and receive data
+	as if their devices were directly connected to a private network, providing a safe tunnel for communication.
+	
+	VPNs are primarily used for:
+		Privacy: Encrypting data to keep it safe from prying eyes.
+		Security: Protecting data from hackers, especially when using public networks like Wi-Fi.
+		Access: Enabling users to access restricted or remote networks and websites, bypassing geographic restrictions.
+		Anonymity: Hiding the user’s real IP address, thus maintaining anonymity online.	
+	
+	1. Remote Access VPN
+		A remote access VPN allows individual users to connect securely to a private network (like a company network) over the internet.
+		This is commonly used by remote workers or individuals who want to access resources on a private network from different locations.
+		How it works: A user connects their device to a VPN client software, which establishes a secure connection to the VPN server on the private network.
+	2. Site-to-Site VPN
+		What is it?: A site-to-site VPN connects entire networks (e.g., branch offices, data centers) securely over the internet.
+		It allows two or more offices in different locations to securely share resources over the internet, as if they were on the same local network.
+		How it works: This type of VPN connects the network of one location (office or data center) to another network in a different location,
+		usually via dedicated VPN routers or gateways at both ends. The connection is transparent to users at both ends.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MAC Address
+	A MAC (Media Access Control) address is a unique identifier assigned to a network interface card (NIC) device that allows it to communicate over a network.
+	It is used primarily for local communication within a local area network (LAN).
+	A MAC address operates at the data link layer (Layer 2) of the OSI model and helps devices identify and interact with each other on the same physical network.
+	Each device on a network, such as a computer, smartphone, or printer, has a MAC address that is hardcoded into its network interface during manufacturing.
+	This address is intended to be unique to each device and ensures that communication between devices on a local network is efficient and error-free.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+VLAN (Virtual Local Area Network)
+	A VLAN is a logical grouping of devices on a Layer 2 network (like a switch) that allows devices to communicate as if they were on the same physical network,
+	even if they are not connected to the same physical switch.
+	VLANs are used to segment a physical network into multiple isolated broadcast domains, enhancing security, performance, and manageability.
+	
+	Why Use VLANs?
+		In traditional Ethernet networks, all devices connected to the same switch are in the same broadcast domain. That means when one device sends a broadcast (e.g., ARP),
+		all other devices receive it. This can cause:Security concerns: Devices can see traffic not intended for them.
+													Performance issues: Too much broadcast traffic slows down the network.
+													Poor scalability: Adding more devices increases broadcast traffic.
+		VLANs solve these problems by allowing you to group devices logically, not physically.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+STP (Spanning Tree Protocol)
+	STP is a Layer 2 protocol used in Ethernet networks to prevent loops in a switched network topology.
+	It ensures there is always one active path between two network devices by blocking redundant paths, which are used as backups in case of a link failure.
+	Without STP, network loops can cause broadcast storms, multiple frame copies, MAC table instability, and even network crashes.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NETWORKS 
+	1. Metropolitan Area Network (MAN)
+		What it is: A network that covers a small town or city.
+		Example: Cable TV networks that connect multiple households within a city.
+		Key Feature: Larger than a LAN but smaller than a WAN.
+		
+	2. Campus Area Network (CAN)
+		What it is: A network spanning a campus, school, or company.
+		Example: The Sunbeam Campus Network that connects classrooms, labs, and offices.
+		Key Feature: Limited to a specific area like a university or company campus.
+		
+	3. Personal Area Network (PAN)
+		What it is: A small network for personal devices within close range.
+		Example: Using Bluetooth or Wi-Fi to connect your phone, smartwatch, and laptop.
+		Key Feature: Short-range communication, usually within a few meters.	
+		
+	4. Virtual Private Network (VPN)
+		What it is: A secure network that uses the public internet to transfer data globally.
+		Example: Employees accessing a company's internal network securely while working remotely.
+		Key Feature: Encrypts data for privacy and security.
+		
+	5. Wide Area Network (WAN)
+		What it is: A network that covers large geographical areas, often using services provided by telecom companies.
+		Example: Internet connections through SIM cards or leased lines.
+		Key Feature: Connects multiple LANs or MANs across cities or countries.
+		
+	6. Server Area Network (SAN)
+		What it is: A network focusing on the physical security of servers and their environment.
+		Example: High-security areas in data centers with restricted access.
+		Key Feature: Ensures servers are in a controlled and secure environment.
+		
+	7. Storage Area Network (SAN)
+		What it is: A specialized high-speed network for storage devices.
+		Example: Enterprise-level data storage systems used for backups and large-scale data handling.
+		Key Feature: High performance and dedicated storage solutions for businesses.
+		
+	8. Galaxy Area Network (GAN)
+		What it is: A futuristic network for satellite connectivity in outer space.
+		Example: Current satellite communication systems, such as SpaceX's Starlink, are early implementations of GAN.
+		Key Feature: Envisions seamless connectivity even in space.
+		
+	9. Local Area Network (LAN)
+		What it is: A network where all connections and devices are managed by the owner.
+		Example: Home networks with a router connecting your PC, phone, and TV.
+		Key Feature: Small area coverage, typically within a building.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ARP (Address Resolution Protocol)		
+	Protocol that is used to map the MAC addresses to the IP addresses.
+	ARP helps machines communicate by broadcasting a request for a specific device's MAC address.
+	ARP Cache Time: MAC addresses are typically stored for a period after communication, allowing faster reconnections.
+		The exact time can vary depending on the operating system and network configuration.
+	
+	Why do we need ARP?
+		Devices communicate on a LAN using MAC addresses at the data link layer.
+		But usually, we know or use IP addresses (network layer) to identify devices.
+		So, when a device wants to send data to another device on the same LAN, it needs to find the MAC address that corresponds to that device’s IP address.
+		
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Duplex Modes
+	Full Duplex Mode: Uses separate cables for sending and receiving data, allowing simultaneous two-way communication.
+	Half Duplex Mode: Allows only one-way data transmission at a time.
+	Simplex Mode: One-way communication without the ability to send data back.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RIP (Routing Information Protocol)
+	Routing Information Protocol (RIP) is one of the oldest distance-vector routing protocols used to determine the best route for data to travel across a network.
+	It enables routers to exchange routing information and is primarily used in small to medium-sized networks.
+	Administrative distance = 120
+	
+	How RIP Works ?
+		RIP uses the distance-vector routing algorithm (Bellman-Ford algorithm) to calculate the best path to a destination based on hop count:
+			Hop count = number of routers a packet passes through to reach its destination.
+			The maximum hop count is 15. A hop count of 16 is considered infinite/unreachable.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+OSPF (Open Shortest Path)
+	OSPF is a link-state Interior Gateway Protocol (IGP) used within a single Autonomous System (AS).
+	It's a dynamic routing protocol that determines the best path for data by constructing a complete view of the network topology and using Dijkstra's algorithm to compute shortest paths.
+	Administrative distance = 110
+	
+	How RIP Works ?
+		OSPF is a link-state protocol that builds a full map of the network topology by exchanging link-state information with neighboring routers.
+		Then it uses Dijkstra’s Shortest Path First (SPF) algorithm to calculate the best path to each destination.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+EIGRP (Enhance Interior Gateway Routing Protocol)
+	EIGRP is a hybrid routing protocol (though often considered an advanced distance-vector protocol) developed by Cisco Systems.
+	It combines the simplicity of distance-vector protocols like RIP with the efficiency and scalability of link-state protocols like OSPF.
+	Administrative distance (Internal) = 90
+	Administrative distance (External) = 170
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NOTES:
+1)In routing tables, 0.0.0.0 often represents the default route or default gateway.
+2)Devices in different VLANs cannot talk to each other by default. To enable communication, you need a router or a Layer 3 switch.
+3)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	1) What are private IP address ? What are its ranges ?
+		○ Private IP addresses are IP addresses used within a private network to identify devices.
+		○ They are not routable on the public internet and are reserved for internal use within LANs (Local Area Networks).
+		○ Routers and firewalls typically use Network Address Translation (NAT) to allow devices with private IPs to access the internet.
+			Private IP Address Ranges:
+				• Class A: 10.0.0.0 to 10.255.255.255 (Subnet mask: 255.0.0.0)
+				• Class B: 172.16.0.0 to 172.31.255.255 (Subnet mask: 255.240.0.0)
+				• Class C: 192.168.0.0 to 192.168.255.255 (Subnet mask: 255.255.0.0)
+		○ We need private IP addresses to enable communication within local networks without using up limited public IP address space.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	2) Explain the process of three-way handshaking protocol ?
+		The three-way handshaking protocol is used in TCP (Transmission Control Protocol) to establish a reliable connection between a client and a server before actual data is transmitted.
+		Steps of the Three-Way Handshake:
+			1. SYN (Synchronize):
+				○ The client sends a SYN packet to the server to initiate a connection.
+				○ This packet contains an initial sequence number.
+			2. SYN-ACK (Synchronize-Acknowledge):
+				○ The server responds with a SYN-ACK packet.
+				○ It acknowledges the client’s SYN and sends its own SYN with a sequence number.
+			3. ACK (Acknowledge):
+				○ The client sends an ACK packet back to the server.
+				○ This acknowledges the server's SYN-ACK.
+		After these three steps, the TCP connection is established, and data can be exchanged securely and reliably.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	3) What is tunneling ? Why it is done ?
+		Tunneling is a networking process where data is encapsulated (wrapped) inside another packet to travel across a network securely or to bypass certain network restrictions.
+		Why Tunneling Is Done:
+			1. Security:
+				○ Encrypts data for safe transmission over untrusted networks (like the internet).
+				○ Common in VPNs (Virtual Private Networks).
+			2. Protocol Incompatibility:
+				○ Allows a protocol that is not supported by the current network to be transmitted using another protocol.
+			3. Bypassing Restrictions:
+				○ Helps users bypass firewalls or geo-restrictions by routing traffic through allowed protocols.
+			4. Encapsulation:
+				○ Allows encapsulating IPv6 traffic inside IPv4 (and vice versa), enabling compatibility across different systems.
+		We need tunneling to securely and efficiently transmit data across networks—especially when dealing with incompatible protocols, untrusted networks, or restricted environments.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	4) What is NAT ? Different types of NAT ?
+		NAT (Network Address Translation) is a method used in routers to map private IP addresses within a local network to a single public IP address (or a few) when accessing external networks like the internet.
+		Purpose of NAT:
+			• To conserve public IP addresses.
+			• To provide security by hiding internal network structure.
+			• To enable multiple devices to share a single internet-facing IP.
+		Types of NAT:
+			1. Static NAT:
+				○ Maps one private IP to one public IP.
+				○ Used when a specific internal device (like a web server) needs to be consistently accessible from outside.
+			2. Dynamic NAT:
+				○ Maps a private IP to any available public IP from a pool.
+				○ Does not guarantee the same mapping every time.
+			3. PAT (Port Address Translation) – also known as NAT Overloading:
+				○ Maps multiple private IPs to a single public IP using different port numbers.
+				○ Most common form of NAT in home routers.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	5) Which are 7 layers of OSI model ? What is the function of the application layer in networking ?
+		The OSI (Open Systems Interconnection) model is a conceptual framework used to understand and implement network communication in seven distinct layers.
+		7 Layers of the OSI Model (from top to bottom):
+			1. Application Layer
+			2. Presentation Layer
+			3. Session Layer
+			4. Transport Layer
+			5. Network Layer
+			6. Data Link Layer
+			7. Physical Layer
+		
+		Function of the Application Layer (Layer 7):
+			• It provides network services directly to end-users or applications.
+			• Handles high-level protocols like HTTP, FTP, SMTP, DNS.
+			• It enables user interaction with the network (e.g., web browsing, file transfers, emails).
+			• Acts as the interface between the network and the application software.
+		In short, the Application layer is where communication begins and ends from the user's perspective.
+		Let me know if you'd like a mnemonic to remember the 7 OSI layers or a real-world example of how data flows through these layers.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	6) What is the purpose of the data-link layer ? What is the role of the LLC sublayer ?
+		Purpose of the Data-Link Layer (Layer 2 of the OSI Model):
+			• Ensures reliable transmission of data across a physical link.
+			• Breaks data into frames and manages frame synchronization, error detection, and flow control.
+			• Handles MAC addressing, enabling devices to identify each other on the same local network.
+			• Works between the Network layer and the Physical layer.
+		
+		Role of the LLC (Logical Link Control) Sublayer:
+			• The LLC is one of two sublayers of the Data-Link layer (the other is MAC).
+			• Functions of LLC:
+				○ Manages communication between upper layers and the MAC sublayer.
+				○ Provides error checking and flow control mechanisms.
+				○ Allows multiplexing—enabling multiple Layer 3 protocols (like IP, IPX) to share the same network interface.
+		In simple terms, LLC acts as a translator and manager between the network layer and the physical network interface.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	7) What are the different memories used in a CISCO router ? What is their purpose ? Write command to display RAM contents ?
+		Different Memories in a Cisco Router and Their Purpose
+			1. RAM (Random Access Memory):
+				○ Purpose: Stores the running configuration, routing tables, ARP cache, and active processes.
+				○ Volatile: Contents are lost on reboot.
+				○ Command to view RAM contents:
+					show running-config
+			2. ROM (Read-Only Memory):
+				○ Purpose: Contains bootstrap code, basic diagnostic software, and sometimes a limited IOS.
+				○ Non-volatile: Retains data after reboot.
+			3. NVRAM (Non-Volatile RAM):
+				○ Purpose: Stores the startup configuration file (startup-config) that loads during boot.
+				○ Non-volatile: Keeps data after reboot.
+			4. Flash Memory:
+				○ Purpose: Stores the IOS (Internetwork Operating System) image and other files.
+				○ Non-volatile: Can be erased and rewritten.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	8) What is Ehternet ? Explain CSMA/CD ?
+		What is Ethernet?
+		Ethernet is a widely used networking technology for local area networks (LANs). It defines how devices on a network communicate and transmit data. Ethernet uses a wired connection (typically through cables like twisted pair or fiber optics) and is governed by the IEEE 802.3 standard.
+		Key features of Ethernet:
+			• Data is transmitted in packets called frames.
+			• It typically uses MAC (Media Access Control) addresses to identify devices.
+			• Supports various data transfer speeds (e.g., 10 Mbps, 100 Mbps, 1 Gbps, and higher).
+			• Common topologies include star and bus.
+		
+		What is CSMA/CD?
+		CSMA/CD stands for Carrier Sense Multiple Access with Collision Detection. It is a network protocol used in traditional Ethernet (especially half-duplex Ethernet) to control access to the shared communication medium and avoid data collisions.
+		
+		How CSMA/CD Works:
+			1. Carrier Sense:
+				○ A device listens to the network cable to check if it is free (idle) or busy.
+			2. Multiple Access:
+				○ All devices share the same communication medium, so any device can attempt to send data when the medium is free.
+			3. Collision Detection:
+				○ If two devices transmit at the same time, a collision occurs. Both devices detect this by checking for abnormal signals.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	9) What is difference between BootP and DHCP ?
+		BOOTP (Bootstrap Protocol) and DHCP (Dynamic Host Configuration Protocol) are both network protocols used to assign IP addresses to devices in a network automatically. However, they differ in capabilities, flexibility, and usage.
+	|---------------------------------------------------------------------------------------------------------------------------|	
+	| Feature					| BOOTP											| DHCP											|
+	|---------------------------|-----------------------------------------------|-----------------------------------------------|
+	| Full Form					| Bootstrap Protocol							| Dynamic Host Configuration Protocol			|
+	| Introduction Year			| 1985											| 1993											|
+	| Standard					| Defined in RFC 951							| Defined in RFC 2131							|
+	| IP Address Allocation		| Static (pre-configured for each MAC)			| Dynamic (can change each time)				|
+	| Lease Time				| No concept of lease							| Uses lease time to allocate IP temporarily	|
+	| Configuration Flexibility	| Less flexible									| More flexible with advanced options			|
+	| Automatic Reuse			| IPs are reused manually or rarely				| IPs are reused automatically after expiry		|
+	| Client Configuration		| Requires manual setup by admin				| Automatically handled by DHCP server			|
+	| Support for Booting		| Used mainly for diskless workstations			| Also used for general client configuration	|
+	| Backward Compatibility	| BOOTP clients can’t use DHCP servers directly	| DHCP servers can support BOOTP clients		|
+	|---------------------------------------------------------------------------------------------------------------------------|
+	- BOOTP is an older protocol and mostly obsolete today.
+	- DHCP is an enhanced version of BOOTP and is widely used in modern networks due to its automatic, flexible, and dynamic IP management.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	10) What is latency ? How can we measure it ? What are ways to reduce latencies ?
+		What is Latency?
+		Latency is the delay between a user action or request and the response from a system. In networking, it refers to the time it takes for data to travel from the source to the destination and back (often called round-trip time).
+			• Measured in milliseconds (ms)
+			• Lower latency means faster response times
+		How Can We Measure Latency?
+		There are several tools and methods to measure network latency:
+		|-------------------------------------------------------------------------------------------------------|
+		| Method/Tool				| Description																|
+		|-------------------------------------------------------------------------------------------------------|
+		| Ping						| Sends ICMP echo request and measures response time						|
+		| Traceroute				| Measures the path and latency at each hop along the route					|
+		| Speed Test Tools			| Online tools (e.g., Speedtest.net) report latency							|
+		| Network Monitoring Tools	| Tools like Wireshark, SolarWinds, PRTG provide detailed latency stats		|
+		|-------------------------------------------------------------------------------------------------------|
+		
+		Example:
+		ping google.com
+		Output: Reply in ~20ms → this is your latency to Google's server.
+		
+		Ways to Reduce Latency
+		Here are common strategies to reduce latency in networks and applications:
+		Network-Level Optimizations:
+			• Use faster internet connections (e.g., fiber over DSL)
+			• Switch to wired instead of wireless connections
+			• Upgrade network equipment (routers, switches)
+			• Use Content Delivery Networks (CDNs) to serve content from servers closer to the user
+			• Reduce number of hops by optimizing routing
+		Application-Level Optimizations:
+			• Compress data to send less information
+			• Use efficient protocols (e.g., HTTP/2, QUIC)
+			• Minimize server response time (optimize backend processing)
+			• Cache frequently accessed content
+		Geographic Improvements:
+			• Host servers closer to users
+			• Use edge computing to process data locally instead of in distant data centers.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	11) What is sub-netting ? What is VLSM ? If subnet mask is 22, how many hosts can be connected in the network ?
+		What is Subnetting?
+		Subnetting is the process of dividing a large network into smaller, manageable sub-networks (subnets). It helps in:
+			• Improving network performance
+			• Enhancing security
+			• Efficient IP address usage
+		Subnetting is done by borrowing bits from the host portion of an IP address to create more network segments.
+		
+		What is VLSM (Variable Length Subnet Mask)?
+		VLSM stands for Variable Length Subnet Masking.
+			• It allows using different subnet masks within the same network.
+			• VLSM enables efficient IP address allocation by assigning smaller subnets to small networks and larger subnets to bigger networks.
+			• It's more flexible than fixed-length subnetting.
+		If Subnet Mask is /22, How Many Hosts Can Be Connected?
+		A /22 subnet means that 22 bits are used for the network, and 10 bits are left for hosts (since IPv4 has 32 bits total).
+		Formula to calculate hosts:
+		Number of hosts=2n−2\text{Number of hosts} = 2^n - 2Number of hosts=2n−2 
+		Where:
+			• n = number of host bits
+			• Subtract 2 for network ID and broadcast address
+		So:
+		210−2=1024−2=1022hosts2^{10} - 2 = 1024 - 2 = \boxed{1022 hosts}210−2=1024−2=1022hosts
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------		
+
+	12) What is route poisoning and split horizon ?
+		1. Route Poisoning
+		Route Poisoning is a method to mark a route as unreachable by setting its hop count to the maximum value.
+			• In RIP, the maximum hop count is 16.
+			• When a router detects that a route is no longer valid, it advertises that route with a hop count of 16 to all neighbors.
+			• This tells other routers: "This route is dead (poisoned), don't use it."
+		Example:
+			• Router A loses connection to Network X.
+			• It advertises Network X with a hop count = 16 (unreachable).
+			• Neighbouring routers remove Network X from their routing tables.
+		
+		2. Split Horizon
+		Split Horizon is a rule that prevents a router from sending routing information back out the same interface from which it was learned.
+			• Helps to avoid routing loops and false updates.
+			• Based on the idea: "Don’t tell your neighbor what they told you."
+		Example:
+			• Router A learns about Network X from Router B on Interface 1.
+			• Router A will not send an update about Network X back out of Interface 1 to Router B.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	13) What are the different types of passwords used in securing a CISCO router ? Write commands for different modes ?
+		Cisco routers use several types of passwords to secure access to various modes and functions. Each type protects a different level of access.
+		
+		Password Type	Purpose
+		Console Password	Secures access via the console port (physical access)
+		VTY Password	Secures remote access via Telnet or SSH
+		Enable Password	Controls access to privileged EXEC mode
+		Enable Secret	More secure (encrypted) version of the enable password
+		Line Password	Used for individual lines (console, VTY, aux, etc.)
+		
+		Cisco IOS Commands for Configuring Passwords
+		1. Console Password (Local Access)
+			Router(config)# line console 0
+			Router(config-line)# password YOUR_PASSWORD
+			Router(config-line)# login
+			Router(config-line)# exit
+		2. VTY Password (Remote Access - Telnet/SSH)
+			Router(config)# line vty 0 4
+			Router(config-line)# password YOUR_PASSWORD
+			Router(config-line)# login
+			Router(config-line)# exit
+		3. Enable Password (Privileged EXEC mode)
+			Router(config)# enable password YOUR_PASSWORD
+		4. Enable Secret (Encrypted Privileged Password)
+			Router(config)# enable secret YOUR_SECRET_PASSWORD
+				Use enable secret instead of enable password for stronger encryption. If both are set, enable secret overrides enable password.
+		5. Auxiliary Port Password (if used)
+			Router(config)# line aux 0
+			Router(config-line)# password YOUR_PASSWORD
+			Router(config-line)# login
+			
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
