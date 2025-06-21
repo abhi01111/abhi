@@ -251,9 +251,9 @@ git push -u origin main
 
 
 
-
-build
-docker login
-push on docker hub
-delete existing service
-create service
+steps
+	build
+	docker login
+	push on docker hub
+	delete existing service
+	create service
