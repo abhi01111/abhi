@@ -63,6 +63,173 @@ Subject: FCN MCQ
 			Explanation : [ Chatgpt , https://chatgpt.com/c/67e66667-9770-800c-a08b-762d471b91bd ] , 
 						 The Point-to-Point Protocol (PPP) supports multiple network layer protocols and provides authentication, 
 						 compression, and error detection, making it ideal for remote access connections.
+			
+			Questions Text : Which OSI layer does a router operate at?
+			A. Physical
+			B. Data Link
+			C. Network
+			D. Transport
+
+			Answer: C. Network
+			Explanation: Routers make forwarding decisions using IP addresses, operating at Layer3 (Network)
+
+			2. What is the length of an ATM cell?
+			A. 5 bytes
+			B. 32 bytes
+			C. 48 bytes
+			D. 53 bytes
+
+			Answer: D. 53 bytes
+			Explanation: ATM cells are fixed-length packets of 53 bytes
+
+			3. What does ARP do?
+			A. Finds IP from MAC
+			B. Finds MAC from IP
+			C. Finds port from IP
+			D. Finds IP from DNS
+
+			Answer: B. Finds MAC from IP
+			Explanation: ARP maps an IPv4 address to its corresponding MAC addres
+			
+			4. Which RJ45 cable connects two switches directly?
+			A. Straight-through
+			B. Crossover
+			C. Rolled
+			D. Mixed
+
+			Answer: B. Crossover cable
+			Explanation: A crossover cable is used for direct device-to-device Ethernet connections
+
+			5. Why use fiber‑optic cabling?
+			A. Inexpensive
+			B. EMI resistant
+			C. Short-distance only
+			D. Flexible
+
+			Answer: B. EMI resistant
+			Explanation: Fiber optics are immune to electromagnetic interference 
+			
+			6. Segmentation occurs at which OSI layer?
+			A. Data Link
+			B. Network
+			C. Transport
+			D. Session
+
+			Answer: C. Transport
+			Explanation: The Transport layer breaks data into segments
+			
+			7. In full‑duplex Ethernet:
+				1. No collisions
+				2. Shared collision domain
+				3. Dedicated switch port
+				4. Host checks medium before transmitting
+
+			A. 1 & 3
+			B. 2 & 4
+			C. 1, 2 & 5
+			D. 1, 3 & 5
+
+			Answer: A. 1 & 3
+			Explanation: Full‑duplex mode uses direct switch connections, eliminating collisions and requiring dedicated ports
+			
+			8. MAC layer protocol in wireless networks?
+			A. CSMA/CD
+			B. CSMA/CA
+			C. ALOHA
+			D. Routing
+
+			Answer: B. CSMA/CA
+			Explanation: Wireless uses CSMA/CA due to collision avoidance mechanisms
+			
+			9. Router functions include:
+			A. Packet filtering
+			B. Internetwork communication
+			C. Packet switching
+			D. Path selection
+			E. All of the above
+
+			Answer: E. All of the above
+			Explanation: Routers perform all listed functions
+			
+			10. What does flow control provide?
+			A. Retransmission
+			B. Correct order reassembly
+			C. Receiver regulates sender’s rate
+			D. Segment size regulation
+
+			Answer: C. Receiver regulates sender’s rate
+			Explanation: Flow control ensures the sender doesn't overwhelm the receiver
+
+			What is the primary function of the Presentation layer?
+			A. Data encryption/decryption and formatting
+			B. Reliable transport
+			C. Address resolution
+			D. Routing
+			✅ Answer: A. Data encryption/decryption and formatting
+
+			Which two layers are involved in encapsulating data into frames and packets respectively?
+			A. Physical and Data Link
+			B. Data Link and Network
+			C. Transport and Session
+			D. Network and Transport
+			✅ Answer: B. Data Link and Network
+			
+			Which layer is responsible for establishing, maintaining, and terminating connections?
+			A. Transport
+			B. Session
+			C. Network
+			D. Data Link
+			✅ Answer: B. Session
+			
+			Which layer handles error detection but not error correction?
+			A. Application
+			B. Transport
+			C. Data Link
+			D. Physical
+			✅ Answer: C. Data Link
+
+			Which OSI layer converts character encoding (like ASCII to EBCDIC)?
+			A. Application
+			B. Presentation
+			C. Session
+			D. Data Link
+			✅ Answer: B. Presentation
+
+			What is the correct order of OSI layers from top to bottom?
+			A. Physical → Application
+			B. Transport → Network → Session
+			C. Application → Presentation → Session → Transport → Network → Data Link → Physical
+			D. Application → Session → Transport → Network → Data Link → Presentation → Physical
+			✅ Answer: C
+
+			Which layer is the first point of segmentation in OSI?
+			A. Data Link
+			B. Session
+			C. Network
+			D. Transport
+			✅ Answer: D. Transport
+
+			Which layer provides logical addressing and path selection?
+			A. Network
+			B. Data Link
+			C. Transport
+			D. Application
+			✅ Answer: A. Network
+
+			At which layer does TCP operate in the OSI model?
+			A. Network
+			B. Transport
+			C. Session
+			D. Application
+			✅ Answer: B. Transport
+
+			When an email is sent, which OSI layer is responsible for the encoding of text and images?
+			A. Application
+			B. Presentation
+			C. Session
+			D. Transport
+			✅ Answer: B. Presentation
+
 
 COSA
 	WINDOWS
