@@ -3,7 +3,7 @@ Subject: FCN MCQ
 -----------------------------------------------------------------------
 			Topic : WAN Technologies
 
-			Questions Text : Which of the following WAN technologies uses fixed-length cells of 53 bytes?
+			Which of the following WAN technologies uses fixed-length cells of 53 bytes?
 			A. Frame Relay
 			B. ATM
 			C. MPLS
@@ -14,7 +14,7 @@ Subject: FCN MCQ
 						 53 bytes—5 bytes for the header and 48 bytes for data. This structure helps in reducing 
 						 jitter and ensures efficient transmission in high-speed networks.
 			 
-			Questions Text : Which protocol is commonly used for establishing a secure VPN over the internet?
+			Which protocol is commonly used for establishing a secure VPN over the internet?
 			A. PPP
 			B. L2TP
 			C. IPsec
@@ -24,7 +24,7 @@ Subject: FCN MCQ
 						 IPsec (Internet Protocol Security) is widely used for establishing secure VPN connections. 
 						 It provides encryption, authentication, and integrity for data transmitted over an IP network.
 
-			Questions Text : What is the primary function of the BGP (Border Gateway Protocol) in WAN networking?
+			What is the primary function of the BGP (Border Gateway Protocol) in WAN networking?
 			A. Encrypts WAN traffic
 			B. Manages the routing between different ISPs and large networks
 			C. Establishes VPN connections
@@ -34,7 +34,7 @@ Subject: FCN MCQ
 						 BGP is an exterior gateway protocol used to exchange routing information between different 
 						 autonomous systems (AS), making it essential for internet routing.
 
-			Questions Text : Which of the following is a packet-switched WAN technology?
+			Which of the following is a packet-switched WAN technology?
 			A. ISDN
 			B. MPLS
 			C. SONET
@@ -44,7 +44,7 @@ Subject: FCN MCQ
 						 MPLS is a packet-switched WAN technology that routes data efficiently using labels 
 						 rather than traditional IP routing.
 
-			Questions Text : What is the main purpose of a leased line in a WAN?
+			What is the main purpose of a leased line in a WAN?
 			A. To provide dial-up internet access
 			B. To provide a dedicated and permanent connection between two locations
 			C. To establish a temporary network connection
@@ -54,7 +54,7 @@ Subject: FCN MCQ
 						 A leased line is a private, always-on connection that offers consistent bandwidth 
 						 between two endpoints, commonly used for corporate networks.
 
-			Questions Text : Which WAN protocol encapsulates multiple network layer protocols and is used for remote access?
+			Which WAN protocol encapsulates multiple network layer protocols and is used for remote access?
 			A. PPP
 			B. HDLC
 			C. MPLS
@@ -64,7 +64,7 @@ Subject: FCN MCQ
 						 The Point-to-Point Protocol (PPP) supports multiple network layer protocols and provides authentication, 
 						 compression, and error detection, making it ideal for remote access connections.
 			
-			Questions Text : Which OSI layer does a router operate at?
+			Which OSI layer does a router operate at?
 			A. Physical
 			B. Data Link
 			C. Network
@@ -73,7 +73,7 @@ Subject: FCN MCQ
 			Answer: C. Network
 			Explanation: Routers make forwarding decisions using IP addresses, operating at Layer3 (Network)
 
-			2. What is the length of an ATM cell?
+			What is the length of an ATM cell?
 			A. 5 bytes
 			B. 32 bytes
 			C. 48 bytes
@@ -82,7 +82,7 @@ Subject: FCN MCQ
 			Answer: D. 53 bytes
 			Explanation: ATM cells are fixed-length packets of 53 bytes
 
-			3. What does ARP do?
+			What does ARP do?
 			A. Finds IP from MAC
 			B. Finds MAC from IP
 			C. Finds port from IP
@@ -91,7 +91,7 @@ Subject: FCN MCQ
 			Answer: B. Finds MAC from IP
 			Explanation: ARP maps an IPv4 address to its corresponding MAC addres
 			
-			4. Which RJ45 cable connects two switches directly?
+			Which RJ45 cable connects two switches directly?
 			A. Straight-through
 			B. Crossover
 			C. Rolled
@@ -100,7 +100,7 @@ Subject: FCN MCQ
 			Answer: B. Crossover cable
 			Explanation: A crossover cable is used for direct device-to-device Ethernet connections
 
-			5. Why use fiber‑optic cabling?
+			Why use fiber‑optic cabling?
 			A. Inexpensive
 			B. EMI resistant
 			C. Short-distance only
@@ -109,7 +109,7 @@ Subject: FCN MCQ
 			Answer: B. EMI resistant
 			Explanation: Fiber optics are immune to electromagnetic interference 
 			
-			6. Segmentation occurs at which OSI layer?
+			Segmentation occurs at which OSI layer?
 			A. Data Link
 			B. Network
 			C. Transport
@@ -118,7 +118,7 @@ Subject: FCN MCQ
 			Answer: C. Transport
 			Explanation: The Transport layer breaks data into segments
 			
-			7. In full‑duplex Ethernet:
+			In full-duplex Ethernet:
 				1. No collisions
 				2. Shared collision domain
 				3. Dedicated switch port
@@ -132,7 +132,7 @@ Subject: FCN MCQ
 			Answer: A. 1 & 3
 			Explanation: Full‑duplex mode uses direct switch connections, eliminating collisions and requiring dedicated ports
 			
-			8. MAC layer protocol in wireless networks?
+			MAC layer protocol in wireless networks?
 			A. CSMA/CD
 			B. CSMA/CA
 			C. ALOHA
@@ -141,7 +141,7 @@ Subject: FCN MCQ
 			Answer: B. CSMA/CA
 			Explanation: Wireless uses CSMA/CA due to collision avoidance mechanisms
 			
-			9. Router functions include:
+			Router functions include:
 			A. Packet filtering
 			B. Internetwork communication
 			C. Packet switching
@@ -151,7 +151,7 @@ Subject: FCN MCQ
 			Answer: E. All of the above
 			Explanation: Routers perform all listed functions
 			
-			10. What does flow control provide?
+			What does flow control provide?
 			A. Retransmission
 			B. Correct order reassembly
 			C. Receiver regulates sender’s rate
@@ -235,3 +235,801 @@ COSA
 	WINDOWS
 	LINUX
 	
+NDC
+SECURITY CONCEPTS
+CYBER FORENSICS
+	Overview - Computer Forensics 
+		What is the primary goal of computer forensics?
+		a) Monitor internet usage
+		b) Find vulnerabilities in software
+		c) Collect, analyze, and preserve digital evidence
+		d) Improve computer performance
+		Ans: c
+
+		Which of the following best describes computer forensics?
+		a) Fixing broken computers
+		b) Recovering stolen computers
+		c) Investigating digital crimes and collecting evidence
+		d) Formatting storage devices
+		Ans: c
+
+		What is a key characteristic of computer forensic evidence?
+		a) Temporary
+		b) Volatile
+		c) Admissible in court
+		d) Easily editable
+		Ans: c
+
+		Which device stores volatile data?
+		a) Hard disk
+		b) SSD
+		c) RAM
+		d) Flash drive
+		Ans: c
+
+		Which of the following is not a phase in computer forensics?
+		a) Identification
+		b) Confiscation
+		c) Examination
+		d) Documentation
+		Ans: b
+
+		Which term refers to recovering deleted files or fragments?
+		a) Hashing
+		b) Disk wiping
+		c) File carving
+		d) Data masking
+		Ans: c
+
+		Computer forensics is a sub-field of:
+		a) Electrical engineering
+		b) Information security
+		c) Mechanical engineering
+		d) Web development
+		Ans: b
+
+		Digital evidence must be handled with:
+		a) Caution
+		b) A password
+		c) A firewall
+		d) Compression tools
+		Ans: a
+
+		Which law enforcement agency often uses computer forensics?
+		a) Railway department
+		b) Food safety authority
+		c) Cyber crime cell
+		d) Sports commission
+		Ans: c
+
+		Which term refers to maintaining a record of evidence handling?
+		a) Data chain
+		b) Encryption key
+		c) Chain of custody
+		d) Evidence lock
+		Ans: c
+	
+	Difference – Computer Crime & Un-authorized activities
+		Which of the following is considered a computer crime?
+		a) Browsing the internet
+		b) Sending a birthday email
+		c) Hacking into a government server
+		d) Installing antivirus software
+		Ans: c
+
+		Unauthorized access is also known as:
+		a) Authentication
+		b) Access control
+		c) Hacking
+		d) Data sanitization
+		Ans: c
+
+		Which of these is NOT typically an unauthorized activity?
+		a) Installing pirated software
+		b) Guessing someone’s password
+		c) Encrypting your own data
+		d) Bypassing login security
+		Ans: c
+
+		Computer crime includes:
+		a) Playing games
+		b) Cyberstalking
+		c) Reading email
+		d) Opening files
+		Ans: b
+
+		Phishing is classified as a:
+		a) Legal activity
+		b) Computer game
+		c) Social engineering attack
+		d) Memory management technique
+		Ans: c
+
+		Which of the following involves data manipulation for fraud?
+		a) Data cleaning
+		b) Data harvesting
+		c) Data tampering
+		d) Data archiving
+		Ans: c
+
+		Using someone else's credentials without permission is:
+		a) Legal if for work
+		b) Encouraged
+		c) An unauthorized activity
+		d) Time-saving
+		Ans: c
+
+		Denial of Service (DoS) is a:
+		a) Friendly activity
+		b) Authorized test
+		c) Criminal offense
+		d) Scheduled backup
+		Ans: c
+
+		Which is an example of computer crime?
+		a) Taking backups
+		b) Encrypting your drive
+		c) Creating a virus
+		d) Changing your password
+		Ans: c
+
+		Cyberbullying is a type of:
+		a) Software error
+		b) Programming language
+		c) Cybercrime
+		d) Ethical hacking
+		Ans: c
+		
+	Cyber Laws
+		Cyber laws are designed to:
+		a) Slow down hackers
+		b) Track online purchases
+		c) Regulate digital activities and punish cybercrime
+		d) Promote free internet access
+		Ans: c
+
+		The Indian cyber law is governed by:
+		a) Indian Penal Code
+		b) IT Act 2000
+		c) CRPC
+		d) Banking Act
+		Ans: b
+
+		Which section deals with hacking under IT Act 2000?
+		a) Section 66
+		b) Section 420
+		c) Section 72
+		d) Section 43
+		Ans: a
+
+		IT Act 2000 was amended in:
+		a) 2010
+		b) 2004
+		c) 2008
+		d) 2012
+		Ans: c
+
+		Section 67 of the IT Act deals with:
+		a) Spam emails
+		b) Cyber terrorism
+		c) Obscene electronic content
+		d) File encryption
+		Ans: c
+
+		Under cyber law, phishing is a punishable offense due to:
+		a) Environmental damage
+		b) Privacy violation
+		c) Hardware failure
+		d) Copyright infringement
+		Ans: b
+
+		Cyber appellate tribunal was established under:
+		a) IPC
+		b) IT Act
+		c) Cyber Crime Bill
+		d) Evidence Act
+		Ans: b
+
+		Which law helps in prosecuting cyber terrorists?
+		a) Right to Information Act
+		b) POCSO Act
+		c) IT Act Section 66F
+		d) RTI Act
+		Ans: c
+
+		Which of these is not part of cyber law in India?
+		a) E-commerce regulation
+		b) Digital signature
+		c) Marriage law
+		d) Data protection
+		Ans: c
+
+		IT Act applies to:
+		a) Only banking sector
+		b) Only private companies
+		c) All citizens and organizations
+		d) Foreign nationals only
+		Ans: c
+		
+	Process of Computer Forensics (Six Stages)
+		The first step in computer forensics is:
+		a) Analysis
+		b) Documentation
+		c) Identification
+		d) Reporting
+		Ans: c
+
+		Which step involves securing the scene and devices?
+		a) Preservation
+		b) Collection
+		c) Documentation
+		d) Presentation
+		Ans: a
+
+		What happens during the analysis phase?
+		a) Data is destroyed
+		b) Data is collected
+		c) Data is interpreted
+		d) Data is ignored
+		Ans: c
+
+		Which phase focuses on retrieving evidence without alteration?
+		a) Collection
+		b) Formatting
+		c) Hacking
+		d) Reporting
+		Ans: a
+
+		The final report in forensics must be:
+		a) Verbal
+		b) Non-technical
+		c) Clear and legally acceptable
+		d) Skipped
+		Ans: c
+
+		Which phase ensures evidence is unaltered and intact?
+		a) Acquisition
+		b) Preservation
+		c) Examination
+		d) Evaluation
+		Ans: b
+
+		What comes after preservation in forensic process?
+		a) Destruction
+		b) Analysis
+		c) Collection
+		d) Recovery
+		Ans: c
+
+		Which of the following is not a part of forensic process?
+		a) Identification
+		b) File carving
+		c) Collection
+		d) Presentation
+		Ans: b
+
+		Analysis is done on a:
+		a) Live system
+		b) Backup copy
+		c) Printed paper
+		d) Network switch
+		Ans: b
+
+		Why is documentation important in forensics?
+		a) For decoration
+		b) For memory
+		c) For court and integrity
+		d) For academic use only
+		Ans: c
+		
+	Need for Forensic Investigator in Cyber Forensics
+		A cyber forensic investigator helps in:
+		a) Speeding up computers
+		b) Installing games
+		c) Tracing and analyzing digital crimes
+		d) Formatting disks
+		Ans: c
+
+		Which skill is essential for a forensic investigator?
+		a) Cooking
+		b) Digital analysis
+		c) Social skills only
+		d) Driving
+		Ans: b
+
+		Forensic experts must maintain:
+		a) Confidentiality
+		b) Bias
+		c) Aggression
+		d) Casual attitude
+		Ans: a
+
+		Which is a role of forensic investigator?
+		a) Designing websites
+		b) Creating malware
+		c) Collecting digital evidence
+		d) Promoting ads
+		Ans: c
+
+		What makes forensic investigators reliable in court?
+		a) Speed of analysis
+		b) Bias toward victim
+		c) Following legal protocols
+		d) Guesswork
+		Ans: c
+
+		Which of these is an important trait of a forensic expert?
+		a) Dishonesty
+		b) Sloppiness
+		c) Integrity
+		d) Laziness
+		Ans: c
+
+		Forensic experts are needed in cases of:
+		a) Internet recharge
+		b) Online fraud and cybercrime
+		c) Computer programming errors
+		d) Internet games
+		Ans: b
+
+		What background is preferred for a forensic investigator?
+		a) Art and music
+		b) Civil engineering
+		c) IT and cybersecurity
+		d) Fashion design
+		Ans: c
+
+		Cyber forensic investigators are important because:
+		a) They repair routers
+		b) They clean systems
+		c) They help solve digital crimes
+		d) They make computers fast
+		Ans: c
+
+		Forensic reports are useful for:
+		a) Academic ranking
+		b) Legal trials and evidence
+		c) Software updates
+		d) Phone backup
+		Ans: b
+
+	Computer Forensics Involves
+		Computer forensics involves all the following EXCEPT:
+		a) Data recovery
+		b) Evidence tampering
+		c) Legal reporting
+		d) Investigation
+		Ans: b
+
+		The main goal of computer forensics is to:
+		a) Encrypt user files
+		b) Create backup systems
+		c) Recover and analyze digital evidence for legal proceedings
+		d) Repair computers
+		Ans: c
+	
+		What is the main purpose of computer forensics?
+		a) Create software
+		b) Solve mathematical problems
+		c) Identify, preserve, analyze, and present digital evidence
+		d) Increase storage space
+		Ans: c
+
+		Computer forensics is a part of which larger domain?
+		a) Database Management
+		b) Cybersecurity
+		c) Software Engineering
+		d) Artificial Intelligence
+		Ans: b
+
+		Which of the following is NOT a focus of computer forensics?
+		a) Evidence collection
+		b) Evidence alteration
+		c) Evidence preservation
+		d) Legal documentation
+		Ans: b
+
+		Who uses computer forensic reports?
+		a) Artists
+		b) Gamers
+		c) Law enforcement and courts
+		d) IT Salespersons
+		Ans: c
+
+		Which term relates to creating a copy of a digital device without modifying original data?
+		a) Formatting
+		b) Imaging
+		c) Encrypting
+		d) Booting
+		Ans: b
+
+		A forensic investigation should be
+		a) Quick and undocumented
+		b) Secret and informal
+		c) Thorough and well-documented
+		d) Done without tools
+		Ans: c
+
+		What is volatile data?
+		a) Data on CD-ROM
+		b) Data in RAM
+		c) Data on SSD
+		d) Archived data
+		Ans: b
+
+		Which of the following is a forensic tool?
+		a) VLC Player
+		b) FTK
+		c) WinRAR
+		d) WordPad
+		Ans: b
+
+		In computer forensics, which principle is most important?
+		a) Speed
+		b) Innovation
+		c) Integrity
+		d) Aesthetics
+		Ans: c
+
+		Which one is a typical output of a forensic investigation?
+		a) Software program
+		b) Hardware update
+		c) Investigation report
+		d) Antivirus alert
+		Ans: c
+
+	Preservation
+		What does preservation in forensics ensure?
+		a) Fast deletion of files
+		b) Safe modification of data
+		c) Data integrity is maintained
+		d) Encryption is broken
+		Ans: c
+
+		What tool is used to preserve data in forensic investigations?
+		a) Paint
+		b) Disk cleanup
+		c) Write blocker
+		d) Disk defragmenter
+		Ans: c
+
+		Why is a write blocker important?
+		a) Speeds up copying
+		b) Prevents system crashes
+		c) Prevents modification of evidence
+		d) Encrypts files
+		Ans: c
+
+		Which format is used to store forensic disk images?
+		a) .docx
+		b) .iso
+		c) .dd
+		d) .exe
+		Ans: c
+
+		What is the risk if preservation is not done correctly?
+		a) Better performance
+		b) Evidence may be corrupted
+		c) Files are organized
+		d) Data becomes searchable
+		Ans: b
+
+		When should preservation occur?
+		a) Before identification
+		b) After analysis
+		c) After reporting
+		d) Before extraction
+		Ans: d
+
+		Imaging a hard drive is part of:
+		a) Analysis
+		b) Reporting
+		c) Preservation
+		d) Presentation
+		Ans: c
+
+		What command in Linux can be used for creating a forensic image?
+		a) sudo preserve
+		b) mkfs.ext4
+		c) dd if=/dev/sdX of=image.dd
+		d) touch file.txt
+		Ans: c
+
+		What does hashing help with in preservation?
+		a) Data visualization
+		b) Ensuring data integrity
+		c) Compression
+		d) Speeding up downloads
+		Ans: b
+
+		Which hashing algorithm is commonly used?
+		a) MD5
+		b) ZIP
+		c) SSH
+		d) SSL
+		Ans: a
+
+	Identification
+		What is the goal of the identification phase?
+		a) Format the system
+		b) Locate potential sources of evidence
+		c) Encrypt files
+		d) Restart devices
+		Ans: b
+
+		What is a primary source of evidence?
+		a) RAM
+		b) Mouse
+		c) Keyboard
+		d) Monitor
+		Ans: a
+
+		Which of the following is a digital source?
+		a) Diary
+		b) Email logs
+		c) Whiteboard
+		d) Flashlight
+		Ans: b
+
+		Identification helps decide:
+		a) How to make reports
+		b) What to play on a system
+		c) Which data is relevant
+		d) How to code a program
+		Ans: c
+
+		What tool can help identify network artifacts?
+		a) MS Paint
+		b) Wireshark
+		c) VLC
+		d) Calculator
+		Ans: b
+
+		Which file is useful for identifying login activity?
+		a) /etc/hosts
+		b) /var/log/wtmp
+		c) /home/user
+		d) /tmp/cache
+		Ans: b
+
+		Which extension might belong to a log file?
+		a) .mp3
+		b) .log
+		c) .exe
+		d) .dll
+		Ans: b
+
+		What is often identified in forensic RAM dumps?
+		a) CPU speed
+		b) Active processes
+		c) Disk temperature
+		d) Monitor brightness
+		Ans: b
+
+		To identify internet browsing history, which file is useful?
+		a) Index.dat
+		b) config.sys
+		c) boot.ini
+		d) system.log
+		Ans: a
+
+		Which is an example of identifying hidden files?
+		a) ls -la
+		b) mkdir folder
+		c) sudo reboot
+		d) df -h
+		Ans: a
+		
+	Extraction
+		What does extraction in digital forensics refer to?
+		a) Deleting files
+		b) Copying files to another device
+		c) Retrieving relevant data from digital media
+		d) Installing antivirus
+		Ans: c
+
+		File carving is primarily used during which phase?
+		a) Preservation
+		b) Extraction
+		c) Reporting
+		d) Formatting
+		Ans: b
+
+		Which tool is commonly used for file extraction?
+		a) MS Excel
+		b) Autopsy
+		c) VLC Media Player
+		d) Chrome
+		Ans: b
+
+		What is an important concern during data extraction?
+		a) Color quality
+		b) Data integrity
+		c) Audio clarity
+		d) Speed
+		Ans: b
+
+		Which command helps in extracting strings from files?
+		a) echo
+		b) grep
+		c) strings
+		d) sed
+		Ans: c
+
+		In extraction, deleted files can be recovered from:
+		a) BIOS
+		b) RAM
+		c) Unallocated space
+		d) DVD-ROM
+		Ans: c
+
+		What does logical extraction refer to?
+		a) Copying entire hard disk bit-by-bit
+		b) Collecting active files and directories
+		c) Extracting power from the motherboard
+		d) Copying BIOS settings
+		Ans: b
+
+		Which type of extraction is deeper and more complete?
+		a) Logical
+		b) Physical
+		c) Virtual
+		d) External
+		Ans: b
+
+		Extraction tools ensure:
+		a) Antivirus scanning
+		b) File compression
+		c) Chain of custody
+		d) Evidence accessibility without tampering
+		Ans: d
+
+		Which scenario is most suited for extraction?
+		a) Writing a report
+		b) Recovering hidden or deleted files
+		c) Installing new OS
+		d) Browsing websites
+		Ans: b
+
+	Documentation
+		Why is documentation crucial in forensics?
+		a) It helps delete files
+		b) It aids unauthorized access
+		c) It maintains evidence trail
+		d) It reduces the file size
+		Ans: c
+
+		What does a forensic report typically contain?
+		a) Music playlist
+		b) Browser themes
+		c) Analysis details and findings
+		d) Game settings
+		Ans: c
+
+		Documentation includes:
+		a) Investigator’s opinions only
+		b) Only technical data
+		c) Logs, observations, tools used
+		d) File deletion log
+		Ans: c
+
+		Chain of custody documentation is used for:
+		a) Legal proof of evidence handling
+		b) Disk partitioning
+		c) File compression
+		d) App development
+		Ans: a
+
+		Reports must be:
+		a) Informal
+		b) Incomplete
+		c) Clear, factual, and detailed
+		d) Fictional
+		Ans: c
+
+		Who reads forensic documentation?
+		a) Gamers
+		b) Only forensic experts
+		c) Legal authorities and investigators
+		d) Public users
+		Ans: c
+
+		Good documentation avoids:
+		a) Evidence tracking
+		b) Detailed reporting
+		c) Misinterpretation and errors
+		d) File preservation
+		Ans: c
+
+		Forensic notes must be:
+		a) Kept secret
+		b) Based on assumptions
+		c) Objective and contemporaneous
+		d) Made after trial
+		Ans: c
+
+		Which format is commonly used for digital reports?
+		a) .mp4
+		b) .pdf
+		c) .exe
+		d) .iso
+		Ans: b
+
+		Documentation begins:
+		a) After investigation
+		b) At the evidence analysis stage
+		c) From the start of the investigation
+		d) Only during presentation
+		Ans: c
+
+	Interpretation
+		What is the purpose of interpretation in forensics?
+		a) Delete irrelevant data
+		b) Reboot systems
+		c) Make sense of analyzed data
+		d) Extract BIOS info
+		Ans: c
+
+		Interpretation involves:
+		a) Destroying evidence
+		b) Presenting conclusions from data
+		c) Copying files
+		d) Formatting devices
+		Ans: b
+
+		Which skill is essential for interpreting evidence?
+		a) Singing
+		b) Data analysis
+		c) Drawing
+		d) Music composition
+		Ans: b
+
+		What might be interpreted from email logs?
+		a) Screen brightness
+		b) Power supply details
+		c) Communication patterns
+		d) Printer model
+		Ans: c
+
+		Which term relates to evidence interpretation?
+		a) BIOS flashing
+		b) Report generation
+		c) Hardware troubleshooting
+		d) Network cabling
+		Ans: b
+
+		Interpretation leads to:
+		a) Secure deletion
+		b) Fiction writing
+		c) Case conclusions
+		d) Program installation
+		Ans: c
+
+		Contextual understanding is needed to:
+		a) Format reports
+		b) Understand user behavior
+		c) Create passwords
+		d) Build GUIs
+		Ans: b
+
+		Interpretation must be:
+		a) Subjective
+		b) Biased
+		c) Accurate and justifiable
+		d) Delayed
+		Ans: c
+
+		Interpreted data helps in:
+		a) Making video tutorials
+		b) Presenting digital evidence in court
+		c) Designing apps
+		d) Playing audio files
+		Ans: b
+
+		Incorrect interpretation may result in:
+		a) Better software
+		b) Speed boost
+		c) Misleading conclusions
+		d) Faster Wi-Fi
+		Ans: c
+
