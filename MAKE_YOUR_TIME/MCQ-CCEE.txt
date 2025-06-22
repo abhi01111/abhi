@@ -2062,3 +2062,507 @@ CYBER FORENSICS
 		c) Browser bookmarks
 		d) Custom fonts
 		Ans: b (Hard)
+		
+	The Initial Assessment 
+		What is the primary goal of initial assessment?
+		a) Format system
+		b) Identify nature and scope of incident
+		c) Install antivirus
+		d) Close investigation
+		Ans: b (Easy)
+
+		What should be avoided during initial assessment?
+		a) Observing system
+		b) Documenting facts
+		c) Making assumptions
+		d) Reporting to supervisor
+		Ans: c (Medium)
+
+		Initial assessment occurs:
+		a) Before evidence collection
+		b) After court hearing
+		c) During hashing
+		d) After report generation
+		Ans: a (Easy)
+
+		Incorrect assessment may result in:
+		a) Accurate investigation
+		b) Misleading analysis
+		c) Quick report
+		d) No change
+		Ans: b (Hard)
+
+		A key element in initial assessment is:
+		a) Full disk formatting
+		b) Situation awareness
+		c) Web browsing
+		d) Screen recording
+		Ans: b (Medium)
+		
+	Incident Notification Checklist 
+		Incident notification checklist ensures:
+		a) Delays in reporting
+		b) Proper escalation and alerting
+		c) Hard disk encryption
+		d) User logout
+		Ans: b (Easy)
+
+		A good checklist includes:
+		a) Party list
+		b) Key contact details and escalation steps
+		c) Disk partition info
+		d) Internet plan
+		Ans: b (Medium)
+
+		Failing to notify incidents leads to:
+		a) Legal safety
+		b) Missed opportunities for response
+		c) Better uptime
+		d) Data upgrade
+		Ans: b (Hard)
+
+		Notification checklist helps:
+		a) Organize music
+		b) Ensure timely reporting
+		c) Improve UX
+		d) Compress files
+		Ans: b (Easy)
+
+		Who is usually informed first in checklist?
+		a) Random user
+		b) Incident response team
+		c) Press
+		d) Public
+		Ans: b (Medium)
+	
+	Hexadecimal notation 
+		Hexadecimal is a:
+		a) Base 8 number system
+		b) Base 10 system
+		c) Base 16 system
+		d) Base 32 system
+		Ans: c (Easy)
+
+		Hex uses which digits?
+		a) 0-7 only
+		b) A-Z
+		c) 0-9 and A-F
+		d) 1-9 only
+		Ans: c (Easy)
+
+		Hex is useful because:
+		a) It's complex
+		b) It's used in ASCII
+		c) It's compact for binary data
+		d) It's similar to decimal
+		Ans: c (Medium)
+
+		What is 0x1A in decimal?
+		a) 26
+		b) 20
+		c) 30
+		d) 16
+		Ans: a (Hard)
+
+		Which of the following is a valid hex number?
+		a) 2G
+		b) 19AF
+		c) 128Z
+		d) 75.2
+		Ans: b (Medium)
+
+	Practical Bits 
+		Practical bit depth for ASCII character?
+		a) 4 bits
+		b) 8 bits
+		c) 12 bits
+		d) 16 bits
+		Ans: b (Easy)
+
+		Bit is:
+		a) Smallest text unit
+		b) Smallest data unit
+		c) Pixel unit
+		d) Audio chunk
+		Ans: b (Easy)
+
+		What is 1 byte equal to?
+		a) 2 bits
+		b) 4 bits
+		c) 8 bits
+		d) 10 bits
+		Ans: c (Easy)
+
+		Practical application of bit analysis in forensics is:
+		a) GUI design
+		b) File carving
+		c) Photo editing
+		d) Website layout
+		Ans: b (Medium)
+
+		Changing one bit may:
+		a) Improve quality
+		b) Break or change meaning of data
+		c) Boost internet
+		d) Create songs
+		Ans: b (Hard)
+		
+	Slight diversion 
+		What does 'slight diversion' in forensics often refer to?
+		a) Ignoring evidence
+		b) Introducing non-critical but related concepts
+		c) Changing investigation scope
+		d) Moving data
+		Ans: b (Easy)
+
+		Diversion in forensic investigation can be used to:
+		a) Distract team
+		b) Clarify advanced topics
+		c) Skip procedures
+		d) Encrypt data
+		Ans: b (Medium)
+
+		Diversion is beneficial when:
+		a) Off-topic
+		b) Helps understand foundational elements
+		c) Reduces clarity
+		d) Increases hardware cost
+		Ans: b (Hard)
+
+		A good diversion in a training session:
+		a) Explains legal precedents
+		b) Teaches games
+		c) Adds confusion
+		d) Skips context
+		Ans: a (Medium)
+
+		Which scenario fits a learning diversion?
+		a) Random chat
+		b) Memory structure demo
+		c) Ignoring questions
+		d) Formatting USBs
+		Ans: b (Hard)
+
+	What is use of Hexadecimal 
+		Hexadecimal is used in digital systems because:
+		a) It's long and detailed
+		b) Represents binary in a compact form
+		c) Matches IP addresses
+		d) Has emojis
+		Ans: b (Easy)
+
+		File signatures are often expressed in:
+		a) Decimal
+		b) Binary only
+		c) Hexadecimal
+		d) Octal
+		Ans: c (Medium)
+
+		Hex is essential for:
+		a) Writing poems
+		b) Reading raw binary data
+		c) Formatting photos
+		d) Painting software
+		Ans: b (Hard)
+
+		Hex codes are used in:
+		a) Web colors
+		b) Password hints
+		c) Voice commands
+		d) Keyboard shortcuts
+		Ans: a (Easy)
+
+		Why do forensic analysts use hex views?
+		a) To change fonts
+		b) To analyze file headers and metadata
+		c) For UI design
+		d) To reset BIOS
+		Ans: b (Hard)
+
+	Encoding And Encryption 
+		Encoding is used to:
+		a) Secure data
+		b) Convert data formats for transport
+		c) Delete files
+		d) Format disks
+		Ans: b (Easy)
+
+		Encryption is used for:
+		a) File renaming
+		b) Data confidentiality
+		c) Data redundancy
+		d) UI design
+		Ans: b (Easy)
+
+		A key difference is:
+		a) Encoding can be reversed without key, encryption needs key
+		b) Both need passwords
+		c) Both are same
+		d) None
+		Ans: a (Medium)
+
+		Base64 is a:
+		a) Compression method
+		b) Encoding scheme
+		c) Encryption algorithm
+		d) Disk label
+		Ans: b (Easy)
+
+		AES is a:
+		a) Encoding method
+		b) Compression format
+		c) Encryption algorithm
+		d) UI editor
+		Ans: c (Hard)
+
+	The Hex Editor 
+		A hex editor allows viewing of:
+		a) Audio files only
+		b) Raw binary data in hexadecimal format
+		c) Webpages only
+		d) Graphical content
+		Ans: b (Easy)
+
+		In hex editor, one byte is represented by:
+		a) 2 hex digits
+		b) 4 decimal digits
+		c) 1 letter
+		d) 3 ASCII codes
+		Ans: a (Easy)
+
+		Hex editors are essential for:
+		a) Changing OS background
+		b) Analyzing file headers and metadata
+		c) Typing reports
+		d) Audio mixing
+		Ans: b (Medium)
+
+		Which tool is an example of a hex editor?
+		a) Paint
+		b) HxD
+		c) VLC
+		d) Photoshop
+		Ans: b (Easy)
+
+		What happens if you edit a file with a hex editor?
+		a) The original format remains safe
+		b) Binary content can be altered directly
+		c) Nothing changes
+		d) Image quality improves
+		Ans: b (Hard)
+
+	Files 
+		In digital forensics, a file is:
+		a) A software tool
+		b) A collection of data stored under a name
+		c) A hard disk
+		d) A password
+		Ans: b (Easy)
+
+		File headers help identify:
+		a) File size only
+		b) File format and structure
+		c) Password strength
+		d) User data
+		Ans: b (Medium)
+
+		Deleted files can sometimes be:
+		a) Permanently lost
+		b) Recovered via carving
+		c) Ignored
+		d) Enhanced
+		Ans: b (Hard)
+
+		File metadata includes:
+		a) File names only
+		b) Permissions, timestamps, ownership
+		c) Internet history
+		d) Boot record
+		Ans: b (Medium)
+
+		Common forensic file types include:
+		a) .exe
+		b) .dd, .E01
+		c) .mp4
+		d) .wav
+		Ans: b (Hard)
+
+	Hashing 
+		Hashing is used to:
+		a) Compress data
+		b) Convert data into fixed-size string
+		c) Paint images
+		d) Format disks
+		Ans: b (Easy)
+
+		Common hashing algorithms are:
+		a) MD5, SHA-1
+		b) FTP, TCP
+		c) HTML, XML
+		d) DOC, PDF
+		Ans: a (Easy)
+
+		Hash values are used to:
+		a) Hide passwords
+		b) Verify integrity of data
+		c) Encrypt messages
+		d) Speed up networks
+		Ans: b (Medium)
+
+		A good hash function should be:
+		a) Predictable
+		b) One-way and collision-resistant
+		c) Reversible
+		d) Adjustable
+		Ans: b (Hard)
+
+		Hash collisions occur when:
+		a) Two files have same size
+		b) Two inputs produce same hash
+		c) A file is deleted
+		d) RAM is full
+		Ans: b (Hard)
+
+	Hashing DLs 
+		Hash digest lists help in:
+		a) Finding music
+		b) Validating file collections
+		c) Booting OS
+		d) Setting wallpaper
+		Ans: b (Easy)
+
+		Common format of DLs:
+		a) CSV
+		b) Text files with filename and hash
+		c) HTML only
+		d) PDFs
+		Ans: b (Medium)
+
+		DLs are used to:
+		a) Download music
+		b) Detect modified or missing files
+		c) View fonts
+		d) Render images
+		Ans: b (Medium)
+
+		If a hash in a DL doesn't match:
+		a) File is safe
+		b) File may be altered or corrupted
+		c) Nothing changes
+		d) File is faster
+		Ans: b (Hard)
+
+		DLs are especially useful in:
+		a) Entertainment apps
+		b) Bulk file verification
+		c) Changing text size
+		d) Formatting USBs
+		Ans: b (Medium)
+
+	MD5 Hash collisions 
+		MD5 is prone to:
+		a) Data compression
+		b) Hash collisions
+		c) Audio conversion
+		d) Disk failure
+		Ans: b (Easy)
+
+		A hash collision means:
+		a) File is duplicated
+		b) Two different inputs produce same hash
+		c) Data is encrypted
+		d) Nothing changed
+		Ans: b (Medium)
+
+		MD5 is considered:
+		a) Secure for all applications
+		b) Obsolete for cryptographic use
+		c) A file format
+		d) Reliable for key exchange
+		Ans: b (Hard)
+
+		Tools to create MD5 collisions include:
+		a) VLC
+		b) HashClash
+		c) Excel
+		d) Notepad
+		Ans: b (Hard)
+
+		MD5 collisions can affect:
+		a) Password complexity
+		b) File integrity validation
+		c) UI layout
+		d) Network speed
+		Ans: b (Medium)
+	
+	Hash Collisions 
+		A collision in hashing implies:
+		a) Unique output
+		b) Same hash for two different inputs
+		c) Error in encryption
+		d) Increased storage
+		Ans: b (Easy)
+
+		Which algorithm is collision-resistant?
+		a) MD5
+		b) SHA-256
+		c) Base64
+		d) ROT13
+		Ans: b (Medium)
+
+		Collisions reduce:
+		a) Performance
+		b) Security and trust
+		c) File size
+		d) Bandwidth
+		Ans: b (Hard)
+
+		Purpose of hash function is to:
+		a) Convert text to binary
+		b) Uniquely represent data
+		c) Reduce encryption
+		d) Format memory
+		Ans: b (Easy)
+
+		A real-world implication of collision:
+		a) Fake digital certificates
+		b) Improved login speed
+		c) Extra memory
+		d) Better hashing
+		Ans: a (Hard)
+
+	Bit Rot
+		Bit rot is:
+		a) Growth of data
+		b) Gradual decay of data on storage media
+		c) Increase in RAM speed
+		d) Loss of internet
+		Ans: b (Easy)
+
+		Bit rot affects:
+		a) Only volatile memory
+		b) Long-term stored digital media
+		c) Streaming services
+		d) Routers only
+		Ans: b (Medium)
+
+		Bit rot can lead to:
+		a) Data corruption
+		b) Better CPU
+		c) Network boost
+		d) File compression
+		Ans: a (Easy)
+
+		Preventing bit rot involves:
+		a) Turning off systems
+		b) Using ECC memory and regular backups
+		c) Painting device
+		d) Increasing display size
+		Ans: b (Hard)
+
+		Detection of bit rot can be done using:
+		a) Internet speed test
+		b) File hash comparison
+		c) Screen resolution
+		d) Audio equalizer
+		Ans: b (Medium).
