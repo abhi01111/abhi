@@ -1033,3 +1033,1032 @@ CYBER FORENSICS
 		d) Faster Wi-Fi
 		Ans: c
 
+	Goals of Forensics Analysis
+		What is the primary goal of forensic analysis?
+		a) Destroy evidence
+		b) Recover deleted files only
+		c) Discover and present digital evidence
+		d) Build new hardware
+		Ans: c (Easy)
+
+		Which of the following is NOT a goal of forensic analysis?
+		a) Identifying attackers
+		b) Gathering legal evidence
+		c) Formatting hard drives
+		d) Tracing activity
+		Ans: c (Easy)
+
+		Forensic analysis helps in:
+		a) Predicting earthquakes
+		b) Creating firewalls
+		c) Understanding the nature of cyber attacks
+		d) Designing websites
+		Ans: c (Medium)
+
+		Which aspect is crucial in forensic analysis?
+		a) Creativity
+		b) Entertainment
+		c) Accuracy
+		d) Automation
+		Ans: c (Easy)
+
+		Evidence presented in court must be:
+		a) Encrypted
+		b) Factual and verifiable
+		c) Colorful
+		d) Theoretical
+		Ans: b (Medium)
+
+		Forensic analysis can support:
+		a) Scientific experiments only
+		b) Financial auditing
+		c) Cybercrime investigations
+		d) Political speeches
+		Ans: c (Easy)
+
+		What is a common outcome of forensic analysis?
+		a) Games
+		b) Legal evidence
+		c) Password changes
+		d) Keyboard logs
+		Ans: b (Easy)
+
+		Which action aligns with forensic goals?
+		a) Modifying original data
+		b) Ensuring non-repudiation
+		c) Erasing user profiles
+		d) Installing software
+		Ans: b (Medium)
+
+		Forensic analysis should be:
+		a) Partial
+		b) Unstructured
+		c) Systematic and logical
+		d) Opinion-based
+		Ans: c (Easy)
+
+		Who benefits from forensic analysis?
+		a) Only IT professionals
+		b) Anyone accessing the internet
+		c) Law enforcement, legal experts, and victims
+		d) Music producers
+		Ans: c (Medium)
+
+	Types of Cyber Forensics Techniques
+		Which of the following is a cyber forensics technique?
+		a) Social media marketing
+		b) Disk imaging
+		c) Cooking recipes
+		d) Flashing BIOS
+		Ans: b (Easy)
+
+		Packet sniffing is used to:
+		a) Clean systems
+		b) Encrypt emails
+		c) Analyze network traffic
+		d) Remove cookies
+		Ans: c (Medium)
+
+		Keyword searching helps in:
+		a) Playing music
+		b) Finding evidence in documents
+		c) Formatting logs
+		d) Installing browsers
+		Ans: b (Easy)
+
+		Which tool is used in network forensics?
+		a) MS Word
+		b) Wireshark
+		c) Adobe Reader
+		d) Notepad++
+		Ans: b (Easy)
+
+		Data carving helps to:
+		a) Encrypt video files
+		b) Extract deleted data
+		c) Backup data
+		d) Format drives
+		Ans: b (Hard)
+
+		Email forensics involves:
+		a) Creating new email IDs
+		b) Analyzing headers and content
+		c) Resetting passwords
+		d) Reading music files
+		Ans: b (Medium)
+
+		Memory forensics examines:
+		a) SSD speed
+		b) BIOS firmware
+		c) Contents of RAM
+		d) Display resolution
+		Ans: c (Medium)
+
+		Log file analysis is useful in:
+		a) Designing games
+		b) Tracing user activity
+		c) Running backups
+		d) Updating browsers
+		Ans: b (Medium)
+
+		Reverse engineering is used for:
+		a) Making backups
+		b) Understanding malware
+		c) Printing reports
+		d) Installing updates
+		Ans: b (Hard)
+
+		File signature analysis checks:
+		a) Songs and videos
+		b) File extensions and headers
+		c) Antivirus definitions
+		d) Operating system versions
+		Ans: b (Hard)
+
+	Cyber Forensics Procedures
+		The first step in cyber forensics is:
+		a) Destroy evidence
+		b) Identification
+		c) Interpretation
+		d) Documentation
+		Ans: b (Easy)
+
+		Which procedure ensures no alteration of evidence?
+		a) Backup
+		b) Formatting
+		c) Preservation
+		d) Extraction
+		Ans: c (Medium)
+
+		Imaging a disk comes under:
+		a) Reporting
+		b) Preservation
+		c) Interpretation
+		d) Programming
+		Ans: b (Medium)
+
+		What follows identification?
+		a) Gaming
+		b) Report writing
+		c) Preservation
+		d) Music editing
+		Ans: c (Easy)
+
+		Which is not part of cyber forensics procedure?
+		a) Analysis
+		b) Decryption
+		c) Extraction
+		d) Documentation
+		Ans: b (Medium)
+
+		Evidence must be:
+		a) Assumed
+		b) Ignored
+		c) Verified and documented
+		d) Deleted
+		Ans: c (Easy)
+
+		Which phase validates the findings?
+		a) Analysis
+		b) Imaging
+		c) Reporting
+		d) Cleaning
+		Ans: a (Medium)
+
+		Final outcome of procedures is:
+		a) Movie clip
+		b) Chat logs
+		c) Forensic report
+		d) Shortcut file
+		Ans: c (Easy)
+
+		Cyber forensic procedures should be:
+		a) Opinionated
+		b) Systematic and legal
+		c) Automated only
+		d) Verbal
+		Ans: b (Medium)
+
+		The process must follow:
+		a) Local traditions
+		b) Random order
+		c) Legal and forensic standards
+		d) School syllabus
+		Ans: c (Medium)
+		
+
+	Preparation & Incident Readiness
+		What should be done before a cyber incident occurs?
+		a) Panic
+		b) Wait for attack
+		c) Prepare a response plan
+		d) Shut down systems
+		Ans: c (Easy)
+
+		A good preparation strategy includes:
+		a) Ignoring logs
+		b) Training staff
+		c) Disabling firewalls
+		d) Limiting access to backup
+		Ans: b (Easy)
+
+		Why is it important to prepare before incidents?
+		a) Increases system load
+		b) Reduces investigation time
+		c) Slows down attackers
+		d) Increases licensing cost
+		Ans: b (Medium)
+
+		Which tool can assist in preparation?
+		a) Paint
+		b) Incident Response Plan
+		c) Antivirus game
+		d) Text editor
+		Ans: b (Medium)
+
+		Preparation includes:
+		a) Creating fake alerts
+		b) Reviewing potential threats
+		c) Uploading music
+		d) Running old OS
+		Ans: b (Easy)
+
+		What is an Incident Response Plan (IRP)?
+		a) Software to encrypt data
+		b) Strategy for handling cyber incidents
+		c) Antivirus update log
+		d) Browser plugin
+		Ans: b (Easy)
+
+		What defines an Incident Response Team (IRT)?
+		a) Web developers
+		b) Trained professionals for managing incidents
+		c) Video editors
+		d) Graphic designers
+		Ans: b (Easy)
+
+		A key responsibility of IRT is to:
+		a) Design apps
+		b) Handle system maintenance only
+		c) Detect and mitigate cyber threats
+		d) Write malware
+		Ans: c (Medium)
+
+		IRP should be:
+		a) Kept confidential even from responders
+		b) Practiced regularly
+		c) Used only once
+		d) Printed on posters
+		Ans: b (Medium)
+
+		Why is IRT essential?
+		a) For video surveillance only
+		b) To manage cybersecurity events efficiently
+		c) To play music automatically
+		d) To disable firewalls quickly
+		Ans: b (Medium)
+
+		Detecting incidents includes:
+		a) Watching TV
+		b) Monitoring logs and alerts
+		c) Ignoring notifications
+		d) Posting on social media
+		Ans: b (Easy)
+
+		Which of the following is an indicator of a potential incident?
+		a) Scheduled updates
+		b) Sudden system slowdown
+		c) Software license renewal
+		d) Clock change
+		Ans: b (Medium)
+
+		What tool is useful for detecting intrusions?
+		a) Adobe Photoshop
+		b) Wireshark
+		c) Paint
+		d) WordPad
+		Ans: b (Medium)
+
+		Why is early detection important?
+		a) It allows faster containment
+		b) It slows recovery
+		c) It reduces staff cost
+		d) It increases attacks
+		Ans: a (Medium)
+
+		Which process comes after incident detection?
+		a) Vacation
+		b) Reporting and analysis
+		c) Backup only
+		d) Ignore and wait
+		Ans: b (Hard)
+
+	Chain of Custody
+		What does chain of custody refer to?
+		a) Disk encryption
+		b) Evidence handling record
+		c) Storage of music files
+		d) Network logs
+		Ans: b (Easy)
+
+		Why is chain of custody important?
+		a) To modify evidence easily
+		b) To track access to evidence
+		c) To encrypt network
+		d) To format disk
+		Ans: b (Medium)
+
+		The chain of custody must include:
+		a) Name of the hacker
+		b) Details of who accessed the evidence
+		c) Device password
+		d) Printer model
+		Ans: b (Easy)
+
+		Improper handling of chain of custody can:
+		a) Improve evidence
+		b) Lead to rejection in court
+		c) Increase case strength
+		d) Increase bandwidth
+		Ans: b (Hard)
+
+		Chain of custody is established:
+		a) After submitting to court
+		b) During system boot
+		c) From the moment evidence is collected
+		d) When copying data
+		Ans: c (Medium)
+
+		A strong chain of custody ensures:
+		a) Deleted files remain gone
+		b) Evidence integrity
+		c) Longer storage life
+		d) Shorter trials
+		Ans: b (Easy)
+
+		Chain of custody is part of which phase?
+		a) Gaming phase
+		b) Analysis phase
+		c) Documentation phase
+		d) Setup phase
+		Ans: c (Medium)
+
+		Chain of custody documents are:
+		a) Kept in RAM
+		b) Legally admissible
+		c) Non-essential
+		d) Made of plastic
+		Ans: b (Medium)
+
+		If chain of custody is broken:
+		a) Evidence becomes more accurate
+		b) Evidence may be considered tampered
+		c) Tools stop working
+		d) Chain gets encrypted
+		Ans: b (Hard)
+
+		Who maintains the chain of custody?
+		a) Any employee
+		b) Assigned forensic personnel
+		c) Janitor
+		d) Network switch
+		Ans: b (Hard)
+		
+	Evidence Checkout Log
+		What is an evidence checkout log?
+		a) A list of stolen data
+		b) A record of who accessed and handled evidence
+		c) A log of internet history
+		d) A system backup
+		Ans: b (Easy)
+
+		Why is maintaining a checkout log important?
+		a) For tax purposes
+		b) For data deletion
+		c) To ensure accountability
+		d) For software updates
+		Ans: c (Easy)
+
+		Evidence checkout logs typically include:
+		a) System specs
+		b) File extensions
+		c) Name, date, and time of handler
+		d) Color scheme of UI
+		Ans: c (Medium)
+
+		What can happen if the checkout log is not maintained?
+		a) Chain of custody is intact
+		b) Evidence may be invalid in court
+		c) Evidence gets encrypted
+		d) Antivirus is triggered
+		Ans: b (Hard)
+
+		Who should be allowed to sign the checkout log?
+		a) Friends
+		b) Authorized personnel only
+		c) System users
+		d) HR
+		Ans: b (Easy)
+
+		Checkout logs must be:
+		a) Edited frequently
+		b) Deleted after inspection
+		c) Protected from tampering
+		d) Used as wallpaper
+		Ans: c (Medium)
+
+		Which of the following best describes a faulty checkout log?
+		a) Includes multiple timestamps
+		b) Has missing entries
+		c) Includes signatures
+		d) Is digital
+		Ans: b (Hard)
+
+		In which phase is the checkout log initiated?
+		a) Investigation
+		b) Preservation
+		c) Documentation
+		d) Acquisition
+		Ans: d (Medium)
+
+		An accurate checkout log helps in:
+		a) Formatting drives
+		b) Validating evidence integrity
+		c) Changing passwords
+		d) Editing metadata
+		Ans: b (Medium)
+
+		Tampering with a checkout log may lead to:
+		a) Promotion
+		b) Legal issues
+		c) Better recovery
+		d) Faster boot time
+		Ans: b (Hard)
+
+	Handling Evidence
+		What is the first rule of handling digital evidence?
+		a) Change it for better readability
+		b) Always modify to compress
+		c) Do not alter the original evidence
+		d) Copy it to music folder
+		Ans: c (Easy)
+
+		What should you wear when handling physical evidence?
+		a) Casual clothes
+		b) Gloves
+		c) Sunglasses
+		d) Helmet
+		Ans: b (Easy)
+
+		Improper handling of evidence leads to:
+		a) Faster imaging
+		b) Evidence becoming inadmissible
+		c) Better outcomes
+		d) Clear documentation
+		Ans: b (Hard)
+
+		Why is write-blocker used?
+		a) To improve speed
+		b) To prevent modification of data
+		c) To store passwords
+		d) To log users
+		Ans: b (Easy)
+
+		Digital evidence must be:
+		a) Edited for clarity
+		b) Compressed
+		c) Preserved exactly
+		d) Stored in zip folder
+		Ans: c (Easy)
+
+		When collecting evidence, it should be:
+		a) Scattered
+		b) Deleted
+		c) Bagged, tagged, documented
+		d) Erased and reused
+		Ans: c (Medium)
+
+		Handling evidence improperly can:
+		a) Speed up court process
+		b) Strengthen case
+		c) Lead to case dismissal
+		d) Enhance storage
+		Ans: c (Hard)
+
+		What is used to protect evidence from tampering?
+		a) Plastic cover
+		b) Evidence bag with tamper-evident seal
+		c) CD-ROM
+		d) SSD case
+		Ans: b (Medium)
+
+		Handling logs are stored to:
+		a) Track application history
+		b) Maintain usage stats
+		c) Record every evidence interaction
+		d) Log firewall rules
+		Ans: c (Medium)
+
+		Chain of custody is a part of:
+		a) Random log
+		b) Casual storage
+		c) Evidence handling process
+		d) Chat history
+		Ans: c (Easy)
+
+	First Response
+		What is the goal of a first response in forensics?
+		a) Erase system files
+		b) Preserve evidence integrity
+		c) Scan emails
+		d) Write firewall rules
+		Ans: b (Easy)
+
+		Who typically performs the first response?
+		a) Janitor
+		b) Incident responder or IT admin
+		c) News reporter
+		d) End user
+		Ans: b (Easy)
+
+		Which of the following is a good first response step?
+		a) Disconnect power immediately
+		b) Take a picture of the system screen
+		c) Start gaming
+		d) Clear browsing history
+		Ans: b (Medium)
+
+		What should not be done during first response?
+		a) Turn off monitor
+		b) Copy RAM
+		c) Modify files
+		d) Photograph device
+		Ans: c (Hard)
+
+		A first responder should always:
+		a) Install updates
+		b) Follow SOPs and documentation
+		c) Scan system for viruses
+		d) Edit configuration files
+		Ans: b (Easy)
+
+		Why is time critical in first response?
+		a) Network charges increase
+		b) Evidence can be lost or changed
+		c) Electricity cost rises
+		d) System freezes faster
+		Ans: b (Medium)
+
+		What tool helps in RAM capture?
+		a) Notepad
+		b) FTK Imager
+		c) Adobe Reader
+		d) VLC
+		Ans: b (Hard)
+
+		First response should prioritize:
+		a) System reboot
+		b) Evidence preservation
+		c) Data deletion
+		d) Quick fixes
+		Ans: b (Easy)
+
+		When in doubt, responders should:
+		a) Make their own decisions
+		b) Ask an expert or refer IR plan
+		c) Use trial and error
+		d) Ignore the device
+		Ans: b (Medium)
+
+		What is the first thing to note at the scene?
+		a) Music playing
+		b) Monitor brightness
+		c) System state and surrounding environment
+		d) User preferences
+		Ans: c (Hard)
+
+	Formulate/Execute Response Strategy
+		What is the first step in formulating a response strategy?
+		a) Jump to conclusions
+		b) Identify the type and scope of incident
+		c) Notify the media
+		d) Format drives
+		Ans: b (Easy)
+
+		A good response strategy is:
+		a) General for all cases
+		b) Based on templates only
+		c) Customized per incident
+		d) Designed for hardware only
+		Ans: c (Medium)
+
+		Who is responsible for executing the response plan?
+		a) Security guards
+		b) Response team or lead investigator
+		c) Web designers
+		d) End users
+		Ans: b (Easy)
+
+		Strategy formulation includes:
+		a) Backup only
+		b) Data deletion
+		c) Risk assessment and mitigation
+		d) Restarting systems
+		Ans: c (Hard)
+
+		A key part of execution is:
+		a) Taking screenshots
+		b) Acting without documentation
+		c) Coordinated response by defined roles
+		d) Isolating RAM only
+		Ans: c (Medium)
+
+		Execution of strategy should begin:
+		a) After backup
+		b) Only after police approval
+		c) As soon as incident is confirmed
+		d) Before documentation
+		Ans: c (Easy)
+
+		Poorly executed strategy leads to:
+		a) More learning
+		b) Loss of evidence or escalation
+		c) Better coverage
+		d) Hardware repair
+		Ans: b (Hard)
+
+		What does a response plan include?
+		a) Antivirus update
+		b) Specific tasks, roles, communication flow
+		c) Only backup schedules
+		d) Login credentials
+		Ans: b (Medium)
+
+		Response execution includes:
+		a) Passive waiting
+		b) Active engagement and containment
+		c) Email alerts only
+		d) Searching websites
+		Ans: b (Hard)
+
+		Documentation during strategy execution helps:
+		a) Ignore legal needs
+		b) Record actions for analysis and audit
+		c) Distract investigators
+		d) Speed up reboot
+		Ans: b (Medium)
+
+	Forensic Duplication
+		What is forensic duplication?
+		a) Creating a fake report
+		b) Making an exact bit-by-bit copy of a storage device
+		c) Formatting a disk
+		d) Encrypting emails
+		Ans: b (Easy)
+
+		Why is forensic duplication important?
+		a) To delete original evidence
+		b) To hide logs
+		c) To preserve original data while allowing analysis
+		d) To reduce file size
+		Ans: c (Easy)
+
+		A forensic image must be:
+		a) Slightly compressed
+		b) Editable
+		c) Verifiable and identical to original
+		d) Translated
+		Ans: c (Medium)
+
+		What tool is commonly used for forensic duplication?
+		a) MS Paint
+		b) FTK Imager
+		c) Excel
+		d) VLC
+		Ans: b (Easy)
+
+		Which hashing algorithms are used to verify forensic images?
+		a) MD5 or SHA-1
+		b) HTML
+		c) JPG
+		d) ZIP
+		Ans: a (Medium)
+
+		What does a mismatch in hash value indicate?
+		a) Copy is perfect
+		b) Image is larger
+		c) Image is altered or corrupted
+		d) Time mismatch
+		Ans: c (Hard)
+
+		What is a write-blocker used for during duplication?
+		a) Speed up copying
+		b) Block USB ports
+		c) Prevent changes to source device
+		d) Encrypt output
+		Ans: c (Medium)
+
+		Can forensic duplication be performed on live systems?
+		a) No
+		b) Yes, using live imaging tools
+		c) Only on phones
+		d) Only if encrypted
+		Ans: b (Hard)
+
+		What format is typically used in forensic images?
+		a) .exe
+		b) .img, .dd, .E01
+		c) .mp4
+		d) .pdf
+		Ans: b (Medium)
+
+		What is the risk of not using proper tools for duplication?
+		a) Speed issues
+		b) Entertainment loss
+		c) Evidence contamination or loss
+		d) Shorter backup time
+		Ans: c (Hard)
+
+	Authenticate the Evidence
+		What is the purpose of authenticating evidence?
+		a) To make it colorful
+		b) To verify its originality and integrity
+		c) To hide it from court
+		d) To edit the file
+		Ans: b (Easy)
+
+		What is used to authenticate digital evidence?
+		a) PDF reader
+		b) Hash values (e.g., MD5, SHA-1)
+		c) Video compression
+		d) Email signature
+		Ans: b (Easy)
+
+		When should evidence be authenticated?
+		a) After analysis
+		b) Only in court
+		c) At collection and after duplication
+		d) Before imaging
+		Ans: c (Medium)
+
+		What proves evidence has not been altered?
+		a) Changing file size
+		b) Matching hash values
+		c) Compression level
+		d) Modification date
+		Ans: b (Medium)
+
+		Failure to authenticate may lead to:
+		a) Legal acceptance
+		b) System speed up
+		c) Rejection in legal proceedings
+		d) Cleaner output
+		Ans: c (Hard)
+
+		Hash mismatch during authentication means:
+		a) Stronger encryption
+		b) Evidence was not changed
+		c) Evidence is altered
+		d) Boot is faster
+		Ans: c (Hard)
+
+		Authentication adds to:
+		a) Evidence reliability
+		b) Disk space
+		c) UI changes
+		d) Internet speed
+		Ans: a (Easy)
+
+		Who verifies evidence authenticity?
+		a) Software developers
+		b) Forensic investigator
+		c) General user
+		d) Network provider
+		Ans: b (Medium)
+
+		Tampered evidence is:
+		a) Legally accepted
+		b) Ignored by court
+		c) Suspect in nature
+		d) Stored for future
+		Ans: c (Hard)
+
+		Digital signatures help in:
+		a) Coloring evidence
+		b) Authenticating evidence
+		c) Formatting text
+		d) Creating passwords
+		Ans: b (Easy)
+
+	Investigation
+		Investigation begins with:
+		a) Watching TV
+		b) Evidence collection and analysis
+		c) Reporting to social media
+		d) File encryption
+		Ans: b (Easy)
+
+		Digital investigation includes:
+		a) Viewing history
+		b) Tracking and verifying evidence
+		c) Using games
+		d) Deleting logs
+		Ans: b (Easy)
+
+		The final goal of investigation is:
+		a) Protect devices
+		b) Determine facts and present evidence
+		c) Format disks
+		d) Create passwords
+		Ans: b (Medium)
+
+		A major part of investigation is:
+		a) Data visualization
+		b) Evidence correlation
+		c) Designing malware
+		d) Disabling firewalls
+		Ans: b (Medium)
+
+		Investigations must be:
+		a) Biased
+		b) Systematic and documented
+		c) Opinionated
+		d) Fast only
+		Ans: b (Easy)
+
+		Poor investigation may result in:
+		a) Truth discovery
+		b) Legal success
+		c) Incorrect conclusions
+		d) Data enhancement
+		Ans: c (Hard)
+
+		Which tool is commonly used in investigation?
+		a) Paint
+		b) Autopsy
+		c) Calculator
+		d) Media player
+		Ans: b (Easy)
+
+		In-depth investigation can identify:
+		a) IP address only
+		b) Source, method, and timeline of attack
+		c) Browser theme
+		d) Graphics driver
+		Ans: b (Hard)
+
+		Who leads a digital investigation?
+		a) Civil engineer
+		b) Legal intern
+		c) Trained forensic analyst
+		d) Front desk staff
+		Ans: c (Medium)
+
+		Investigation reports must be:
+		a) Vague
+		b) Detailed and court-admissible
+		c) Skipped
+		d) Audio-only
+		Ans: b (Medium)
+
+	Common Mistakes
+		A common mistake in digital forensics is:
+		a) Proper documentation
+		b) Evidence tampering
+		c) Using write-blockers
+		d) Preserving metadata
+		Ans: b (Easy)
+
+		One must avoid:
+		a) Following procedures
+		b) Ignoring chain of custody
+		c) Documenting actions
+		d) Imaging drives
+		Ans: b (Medium)
+
+		An error investigators make is:
+		a) Validating hashes
+		b) Relying on assumptions
+		c) Legal reporting
+		d) Preserving logs
+		Ans: b (Hard)
+
+		Misuse of tools may:
+		a) Strengthen evidence
+		b) Corrupt evidence
+		c) Increase RAM
+		d) Encrypt network
+		Ans: b (Hard)
+
+		Missing time-stamps causes:
+		a) Better evidence
+		b) Break in timeline
+		c) Accurate results
+		d) High resolution
+		Ans: b (Medium)
+
+		One mistake is:
+		a) Logging out users
+		b) Interacting with suspect systems without recording
+		c) Using evidence bags
+		d) Writing reports
+		Ans: b (Easy)
+
+		An untrained responder may:
+		a) Improve logs
+		b) Destroy evidence
+		c) Document accurately
+		d) Secure chain
+		Ans: b (Hard)
+
+		Forgetting to photograph scene:
+		a) Enhances evidence
+		b) Prevents visual proof
+		c) Boosts case
+		d) Improves accuracy
+		Ans: b (Easy)
+
+		What causes evidence loss?
+		a) Using write-blockers
+		b) Mislabeling
+		c) Legal compliance
+		d) Backup
+		Ans: b (Medium)
+
+		Mistakes in logs lead to:
+		a) Clear cases
+		b) Gaps in investigation
+		c) Stronger chain of custody
+		d) Compression
+		Ans: b (Medium)
+
+	Detection
+		What is detection in cyber forensics?
+		a) Cleaning the disk
+		b) Identifying unauthorized activity
+		c) Updating software
+		d) Encrypting files
+		Ans: b (Easy)
+
+		Detection helps to:
+		a) Reduce crime visibility
+		b) Find and stop attacks
+		c) Play games
+		d) Delay response
+		Ans: b (Easy)
+
+		A common detection method:
+		a) Manual search
+		b) Network monitoring
+		c) Disk formatting
+		d) Web designing
+		Ans: b (Medium)
+
+		Effective detection requires:
+		a) Strong passwords
+		b) Monitoring and alerting tools
+		c) Color coding
+		d) Music players
+		Ans: b (Easy)
+
+		What tool helps detect memory-level threats?
+		a) Paint
+		b) Volatility
+		c) WordPad
+		d) Camera
+		Ans: b (Hard)
+
+		Detection failures can lead to:
+		a) Protection
+		b) Undetected breaches
+		c) Cost savings
+		d) Music loss
+		Ans: b (Medium)
+
+		Early detection allows:
+		a) Better gaming
+		b) Quicker response and containment
+		c) Formatting
+		d) Script downloads
+		Ans: b (Easy)
+
+		IDS stands for:
+		a) Intrusion Detection System
+		b) Internal Data Structure
+		c) Internet Digital Shield
+		d) Instant Detection Software
+		Ans: a (Easy)
+
+		Signature-based detection looks for:
+		a) New malware
+		b) Known patterns
+		c) Device names
+		d) Usernames
+		Ans: b (Medium)
+
+		What enhances detection capabilities?
+		a) Log ignoring
+		b) Automated tools + human expertise
+		c) Browser bookmarks
+		d) Custom fonts
+		Ans: b (Hard)
