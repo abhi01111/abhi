@@ -1,0 +1,9 @@
+What Does Internetworking Mean?
+1) Internetworking is the process or technique of connecting different networks by using intermediary devices such as routers or gateway devices.
+2) Networks can be considered different based on various parameters such as, Protocol, topology, Layer-2 network and addressing scheme.
+3) Routing protocols which are used within an organization or administration are called Interior Gateway Protocols or IGP. RIP, OSPF are examples of IGP. Routing between different organizations or administrations may have Exterior Gateway Protocol, and there is only one EGP i.e. Border Gateway Protocol(BGP).
+
+Tunneling:
+1) Tunneling is a mechanism by which two or more same networks communicate with each other, by passing intermediate networking complexities. Tunneling is configured at both ends.
+2) When the data enters from one end of Tunnel, it is tagged. This tagged data is then routed inside the intermediate or transit network to reach the other end of Tunnel. When data exists the Tunnel its tag is removed and delivered to the other part of the network.
+3) Both ends seem as if they are directly connected and tagging makes data travel through transit network without any modifications.

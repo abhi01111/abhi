@@ -1,0 +1,13 @@
+EtherTypes:
+0800 - ipv4
+0806 - arp
+8035 - rarp
+86dd - ipv6
+
+Protocol numbers:
+0x01 - 01 - icmp
+0x06 - 06 - tcp
+0x11 - 17 - udp
+0x29 - 41 - ipv6
+0x32 - 50 - esp
+0x33 - 51 - ah

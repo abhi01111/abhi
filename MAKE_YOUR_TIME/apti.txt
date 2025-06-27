@@ -1,0 +1,110 @@
+🚆 TRAINS
+📘 Important Concepts:
+	Speed of Train is typically in km/hr → convert to m/s using:
+
+	1 km/hr = 5/18 m/s
+	Distance covered by train = Length of train (if passing a point, platform, bridge etc.)
+
+✅ Possible Question Types:
+- Train crosses a pole
+	Distance = Length of train
+	Time given → Speed = Length / Time
+
+Train crosses a platform/bridge
+	Distance = Length of train + Length of platform
+
+- Two trains crossing each other (opposite direction)
+	Relative speed = Sum of speeds
+	Time = Total length / Relative speed
+
+- Two trains crossing each other (same direction)
+	Relative speed = Difference of speeds
+	Time = Total length / Relative speed
+
+- Train crossing a man
+	Man considered as a point (zero length)
+	Time = Length of train / (Train speed – Man’s speed)
+
+- Conversions
+	Km/hr → m/s: ×5/18
+	m/s → km/hr: ×18/5
+ 
+4. Train passing a pole
+	Q. A train 180 meters long passes a pole in 9 seconds. Find the speed of the train.
+	Solution:
+		Speed = 180 / 9 = 20 m/s
+		In km/hr = 20 × 18/5 = 72 km/hr
+
+5. Train passing a platform
+	Q. A 150 m long train crosses a 100 m long platform in 10 seconds. Find the speed of the train.
+	Solution:
+		Total distance = 150 + 100 = 250 m
+		Speed = 250 / 10 = 25 m/s
+		In km/hr = 25 × 18/5 = 90 km/hr
+
+6. Two trains moving in opposite directions
+	Q. Two trains of lengths 120 m and 180 m are moving in opposite directions at speeds of 42 km/hr and 48 km/hr. In what time will they cross each other?
+	Solution:
+		Relative speed = 42 + 48 = 90 km/hr = (90 × 5/18) = 25 m/s
+		Total distance = 120 + 180 = 300 m
+		Time = 300 / 25 = 12 seconds
+
+7. Two trains moving in same direction
+	Q. Two trains of lengths 140 m and 160 m are moving in the same direction at speeds of 60 km/hr and 40 km/hr. How long will it take the faster train to cross the slower one?
+	Solution:
+		Relative speed = 60 - 40 = 20 km/hr = 5.56 m/s
+		Total length = 140 + 160 = 300 m
+		Time = 300 / 5.56 ≈ 54 seconds
+
+8. Find length of platform
+	Q. A train 200 m long passes a platform in 24 seconds at a speed of 60 km/hr. What is the length of the platform?
+	Solution:
+		Speed = 60 × 5/18 = 16.67 m/s
+		Distance = 16.67 × 24 = 400 m
+		Platform length = 400 – 200 = 200 m
+
+9. Train crosses a man
+	Q. A train 150 m long is running at 54 km/hr. In how much time will it cross a man running at 6 km/hr in the same direction?
+	Solution:
+		Relative speed = 54 – 6 = 48 km/hr = 13.33 m/s
+		Time = 150 / 13.33 ≈ 11.25 seconds
+
+Boat and Stream
+- Find the Speed of the Boat in Still Water
+Given: Upstream and downstream speeds
+Formula:
+	Speed of Boat = Downstream Speed + Upstream Speed / 2
+
+- Find the Speed of the Stream
+	Formula:
+		Stream Speed = Downstream Speed - Upstream Speed / 2
+
+- Find Upstream/Downstream Speed
+	Formula:
+		Downstream=B+S
+		Upstream=B−S
+
+- Downstream=B+S,Upstream=B−S
+	Given distance & both speeds; use Time = Distance / Speed 
+
+1. Find speed of the boat and stream
+	Q. A boat can go 30 km downstream in 2 hours and return the same distance upstream in 3 hours. Find the speed of the boat in still water and the speed of the stream.
+	Solution:
+		Downstream speed = 30 / 2 = 15 km/hr
+		Upstream speed = 30 / 3 = 10 km/hr
+		Speed of boat = (15 + 10)/2 = 12.5 km/hr
+		Speed of stream = (15 - 10)/2 = 2.5 km/hr
+
+2. Find time taken upstream
+	Q. A man rows a boat at 12 km/hr in still water. The speed of the stream is 4 km/hr. How much time will he take to row 16 km upstream?
+	Solution:
+		Upstream speed = 12 – 4 = 8 km/hr
+		Time = 16 / 8 = 2 hours
+
+3. Total time for a round trip
+	Q. A boat covers 20 km downstream in 1 hour and returns in 2 hours. What is the speed of the boat and the stream?
+	Solution:
+		Downstream speed = 20 /1 = 20 km/hr
+		Upstream speed = 20 /2 = 10 km/hr
+		Boat speed = (20 + 10)/2 = 15 km/hr
+		Stream speed = (20 - 10)/2 = 5 km/hr

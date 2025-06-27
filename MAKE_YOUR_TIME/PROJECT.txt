@@ -1,0 +1,28 @@
+NAGIOS
+	- Setting up the nagios on server machine
+	- install plugins on the clent machine
+	
+	- On the Server machine
+		- create a file client1.cfg in /usr/local/nagios/etc/objects/client1.cfg
+			in that file
+				
+				define host
+					use linux-server
+					host_name client1
+					alias	ubuntu-linux
+					address	<client-ip>
+					
+			- then i put multiple services in that client1.cfg file
+			
+		- in command.cfg i wass added the
+			define command
+				command_name	check_ncpa
+				command_line	$USER1$/check_ncpa.py -H $HOSTADDRESS$ $ARG1$ $ARG2$
+						# this is used for the writing the services for client because it reads the command.cfg file first then and then it will execute the services
+						
+	- on the client machine
+		- install the plugins simply
+		
+snort
+	on server machine
+		

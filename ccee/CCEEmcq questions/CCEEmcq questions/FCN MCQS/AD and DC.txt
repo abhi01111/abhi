@@ -1,0 +1,15 @@
+Active directory:
+Active Directory comprises of various services that work on the windows server and manage the access and permissions to the resourced network. It is the product developed by Microsoft.
+
+It stores the data in the form of objects. These objects are single elements such as group, user, device or application. The categorization of the objects is done by the attributes and name which includes the information related with the user, for example, secure shell keys and passwords.
+
+Domain Controller:
+A server that gives the response to the verification requests and confirms the users on the computer networks are known as a domain controller. It helps to organize the computers and users that work simultaneously on a similar network in a hierarchical way. The controller helps to retain all the data in an organized manner and also keep secure.
+
+The domain controller (DC) is considered as the key for the active directory (AD). Attackers are aware of all the tricks used to fetch the data including the DC itself. Though you are not able to protect your DCs from the attackers these DCs can help to find out the cyber attacks.
+
+The primary function of the DC is to validate and authenticate the user that has access on the network. They are responsible for checking the username, passwords and other credentials, as well as they, have the right to allow or deny the user who is trying to access.
+
+What is use of additional domain controller?
+
+Additional AD domain controller is used to balance the load among existing domain controllers. It also provides fault-tolerance that in case primary AD DC is down, additional AD DC can be used for authentications without any business discontinuity.

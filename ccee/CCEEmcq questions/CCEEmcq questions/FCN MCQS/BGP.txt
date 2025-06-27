@@ -1,0 +1,9 @@
+Border Gateway Protocol:-
+
+1) It is an interdomain routing protocol, and it uses the path-vector routing.
+2) It is a gateway protocol that is used to exchange routing information among the autonomous system on the internet.
+3) Border Gateway Protocol works on different autonomous systems.
+4) An autonomous system is a collection of networks that comes under the single common administrative domain.
+5) The BGP is the only protocol that is running on the internet backbone or used to exchange the routes between two different autonomous number systems.
+6) IBGP (Internal BGP): If all the routers are neighbors of each other and belong to the same autonomous number system, the routers are referred to as an IBGP.
+7) EBGP (External BGP): If all the routers are neighbors of each other and they belong to the different autonomous number systems, then the routers are referred to as an EBGP.

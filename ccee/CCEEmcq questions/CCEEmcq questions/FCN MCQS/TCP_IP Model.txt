@@ -1,0 +1,43 @@
+TCP/IP Model:
+1) The TCP/IP model is a part of the Internet Protocol Suite.
+2) The full form of TCP/IP is Transmission Control Protocol/ Internet Protocol.
+3) Unlike the OSI model which comprises seven layers, the TCP/IP model is structured with four different layers. These four layers are:
+	A] Network Access Layer
+	B] Internet Layer
+	C] Transport Layer
+	D] Application Layer
+
+A] Network Access Layer:
+
+1) This is the bottom-most layer of the TCP/IP model architecture.
+2) It is a combination of the Data Link and Physical Layer of the OSI model.
+3) The physical transmission of data takes place at this layer.
+4) Once the frames are transmitted by a network, encapsulating the IP datagram into these frames is done in this layer.
+5) Also, the mapping of IP address into physical address is done here.
+6) Mainly, the function of this layer is to transmit the data between two devices, connected in a network.
+
+B] Internet Layer:
+1) It is the second layer of the TCP/IP model and this layer is parallel to the Network Layer of the OSI Model, in terms of the structure.
+2) Sending the data packets to their destination network is the main function of the Internet layer.
+3) The logical transmission of data takes place at this level.
+4) There are three different protocols used in this layer. These include:
+	IP--> One of the most important protocols as it detects the IP address of a device which is later used for internetwork connections.
+	ARP-->It stands for Address Resolution Protocol. The physical address from the IP address can be determined using ARP. 
+	ICMP--> It stands for Internet Control Message Protocol and any issue with the network is immediately notified to the user by ICMP.
+
+C] Host-To-Host Layer:
+1) This layer is parallel to the transport layer of the OSI Model.
+2) The error-free delivery of data is the main function of this layer.
+3) There are two main protocols present in this layer:
+	TCP--> Another integral part, the Transmission Control Protocol is a reliable communication protocol. It manage the flow of data, i.e. the sequence and segmentation of the data.
+	UDP--> It is a connection-free protocol which makes it cost-effective but less reliable. 
+
+D] Application Layer:
+1) The top three layers of the OSI Model: Application, Presentation and Sessions, when combined together, they perform similar functions as the Application Layer of the TCP/IP model.
+2) node-to-node communication based on the user-interface occurs here.
+3) Multiple protocols are present in this layer, a few common ones have been mentioned below in brief:
+	HTTP: Hypertext Transfer Protocol is used to manage the communication between the server and web browsers.
+	NTP: Network Time Protocol can set one standard time source in our computer, which enables sync between the server and the user.
+	TELNET: Telecommunication Network is used to have access to files present of the Telnet network and manage them on internet.
+	FTP: File Transfer Protocol, as the name suggests allows easy transferring of files.
+4) Other protocols of Application layer include Network File System (NFS), Secure Shell (SSH), Simple Mail Transfer Protocol (SMTP), Trivial File Transfer Protocol (TFTP), etc. 
