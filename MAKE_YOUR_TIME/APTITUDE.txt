@@ -315,3 +315,189 @@ Question:In a certain code ‘BEAMING' is written as ‘BFCMHOJ' and ‘CLEAR' i
 	
 	not getting any knowledge
 	
+	
+Question :A container has 60 litres of milk. From this container 6 litres of milk was taken out and replaced by
+ water.The process was further repeated twice. The volume of milk in the container after that is 
+ 
+ => solution
+ 
+	there is a formula for that
+		
+		final = initial (1- R / initial ) ^ n 
+		
+		F = 60 ( 1- 6/60 )^ 3
+			60 ( 1- 1/10)^ 3
+			60 (9/10)^ 3
+			60 (0.729)
+			43.74     ------- answer
+			
+Question:  What quantity of sugar costing Rs 6.10 per kg must be mixed with 126 kg of sugar priced at Rs 2.85 per
+ kg so that 20% may be gained by selling mix at Rs 4.80/kg ?
+ 
+ => solution
+	
+	2.85		6.10
+	
+	
+			4
+	
+	
+	6.10-4		4-2.85
+	2.10		1.15
+	
+	
+	first find the CP
+	sp = 4.80
+		sp = cp (100+ (%gain)) / 100
+		4.80 = cp (120)/100		# transfer 100 to left side
+		480 = cp (120)			# transfer 120 to left side
+		480/120 = cp
+		4 = cp
+		
+		
+	QL / QH = 2.10/1.15
+	
+	126 / QH = 2.10/1.15
+	
+	126 * 1.15 / 2.10 = QH
+	
+	69 = QH
+	
+	
+Question: Find out the wrong number in the series. 7, 8, 18, 57, 228, 1165, 6996
+
+=> solution
+
+	7 × 1 + 1 = 8  
+	8 × 2 + 2 = 18  
+	18 × 3 + 3 = 57  
+	57 × 4 + 4 = 232   
+	232 × 5 + 5 = 1165   
+	1165 × 6 + 6 = 6996
+	
+	228 is the wrong number
+	
+Question: A company named TechNova Pvt. Ltd. has 5 departments: Development, Marketing, HR, Sales, and
+	 Finance. Each department has a different number of employees. The total number of employees in the
+	 company is 150.
+	 The following information is known:
+	 1. The Development department has twice as many employees as HR.
+	 2. The Finance department has 5 fewer employees than Marketing.
+	 3. The Sales department has 10 more employees than HR.
+	 4. The number of employees in the HR department is 20.
+	 5. No two departments have the same number of employees.
+	 
+=> solution
+	
+	Development = 40
+	Marketing   = 32
+	HR			= 20
+	Sales		= 30
+	Finance		= 28
+	
+	Question: What is the number of employees in the Development department?
+	=> 40
+	
+	Question: How many employees are there in the Sales department?
+	=> 30
+	
+	Question: What is the number of employees in the Finance department?
+	=> 28
+	
+	Question: Which department has 33 employees?
+	=> None
+	
+	
+Question:  If 5x - 2y = 8 and 3x + y = 7, then what is the value of x?
+
+=> solution
+	
+	5x - 2y = 8  ----- 1    
+	3x + y = 7		--- multiply by 2
+	6x + 2y = 14-----2
+	
+	add 1 and 2
+	
+	5x - 2y = 8
++
+	6x + 2y = 14
+	------------
+	11x		= 22
+	
+	so, x = 22/11
+	x = 2
+	
+Question: Solve the system of equations:
+		 4x + 3y = 17
+		 5x - 2y = 4
+		 What is the value of x?
+
+=> solution
+		4x + 3y = 17	-- multiply by 2
+		5x - 2y = 4     -- multiply by 3
+		
+		after multiply we get
+		
+		8x + 6y = 34
+		15x - 6y = 12
+		
+		add both values
+		8x + 6y = 34
+	+
+		15x - 6y = 12
+		-------------
+		23x	= 46
+		
+		so, x = 46/23
+		x = 2
+		
+Question: A started a business with ₹50,000. After 3 months, B joined with ₹70,000. If the total profit at the end of
+ the year is ₹26,000, what is B’s share?
+ 
+ => solution
+ 
+	A = 50000 * 12 = 600000
+	B = 70000 * 9 = 630000
+	
+	take a ratio of both values
+	 60/63  = 20/21
+	
+	share of B = 26000 * 21/41
+				13317 ~ 13000
+				
+Question: A, B and C invested ₹8000, ₹4000 and ₹8000 respectively. A and B left after 6 months, while C remained
+ for the whole year. What is the ratio of their profits?
+ 
+=> solution
+	
+	A = 8000 * 6 = 48000
+	B = 4000 * 6 = 24000
+	C = 8000 * 12 = 96000
+	
+	take th ratio of all values
+	2:1:4   ---- answer
+	
+	
+Question:  The time taken by 12 men to complete a work varies inversely with the number of men. If 12 men can
+ complete a task in 15 days, in how many days will 20 men complete the same task?
+ 
+ => solution
+	
+	apply chain rule 
+	
+	M * D = M * D 
+	12 * 15 = 20 * D 
+	12 * 15 / 20 = D 
+	120/20 = D 
+	9 days
+	
+Question: The sum of the first 20 terms of an arithmetic progression is 610. If the first term is 5, what is the 20th
+ term?
+ 
+ => solution
+	
+	Sn = n/2 ( a+l )
+	610 = 20/2 ( 5+l )
+	610 / 10 = 5 + l 
+	61 - 5 = l 
+	56 is the last term
