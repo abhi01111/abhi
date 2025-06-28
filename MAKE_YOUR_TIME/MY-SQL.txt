@@ -1,0 +1,1565 @@
+Microsoft Windows [Version 10.0.19045.3570]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Rohan Mahadik>mysql -u root -p
+Enter password: *******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.4.4 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
+| test               |
++--------------------+
+6 rows in set (0.03 sec)
+
+mysql> use test;
+Database changed
+mysql> select user(),database();
++----------------+------------+
+| user()         | database() |
++----------------+------------+
+| root@localhost | test       |
++----------------+------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| address        |
+| courses        |
+| dept           |
+| emp            |
+| empmeeting     |
+| meeting        |
++----------------+
+6 rows in set (0.02 sec)
+
+mysql> select * from dept;
++--------+------------+----------+
+| deptno | dname      | loc      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
+|     40 | OPERATIONS | BOSTON   |
++--------+------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> truncate dept;
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> select * from dept;
+Empty set (0.01 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| address        |
+| courses        |
+| dept           |
+| emp            |
+| empmeeting     |
+| meeting        |
++----------------+
+6 rows in set (0.00 sec)
+
+mysql> desc dept;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| deptno | int         | YES  |     | NULL    |       |
+| dname  | varchar(40) | YES  |     | NULL    |       |
+| loc    | varchar(40) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> desc address;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| empID   | int         | NO   | PRI | NULL    | auto_increment |
+| ADDR    | varchar(50) | YES  |     | NULL    |                |
+| COUNTRY | varchar(20) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> drop address;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'address' at line 1
+mysql> drop table address;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| courses        |
+| dept           |
+| emp            |
+| empmeeting     |
+| meeting        |
++----------------+
+5 rows in set (0.00 sec)
+
+mysql> drop table dept;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| courses        |
+| emp            |
+| empmeeting     |
+| meeting        |
++----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc courses;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| id          | int           | YES  |     | NULL    |       |
+| name        | char(16)      | YES  |     | NULL    |       |
+| description | varchar(16)   | YES  |     | NULL    |       |
+| fees        | decimal(10,2) | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table courses add column nativeplace varchar(20);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc courses;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| id          | int           | YES  |     | NULL    |       |
+| name        | char(16)      | YES  |     | NULL    |       |
+| description | varchar(16)   | YES  |     | NULL    |       |
+| fees        | decimal(10,2) | YES  |     | NULL    |       |
+| nativeplace | varchar(20)   | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table courses drop column nativeplace;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc courses;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| id          | int           | YES  |     | NULL    |       |
+| name        | char(16)      | YES  |     | NULL    |       |
+| description | varchar(16)   | YES  |     | NULL    |       |
+| fees        | decimal(10,2) | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> source C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp_mysql.mysql;
+ERROR:
+Failed to open file 'C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp_mysql.mysql', error: 2
+mysql> source C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp.mysql;
+ERROR:
+Failed to open file 'C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp.mysql', error: 2
+mysql> SOURCE C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp.mysql;
+ERROR:
+Failed to open file 'C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp.mysql', error: 2
+mysql> SOURCE C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp.mysql;
+ERROR:
+Failed to open file 'C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp.mysql', error: 2
+mysql> SOURCE C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp.mysql;
+ERROR:
+Failed to open file 'C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp.mysql', error: 2
+mysql> source SOURCE C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp.mysql;
+ERROR:
+Failed to open file 'SOURCE C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp.mysql', error: 22
+mysql> SOURCE C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp.mysql
+ERROR:
+Failed to open file 'C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp.mysql', error: 2
+mysql> SOURCE C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp.mysql;
+ERROR:
+Failed to open file 'C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp.mysql', error: 2
+mysql> SOURCE C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp_mysql.mysql;
+ERROR:
+Failed to open file 'C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp_mysql.mysql', error: 2
+mysql> SOURCE C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp_mysql.mysql;
+ERROR:
+Failed to open file 'C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp_mysql.mysql', error: 2
+mysql> SOURCE C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp_mysql.mysql;
+ERROR:
+Failed to open file 'C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp_mysql.mysql', error: 2
+mysql> SOURCE C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp_mysql.mysql;
+ERROR:
+Failed to open file 'C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp_mysql.mysql', error: 2
+mysql> SOURCE C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp.mysql;
+ERROR:
+Failed to open file 'C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp.mysql', error: 2
+mysql> SOURCE C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp.sql;
+ERROR:
+Failed to open file 'C:\Pictures\DITISS-FEB_2025\prog-concepts\Emp.sql', error: 2
+mysql> SOURCE C:/Pictures/DITISS-FEB_2025/prog-concepts/Emp_mysql.sql;
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.05 sec)
+
+Query OK, 0 rows affected (0.05 sec)
+
+Query OK, 0 rows affected (0.04 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 0 rows affected, 3 warnings (0.03 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 0 rows affected (0.04 sec)
+
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'emp' at line 1
+mysql> select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hire       | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select ename, sal from emp;
++--------+---------+
+| ename  | sal     |
++--------+---------+
+| SMITH  |  800.00 |
+| ALLEN  | 1600.00 |
+| WARD   | 1250.00 |
+| JONES  | 2975.00 |
+| MARTIN | 1250.00 |
+| BLAKE  | 2850.00 |
+| CLARK  | 2450.00 |
+| SCOTT  | 3000.00 |
+| KING   | 5000.00 |
+| TURNER | 1500.00 |
+| ADAMS  | 1100.00 |
+| JAMES  |  950.00 |
+| FORD   | 3000.00 |
+| MILLER | 1300.00 |
++--------+---------+
+14 rows in set (0.00 sec)
+
+mysql> select ename, sal, sqrt(sal) from emp;
++--------+---------+--------------------+
+| ename  | sal     | sqrt(sal)          |
++--------+---------+--------------------+
+| SMITH  |  800.00 | 28.284271247461902 |
+| ALLEN  | 1600.00 |                 40 |
+| WARD   | 1250.00 |  35.35533905932738 |
+| JONES  | 2975.00 | 54.543560573178574 |
+| MARTIN | 1250.00 |  35.35533905932738 |
+| BLAKE  | 2850.00 |  53.38539126015655 |
+| CLARK  | 2450.00 |  49.49747468305833 |
+| SCOTT  | 3000.00 | 54.772255750516614 |
+| KING   | 5000.00 |  70.71067811865476 |
+| TURNER | 1500.00 |  38.72983346207417 |
+| ADAMS  | 1100.00 |    33.166247903554 |
+| JAMES  |  950.00 | 30.822070014844883 |
+| FORD   | 3000.00 | 54.772255750516614 |
+| MILLER | 1300.00 |  36.05551275463989 |
++--------+---------+--------------------+
+14 rows in set (0.00 sec)
+
+mysql> select ename, sal, power(2) from emp;
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'power'
+mysql> select ename, sal, power(sal, 2) from emp;
++--------+---------+---------------+
+| ename  | sal     | power(sal, 2) |
++--------+---------+---------------+
+| SMITH  |  800.00 |        640000 |
+| ALLEN  | 1600.00 |       2560000 |
+| WARD   | 1250.00 |       1562500 |
+| JONES  | 2975.00 |       8850625 |
+| MARTIN | 1250.00 |       1562500 |
+| BLAKE  | 2850.00 |       8122500 |
+| CLARK  | 2450.00 |       6002500 |
+| SCOTT  | 3000.00 |       9000000 |
+| KING   | 5000.00 |      25000000 |
+| TURNER | 1500.00 |       2250000 |
+| ADAMS  | 1100.00 |       1210000 |
+| JAMES  |  950.00 |        902500 |
+| FORD   | 3000.00 |       9000000 |
+| MILLER | 1300.00 |       1690000 |
++--------+---------+---------------+
+14 rows in set (0.00 sec)
+
+mysql> select power(2, 5);
++-------------+
+| power(2, 5) |
++-------------+
+|          32 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select abs(-3), abs(7);
++---------+--------+
+| abs(-3) | abs(7) |
++---------+--------+
+|       3 |      7 |
++---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select ename, lower(ename) from emp;
++--------+--------------+
+| ename  | lower(ename) |
++--------+--------------+
+| SMITH  | smith        |
+| ALLEN  | allen        |
+| WARD   | ward         |
+| JONES  | jones        |
+| MARTIN | martin       |
+| BLAKE  | blake        |
+| CLARK  | clark        |
+| SCOTT  | scott        |
+| KING   | king         |
+| TURNER | turner       |
+| ADAMS  | adams        |
+| JAMES  | james        |
+| FORD   | ford         |
+| MILLER | miller       |
++--------+--------------+
+14 rows in set (0.00 sec)
+
+mysql> select ename, upper(ename) from emp;
++--------+--------------+
+| ename  | upper(ename) |
++--------+--------------+
+| SMITH  | SMITH        |
+| ALLEN  | ALLEN        |
+| WARD   | WARD         |
+| JONES  | JONES        |
+| MARTIN | MARTIN       |
+| BLAKE  | BLAKE        |
+| CLARK  | CLARK        |
+| SCOTT  | SCOTT        |
+| KING   | KING         |
+| TURNER | TURNER       |
+| ADAMS  | ADAMS        |
+| JAMES  | JAMES        |
+| FORD   | FORD         |
+| MILLER | MILLER       |
++--------+--------------+
+14 rows in set (0.00 sec)
+
+mysql> select ename, job, concatename, '-', job) from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') from emp' at line 1
+mysql> select ename, job, concat(ename, '-', job) from emp;
++--------+-----------+-------------------------+
+| ename  | job       | concat(ename, '-', job) |
++--------+-----------+-------------------------+
+| SMITH  | CLERK     | SMITH-CLERK             |
+| ALLEN  | SALESMAN  | ALLEN-SALESMAN          |
+| WARD   | SALESMAN  | WARD-SALESMAN           |
+| JONES  | MANAGER   | JONES-MANAGER           |
+| MARTIN | SALESMAN  | MARTIN-SALESMAN         |
+| BLAKE  | MANAGER   | BLAKE-MANAGER           |
+| CLARK  | MANAGER   | CLARK-MANAGER           |
+| SCOTT  | ANALYST   | SCOTT-ANALYST           |
+| KING   | PRESIDENT | KING-PRESIDENT          |
+| TURNER | SALESMAN  | TURNER-SALESMAN         |
+| ADAMS  | CLERK     | ADAMS-CLERK             |
+| JAMES  | CLERK     | JAMES-CLERK             |
+| FORD   | ANALYST   | FORD-ANALYST            |
+| MILLER | CLERK     | MILLER-CLERK            |
++--------+-----------+-------------------------+
+14 rows in set (0.00 sec)
+
+mysql> select ename, left(ename, 1) from emp;
++--------+----------------+
+| ename  | left(ename, 1) |
++--------+----------------+
+| SMITH  | S              |
+| ALLEN  | A              |
+| WARD   | W              |
+| JONES  | J              |
+| MARTIN | M              |
+| BLAKE  | B              |
+| CLARK  | C              |
+| SCOTT  | S              |
+| KING   | K              |
+| TURNER | T              |
+| ADAMS  | A              |
+| JAMES  | J              |
+| FORD   | F              |
+| MILLER | M              |
++--------+----------------+
+14 rows in set (0.00 sec)
+
+mysql> select ename, where left(ename, 1) = 'm';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where left(ename, 1) = 'm'' at line 1
+mysql> select ename, where left(ename, 1) = 'm' from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where left(ename, 1) = 'm' from emp' at line 1
+mysql> select ename, where left(ename, 1) = 'M';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where left(ename, 1) = 'M'' at line 1
+mysql> select ename, from emp where left(ename, 1) = 'M';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from emp where left(ename, 1) = 'M'' at line 1
+mysql> select ename, from emp
+    -> where left(ename, 1) = 'M';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from emp
+where left(ename, 1) = 'M'' at line 1
+mysql> select ename, left(ename, 1) from emp
+    -> where left(ename, 1) = 'M';
++--------+----------------+
+| ename  | left(ename, 1) |
++--------+----------------+
+| MARTIN | M              |
+| MILLER | M              |
++--------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2025-03-11 09:20:24 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select sysdate();
++---------------------+
+| sysdate()           |
++---------------------+
+| 2025-03-11 09:20:49 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hire       | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select ename, hire, year(hire) from emp where year(hire) = 1982;
++--------+------------+------------+
+| ename  | hire       | year(hire) |
++--------+------------+------------+
+| SCOTT  | 1982-12-09 |       1982 |
+| MILLER | 1982-01-23 |       1982 |
++--------+------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select ename, hire, month(hire) from emp where month(hire) = 01,03,08,09;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',03,08,09' at line 1
+mysql> select ename, hire, month(hire) from emp where month(hire) in (1,3,8,9
+    -> ^C
+mysql> select ename, hire, month(hire) from emp where month(hire) in (1,3,8,9);
++--------+------------+-------------+
+| ename  | hire       | month(hire) |
++--------+------------+-------------+
+| MARTIN | 1981-09-28 |           9 |
+| TURNER | 1981-09-08 |           9 |
+| ADAMS  | 1983-01-12 |           1 |
+| MILLER | 1982-01-23 |           1 |
++--------+------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select ename, hire, month(hire) from emp where month(hire) in (01, 03, 08, 09);
++--------+------------+-------------+
+| ename  | hire       | month(hire) |
++--------+------------+-------------+
+| MARTIN | 1981-09-28 |           9 |
+| TURNER | 1981-09-08 |           9 |
+| ADAMS  | 1983-01-12 |           1 |
+| MILLER | 1982-01-23 |           1 |
++--------+------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select ename, comm, isnull(comm) from emp;
++--------+---------+--------------+
+| ename  | comm    | isnull(comm) |
++--------+---------+--------------+
+| SMITH  |    NULL |            1 |
+| ALLEN  |  300.00 |            0 |
+| WARD   |  500.00 |            0 |
+| JONES  |    NULL |            1 |
+| MARTIN | 1400.00 |            0 |
+| BLAKE  |    NULL |            1 |
+| CLARK  |    NULL |            1 |
+| SCOTT  |    NULL |            1 |
+| KING   |    NULL |            1 |
+| TURNER |    0.00 |            0 |
+| ADAMS  |    NULL |            1 |
+| JAMES  |    NULL |            1 |
+| FORD   |    NULL |            1 |
+| MILLER |    NULL |            1 |
++--------+---------+--------------+
+14 rows in set (0.00 sec)
+
+mysql> select ename, comm, ifnull(comm) from emp;
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'ifnull'
+mysql> select ename, comm, ifnull(comm, 0) from emp;
++--------+---------+-----------------+
+| ename  | comm    | ifnull(comm, 0) |
++--------+---------+-----------------+
+| SMITH  |    NULL |            0.00 |
+| ALLEN  |  300.00 |          300.00 |
+| WARD   |  500.00 |          500.00 |
+| JONES  |    NULL |            0.00 |
+| MARTIN | 1400.00 |         1400.00 |
+| BLAKE  |    NULL |            0.00 |
+| CLARK  |    NULL |            0.00 |
+| SCOTT  |    NULL |            0.00 |
+| KING   |    NULL |            0.00 |
+| TURNER |    0.00 |            0.00 |
+| ADAMS  |    NULL |            0.00 |
+| JAMES  |    NULL |            0.00 |
+| FORD   |    NULL |            0.00 |
+| MILLER |    NULL |            0.00 |
++--------+---------+-----------------+
+14 rows in set (0.00 sec)
+
+mysql> select sum(sal), count(sal), max(sal), min(sal),avg(sal) from emp;
++----------+------------+----------+----------+-------------+
+| sum(sal) | count(sal) | max(sal) | min(sal) | avg(sal)    |
++----------+------------+----------+----------+-------------+
+| 29025.00 |         14 |  5000.00 |   800.00 | 2073.214286 |
++----------+------------+----------+----------+-------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(comm), count(comm), max(comm), min(comm),avg(comm) from emp;
++-----------+-------------+-----------+-----------+------------+
+| sum(comm) | count(comm) | max(comm) | min(comm) | avg(comm)  |
++-----------+-------------+-----------+-----------+------------+
+|   2200.00 |           4 |   1400.00 |      0.00 | 550.000000 |
++-----------+-------------+-----------+-----------+------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(ename) from emp;
++------------+
+| sum(ename) |
++------------+
+|          0 |
++------------+
+1 row in set, 14 warnings (0.00 sec)
+
+mysql> select max(ename), min(ename) from emp;
++------------+------------+
+| max(ename) | min(ename) |
++------------+------------+
+| WARD       | ADAMS      |
++------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select count(ename) from emp;
++--------------+
+| count(ename) |
++--------------+
+|           14 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select ename, sum(sal) from emp;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'test.emp.ename'; this is incompatible with sql_mode=only_full_group_by
+mysql> select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hire       | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select deptno, count(empno) from emp group by deptno;
++--------+--------------+
+| deptno | count(empno) |
++--------+--------------+
+|     20 |            5 |
+|     30 |            6 |
+|     10 |            3 |
++--------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select deptno, sum(sal) from emp group by deptno;
++--------+----------+
+| deptno | sum(sal) |
++--------+----------+
+|     20 | 10875.00 |
+|     30 |  9400.00 |
+|     10 |  8750.00 |
++--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select deptno, sum(sal), avg(sal), max(sal), min(sal) from emp group by deptno;
++--------+----------+-------------+----------+----------+
+| deptno | sum(sal) | avg(sal)    | max(sal) | min(sal) |
++--------+----------+-------------+----------+----------+
+|     20 | 10875.00 | 2175.000000 |  3000.00 |   800.00 |
+|     30 |  9400.00 | 1566.666667 |  2850.00 |   950.00 |
+|     10 |  8750.00 | 2916.666667 |  5000.00 |  1300.00 |
++--------+----------+-------------+----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select count(empno), sum(sal), avg(sal), max(sal), min(sal) from emp group by job;
++--------------+----------+-------------+----------+----------+
+| count(empno) | sum(sal) | avg(sal)    | max(sal) | min(sal) |
++--------------+----------+-------------+----------+----------+
+|            4 |  4150.00 | 1037.500000 |  1300.00 |   800.00 |
+|            4 |  5600.00 | 1400.000000 |  1600.00 |  1250.00 |
+|            3 |  8275.00 | 2758.333333 |  2975.00 |  2450.00 |
+|            2 |  6000.00 | 3000.000000 |  3000.00 |  3000.00 |
+|            1 |  5000.00 | 5000.000000 |  5000.00 |  5000.00 |
++--------------+----------+-------------+----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select job count(empno), sum(sal), avg(sal), max(sal), min(sal) from emp group by job;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'count(empno), sum(sal), avg(sal), max(sal), min(sal) from emp group by job' at line 1
+mysql> select job, count(empno), sum(sal), avg(sal), max(sal), min(sal) from emp group by job;
++-----------+--------------+----------+-------------+----------+----------+
+| job       | count(empno) | sum(sal) | avg(sal)    | max(sal) | min(sal) |
++-----------+--------------+----------+-------------+----------+----------+
+| CLERK     |            4 |  4150.00 | 1037.500000 |  1300.00 |   800.00 |
+| SALESMAN  |            4 |  5600.00 | 1400.000000 |  1600.00 |  1250.00 |
+| MANAGER   |            3 |  8275.00 | 2758.333333 |  2975.00 |  2450.00 |
+| ANALYST   |            2 |  6000.00 | 3000.000000 |  3000.00 |  3000.00 |
+| PRESIDENT |            1 |  5000.00 | 5000.000000 |  5000.00 |  5000.00 |
++-----------+--------------+----------+-------------+----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select deptno, job, count(empno) from emp group by deptno, job;
++--------+-----------+--------------+
+| deptno | job       | count(empno) |
++--------+-----------+--------------+
+|     20 | CLERK     |            2 |
+|     30 | SALESMAN  |            4 |
+|     20 | MANAGER   |            1 |
+|     30 | MANAGER   |            1 |
+|     10 | MANAGER   |            1 |
+|     20 | ANALYST   |            2 |
+|     10 | PRESIDENT |            1 |
+|     30 | CLERK     |            1 |
+|     10 | CLERK     |            1 |
++--------+-----------+--------------+
+9 rows in set (0.00 sec)
+
+mysql> select deptno, job, sal, count(empno) from emp group by deptno, job, sal;
++--------+-----------+---------+--------------+
+| deptno | job       | sal     | count(empno) |
++--------+-----------+---------+--------------+
+|     20 | CLERK     |  800.00 |            1 |
+|     30 | SALESMAN  | 1600.00 |            1 |
+|     30 | SALESMAN  | 1250.00 |            2 |
+|     20 | MANAGER   | 2975.00 |            1 |
+|     30 | MANAGER   | 2850.00 |            1 |
+|     10 | MANAGER   | 2450.00 |            1 |
+|     20 | ANALYST   | 3000.00 |            2 |
+|     10 | PRESIDENT | 5000.00 |            1 |
+|     30 | SALESMAN  | 1500.00 |            1 |
+|     20 | CLERK     | 1100.00 |            1 |
+|     30 | CLERK     |  950.00 |            1 |
+|     10 | CLERK     | 1300.00 |            1 |
++--------+-----------+---------+--------------+
+12 rows in set (0.00 sec)
+
+mysql> select deptno, sum(sal) from emp group by deptno;
++--------+----------+
+| deptno | sum(sal) |
++--------+----------+
+|     20 | 10875.00 |
+|     30 |  9400.00 |
+|     10 |  8750.00 |
++--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select deptno, sum(sal) from emp group by deptno having sum(sal) > 10000;
++--------+----------+
+| deptno | sum(sal) |
++--------+----------+
+|     20 | 10875.00 |
++--------+----------+
+1 row in set (0.00 sec)
+
+mysql> select job, max(sal) from emp group by job having max(sal) > 2500;
++-----------+----------+
+| job       | max(sal) |
++-----------+----------+
+| MANAGER   |  2975.00 |
+| ANALYST   |  3000.00 |
+| PRESIDENT |  5000.00 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select job, max(sal) maxsal from emp where job in('manager', 'clerk', 'salesman') group by job order by maxsal desc;
++----------+---------+
+| job      | maxsal  |
++----------+---------+
+| MANAGER  | 2975.00 |
+| SALESMAN | 1600.00 |
+| CLERK    | 1300.00 |
++----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select job, max(sal
+    -> ^C
+mysql> select job, max(sal) maxsal from emp group by job having job in ('manager', 'clerk', 'salesman') order by maxsal desc;
++----------+---------+
+| job      | maxsal  |
++----------+---------+
+| MANAGER  | 2975.00 |
+| SALESMAN | 1600.00 |
+| CLERK    | 1300.00 |
++----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| address        |
+| courses        |
+| dept           |
+| emp            |
+| empmeeting     |
+| meeting        |
++----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from courses;
++------+--------+-------------+-----------+
+| id   | name   | description | fees      |
++------+--------+-------------+-----------+
+|    1 | ditiss | security    | 100000.00 |
+|    2 | dac    | developer   | 150000.00 |
+|    3 | dmc    | mobile      | 150000.00 |
+|    4 | dbda   | dababase    | 125000.00 |
++------+--------+-------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> truncate table courses;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select * from courses;
+Empty set (0.00 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| address        |
+| courses        |
+| dept           |
+| emp            |
+| empmeeting     |
+| meeting        |
++----------------+
+6 rows in set (0.00 sec)
+
+mysql> create table course(sid int, sname varchar(30), smarks double, scid int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into course values(1,''Bill', 76, 2), (2, 'sundar', 86, 2), (3, 'jeff', 79, 1), (3, 'steve', 83, 3), (4, 'satya', 77, 6), (5, 'sam', 87, 6);
+    '> insert into course values(1,''Bill', 76, 2), (2, 'sundar', 86, 2), (3, 'jeff', 79, 1), (4, 'steve', 83, 3), (5, 'satya', 77, 6), (6, 'sam', 87, 6);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Bill', 76, 2), (2, 'sundar', 86, 2), (3, 'jeff', 79, 1), (3, 'steve', 83, 3), (4' at line 1
+mysql> insert into course values(1,'Bill', 76, 2), (2, 'sundar', 86, 2), (3, 'jeff', 79, 1), (4, 'steve', 83, 3), (5, 'satya', 77, 6), (6, 'sam', 87, 6);
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from course;
++------+--------+--------+------+
+| sid  | sname  | smarks | scid |
++------+--------+--------+------+
+|    1 | Bill   |     76 |    2 |
+|    2 | sundar |     86 |    2 |
+|    3 | jeff   |     79 |    1 |
+|    4 | steve  |     83 |    3 |
+|    5 | satya  |     77 |    6 |
+|    6 | sam    |     87 |    6 |
++------+--------+--------+------+
+6 rows in set (0.00 sec)
+
+mysql> create table students(id int, name varchar (30));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into students values(1, 'ditiss'), (2, 'dac'), (3, 'dbda'), (4, 'dmc'), (5, 'desd');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++------+--------+
+| id   | name   |
++------+--------+
+|    1 | ditiss |
+|    2 | dac    |
+|    3 | dbda   |
+|    4 | dmc    |
+|    5 | desd   |
++------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from course;
++------+--------+--------+------+
+| sid  | sname  | smarks | scid |
++------+--------+--------+------+
+|    1 | Bill   |     76 |    2 |
+|    2 | sundar |     86 |    2 |
+|    3 | jeff   |     79 |    1 |
+|    4 | steve  |     83 |    3 |
+|    5 | satya  |     77 |    6 |
+|    6 | sam    |     87 |    6 |
++------+--------+--------+------+
+6 rows in set (0.00 sec)
+
+mysql> rename table students to coursess;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> rename table course to students;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> rename table coursess to course;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from students;
++------+--------+--------+------+
+| sid  | sname  | smarks | scid |
++------+--------+--------+------+
+|    1 | Bill   |     76 |    2 |
+|    2 | sundar |     86 |    2 |
+|    3 | jeff   |     79 |    1 |
+|    4 | steve  |     83 |    3 |
+|    5 | satya  |     77 |    6 |
+|    6 | sam    |     87 |    6 |
++------+--------+--------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from course;
++------+--------+
+| id   | name   |
++------+--------+
+|    1 | ditiss |
+|    2 | dac    |
+|    3 | dbda   |
+|    4 | dmc    |
+|    5 | desd   |
++------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select sname, name from course INNER JOIN students ON id = scid;
++--------+--------+
+| sname  | name   |
++--------+--------+
+| Bill   | dac    |
+| sundar | dac    |
+| jeff   | ditiss |
+| steve  | dbda   |
++--------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select sname, name from course LEFT JOIN students ON id = scid;
++--------+--------+
+| sname  | name   |
++--------+--------+
+| jeff   | ditiss |
+| sundar | dac    |
+| Bill   | dac    |
+| steve  | dbda   |
+| NULL   | dmc    |
+| NULL   | desd   |
++--------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT SNAME, NAME FROM COURSE RIGHT JOIN STUDENTS ON ID = SCID;
++--------+--------+
+| SNAME  | NAME   |
++--------+--------+
+| Bill   | dac    |
+| sundar | dac    |
+| jeff   | ditiss |
+| steve  | dbda   |
+| satya  | NULL   |
+| sam    | NULL   |
++--------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT SNAME, NAME FROM COURSE FULL JOIN STUDENTS ID = SCID;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= SCID' at line 1
+mysql> select sid, sname from courses CROSS JOIN STUDENTS;
+Empty set (0.00 sec)
+
+mysql> SELECT ename, deptno from emp;
++--------+--------+
+| ename  | deptno |
++--------+--------+
+| SMITH  |     20 |
+| ALLEN  |     30 |
+| WARD   |     30 |
+| JONES  |     20 |
+| MARTIN |     30 |
+| BLAKE  |     30 |
+| CLARK  |     10 |
+| SCOTT  |     20 |
+| KING   |     10 |
+| TURNER |     30 |
+| ADAMS  |     20 |
+| JAMES  |     30 |
+| FORD   |     20 |
+| MILLER |     10 |
++--------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select deptno, dname from dept;
++--------+------------+
+| deptno | dname      |
++--------+------------+
+|     10 | ACCOUNTING |
+|     20 | RESEARCH   |
+|     30 | SALES      |
+|     40 | OPERATIONS |
++--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into emp(empno, ename, deptno) values(1000, 'john', 50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select ename, dname from emp INNER JOIN dept ON deptno = deptno;
+ERROR 1052 (23000): Column 'deptno' in on clause is ambiguous
+mysql> select ename, dname from emp INNER JOIN dept ON emp.deptno = dept.deptno;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| SMITH  | RESEARCH   |
+| ALLEN  | SALES      |
+| WARD   | SALES      |
+| JONES  | RESEARCH   |
+| MARTIN | SALES      |
+| BLAKE  | SALES      |
+| CLARK  | ACCOUNTING |
+| SCOTT  | RESEARCH   |
+| KING   | ACCOUNTING |
+| TURNER | SALES      |
+| ADAMS  | RESEARCH   |
+| JAMES  | SALES      |
+| FORD   | RESEARCH   |
+| MILLER | ACCOUNTING |
++--------+------------+
+14 rows in set (0.00 sec)
+
+mysql> select ename, dname from emp e INNER JOIN dept d ON e.deptno = d.deptno;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| SMITH  | RESEARCH   |
+| ALLEN  | SALES      |
+| WARD   | SALES      |
+| JONES  | RESEARCH   |
+| MARTIN | SALES      |
+| BLAKE  | SALES      |
+| CLARK  | ACCOUNTING |
+| SCOTT  | RESEARCH   |
+| KING   | ACCOUNTING |
+| TURNER | SALES      |
+| ADAMS  | RESEARCH   |
+| JAMES  | SALES      |
+| FORD   | RESEARCH   |
+| MILLER | ACCOUNTING |
++--------+------------+
+14 rows in set (0.00 sec)
+
+mysql> select sname, dname from emp e LEFT JOIN dept d ON e.deptno = d.dept.no;
+ERROR 1054 (42S22): Unknown column 'sname' in 'field list'
+mysql> select sname, dname from emp e LEFT JOIN dept d ON e.deptno = d.deptno;
+ERROR 1054 (42S22): Unknown column 'sname' in 'field list'
+mysql> select ename, dname from emp e LEFT JOIN dept d ON e.deptno = d.deptno;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| SMITH  | RESEARCH   |
+| ALLEN  | SALES      |
+| WARD   | SALES      |
+| JONES  | RESEARCH   |
+| MARTIN | SALES      |
+| BLAKE  | SALES      |
+| CLARK  | ACCOUNTING |
+| SCOTT  | RESEARCH   |
+| KING   | ACCOUNTING |
+| TURNER | SALES      |
+| ADAMS  | RESEARCH   |
+| JAMES  | SALES      |
+| FORD   | RESEARCH   |
+| MILLER | ACCOUNTING |
+| john   | NULL       |
++--------+------------+
+15 rows in set (0.00 sec)
+
+mysql> select ename, dname from emp e RIGHT JOIN dept d ON e.deptno = d.deptno;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| MILLER | ACCOUNTING |
+| KING   | ACCOUNTING |
+| CLARK  | ACCOUNTING |
+| FORD   | RESEARCH   |
+| ADAMS  | RESEARCH   |
+| SCOTT  | RESEARCH   |
+| JONES  | RESEARCH   |
+| SMITH  | RESEARCH   |
+| JAMES  | SALES      |
+| TURNER | SALES      |
+| BLAKE  | SALES      |
+| MARTIN | SALES      |
+| WARD   | SALES      |
+| ALLEN  | SALES      |
+| NULL   | OPERATIONS |
++--------+------------+
+15 rows in set (0.00 sec)
+
+mysql> select ename, dname from emp e FULL JOIN dept d ON e.deptno = d.deptno;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FULL JOIN dept d ON e.deptno = d.deptno' at line 1
+mysql> select ename, dname from emp e CROSS JOIN dept d ON e.deptno = d.deptno;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| SMITH  | RESEARCH   |
+| ALLEN  | SALES      |
+| WARD   | SALES      |
+| JONES  | RESEARCH   |
+| MARTIN | SALES      |
+| BLAKE  | SALES      |
+| CLARK  | ACCOUNTING |
+| SCOTT  | RESEARCH   |
+| KING   | ACCOUNTING |
+| TURNER | SALES      |
+| ADAMS  | RESEARCH   |
+| JAMES  | SALES      |
+| FORD   | RESEARCH   |
+| MILLER | ACCOUNTING |
++--------+------------+
+14 rows in set (0.00 sec)
+
+mysql> select ename, dname from emp e CROSS JOIN dept d;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| SMITH  | OPERATIONS |
+| SMITH  | SALES      |
+| SMITH  | RESEARCH   |
+| SMITH  | ACCOUNTING |
+| ALLEN  | OPERATIONS |
+| ALLEN  | SALES      |
+| ALLEN  | RESEARCH   |
+| ALLEN  | ACCOUNTING |
+| WARD   | OPERATIONS |
+| WARD   | SALES      |
+| WARD   | RESEARCH   |
+| WARD   | ACCOUNTING |
+| JONES  | OPERATIONS |
+| JONES  | SALES      |
+| JONES  | RESEARCH   |
+| JONES  | ACCOUNTING |
+| MARTIN | OPERATIONS |
+| MARTIN | SALES      |
+| MARTIN | RESEARCH   |
+| MARTIN | ACCOUNTING |
+| BLAKE  | OPERATIONS |
+| BLAKE  | SALES      |
+| BLAKE  | RESEARCH   |
+| BLAKE  | ACCOUNTING |
+| CLARK  | OPERATIONS |
+| CLARK  | SALES      |
+| CLARK  | RESEARCH   |
+| CLARK  | ACCOUNTING |
+| SCOTT  | OPERATIONS |
+| SCOTT  | SALES      |
+| SCOTT  | RESEARCH   |
+| SCOTT  | ACCOUNTING |
+| KING   | OPERATIONS |
+| KING   | SALES      |
+| KING   | RESEARCH   |
+| KING   | ACCOUNTING |
+| TURNER | OPERATIONS |
+| TURNER | SALES      |
+| TURNER | RESEARCH   |
+| TURNER | ACCOUNTING |
+| ADAMS  | OPERATIONS |
+| ADAMS  | SALES      |
+| ADAMS  | RESEARCH   |
+| ADAMS  | ACCOUNTING |
+| JAMES  | OPERATIONS |
+| JAMES  | SALES      |
+| JAMES  | RESEARCH   |
+| JAMES  | ACCOUNTING |
+| FORD   | OPERATIONS |
+| FORD   | SALES      |
+| FORD   | RESEARCH   |
+| FORD   | ACCOUNTING |
+| MILLER | OPERATIONS |
+| MILLER | SALES      |
+| MILLER | RESEARCH   |
+| MILLER | ACCOUNTING |
+| john   | OPERATIONS |
+| john   | SALES      |
+| john   | RESEARCH   |
+| john   | ACCOUNTING |
++--------+------------+
+60 rows in set (0.00 sec)
+
+mysql> SELECT e.ename, d.dname from emp e, dept d;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| SMITH  | OPERATIONS |
+| SMITH  | SALES      |
+| SMITH  | RESEARCH   |
+| SMITH  | ACCOUNTING |
+| ALLEN  | OPERATIONS |
+| ALLEN  | SALES      |
+| ALLEN  | RESEARCH   |
+| ALLEN  | ACCOUNTING |
+| WARD   | OPERATIONS |
+| WARD   | SALES      |
+| WARD   | RESEARCH   |
+| WARD   | ACCOUNTING |
+| JONES  | OPERATIONS |
+| JONES  | SALES      |
+| JONES  | RESEARCH   |
+| JONES  | ACCOUNTING |
+| MARTIN | OPERATIONS |
+| MARTIN | SALES      |
+| MARTIN | RESEARCH   |
+| MARTIN | ACCOUNTING |
+| BLAKE  | OPERATIONS |
+| BLAKE  | SALES      |
+| BLAKE  | RESEARCH   |
+| BLAKE  | ACCOUNTING |
+| CLARK  | OPERATIONS |
+| CLARK  | SALES      |
+| CLARK  | RESEARCH   |
+| CLARK  | ACCOUNTING |
+| SCOTT  | OPERATIONS |
+| SCOTT  | SALES      |
+| SCOTT  | RESEARCH   |
+| SCOTT  | ACCOUNTING |
+| KING   | OPERATIONS |
+| KING   | SALES      |
+| KING   | RESEARCH   |
+| KING   | ACCOUNTING |
+| TURNER | OPERATIONS |
+| TURNER | SALES      |
+| TURNER | RESEARCH   |
+| TURNER | ACCOUNTING |
+| ADAMS  | OPERATIONS |
+| ADAMS  | SALES      |
+| ADAMS  | RESEARCH   |
+| ADAMS  | ACCOUNTING |
+| JAMES  | OPERATIONS |
+| JAMES  | SALES      |
+| JAMES  | RESEARCH   |
+| JAMES  | ACCOUNTING |
+| FORD   | OPERATIONS |
+| FORD   | SALES      |
+| FORD   | RESEARCH   |
+| FORD   | ACCOUNTING |
+| MILLER | OPERATIONS |
+| MILLER | SALES      |
+| MILLER | RESEARCH   |
+| MILLER | ACCOUNTING |
+| john   | OPERATIONS |
+| john   | SALES      |
+| john   | RESEARCH   |
+| john   | ACCOUNTING |
++--------+------------+
+60 rows in set (0.00 sec)
+
+mysql> SELECT e.ename, d.dname from emp e, dept d where e.deptno = d.deptno;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| SMITH  | RESEARCH   |
+| ALLEN  | SALES      |
+| WARD   | SALES      |
+| JONES  | RESEARCH   |
+| MARTIN | SALES      |
+| BLAKE  | SALES      |
+| CLARK  | ACCOUNTING |
+| SCOTT  | RESEARCH   |
+| KING   | ACCOUNTING |
+| TURNER | SALES      |
+| ADAMS  | RESEARCH   |
+| JAMES  | SALES      |
+| FORD   | RESEARCH   |
+| MILLER | ACCOUNTING |
++--------+------------+
+14 rows in set (0.00 sec)
+
+mysql> select ename, dname from emp e SELF JOIN dept d;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELF JOIN dept d' at line 1
+mysql> select ename, dname from emp e SELF JOIN dept d ON e.deptno = d.deptno;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELF JOIN dept d ON e.deptno = d.deptno' at line 1
+mysql> SELECT empno, ename, mgr from emp;
++-------+--------+------+
+| empno | ename  | mgr  |
++-------+--------+------+
+|  7369 | SMITH  | 7902 |
+|  7499 | ALLEN  | 7698 |
+|  7521 | WARD   | 7698 |
+|  7566 | JONES  | 7839 |
+|  7654 | MARTIN | 7698 |
+|  7698 | BLAKE  | 7839 |
+|  7782 | CLARK  | 7839 |
+|  7788 | SCOTT  | 7566 |
+|  7839 | KING   | NULL |
+|  7844 | TURNER | 7698 |
+|  7876 | ADAMS  | 7788 |
+|  7900 | JAMES  | 7698 |
+|  7902 | FORD   | 7566 |
+|  7934 | MILLER | 7782 |
+|  1000 | john   | NULL |
++-------+--------+------+
+15 rows in set (0.00 sec)
+
+mysql> select e.ename, m.ename from emp e INNER JOIN emp m ON e.ename = m.ename;
++--------+--------+
+| ename  | ename  |
++--------+--------+
+| SMITH  | SMITH  |
+| ALLEN  | ALLEN  |
+| WARD   | WARD   |
+| JONES  | JONES  |
+| MARTIN | MARTIN |
+| BLAKE  | BLAKE  |
+| CLARK  | CLARK  |
+| SCOTT  | SCOTT  |
+| KING   | KING   |
+| TURNER | TURNER |
+| ADAMS  | ADAMS  |
+| JAMES  | JAMES  |
+| FORD   | FORD   |
+| MILLER | MILLER |
+| john   | john   |
++--------+--------+
+15 rows in set (0.00 sec)
+
+mysql> select e.ename, m.ename from emp e INNER JOIN emp m ON e.empno = m.empno;
++--------+--------+
+| ename  | ename  |
++--------+--------+
+| SMITH  | SMITH  |
+| ALLEN  | ALLEN  |
+| WARD   | WARD   |
+| JONES  | JONES  |
+| MARTIN | MARTIN |
+| BLAKE  | BLAKE  |
+| CLARK  | CLARK  |
+| SCOTT  | SCOTT  |
+| KING   | KING   |
+| TURNER | TURNER |
+| ADAMS  | ADAMS  |
+| JAMES  | JAMES  |
+| FORD   | FORD   |
+| MILLER | MILLER |
+| john   | john   |
++--------+--------+
+15 rows in set (0.00 sec)
+
+mysql> create table categories(cid INT, cname varchar(30)) values(1, 'stationary'),(2, 'mobiles'), (3, 'laptops');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(1, 'stationary'),(2, 'mobiles'), (3, 'laptops')' at line 1
+mysql> create table categories(cid INT, cname varchar(30));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into categories values (1, 'stationary'),(2, 'mobiles'), (3, 'laptops');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> create table products(pid INT, pname varchar(30), pcid int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into products values(1, 'pen', 1), (2, 'paper', 2), (3, 'iphone', 2), (4, 'pixel', 2), (6, 'bravia', 4);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from categories;
++------+------------+
+| cid  | cname      |
++------+------------+
+|    1 | stationary |
+|    2 | mobiles    |
+|    3 | laptops    |
++------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from products;
++------+--------+------+
+| pid  | pname  | pcid |
++------+--------+------+
+|    1 | pen    |    1 |
+|    2 | paper  |    2 |
+|    3 | iphone |    2 |
+|    4 | pixel  |    2 |
+|    6 | bravia |    4 |
++------+--------+------+
+5 rows in set (0.00 sec)
+
+mysql> select p.pname, c.cname from profucts p INNER JOIN categories c ON p.pcid = c.cid;
+ERROR 1146 (42S02): Table 'test.profucts' doesn't exist
+mysql> select p.pname, c.cname from products p INNER JOIN categories c ON p.pcid = c.cid;
++--------+------------+
+| pname  | cname      |
++--------+------------+
+| pen    | stationary |
+| paper  | mobiles    |
+| iphone | mobiles    |
+| pixel  | mobiles    |
++--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select p.pname, c.cname from products p LEFT JOIN categories c ON p.pcid = c.cid;
++--------+------------+
+| pname  | cname      |
++--------+------------+
+| pen    | stationary |
+| paper  | mobiles    |
+| iphone | mobiles    |
+| pixel  | mobiles    |
+| bravia | NULL       |
++--------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select p.pname, c.cname from products p RIGHT JOIN categories c ON p.pcid = c.cid;
++--------+------------+
+| pname  | cname      |
++--------+------------+
+| pen    | stationary |
+| pixel  | mobiles    |
+| iphone | mobiles    |
+| paper  | mobiles    |
+| NULL   | laptops    |
++--------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select e.ename, m.ename from emp e INNER JOIN emp m ON e.MGR = m.empno;
++--------+-------+
+| ename  | ename |
++--------+-------+
+| FORD   | JONES |
+| SCOTT  | JONES |
+| JAMES  | BLAKE |
+| TURNER | BLAKE |
+| MARTIN | BLAKE |
+| WARD   | BLAKE |
+| ALLEN  | BLAKE |
+| MILLER | CLARK |
+| ADAMS  | SCOTT |
+| CLARK  | KING  |
+| BLAKE  | KING  |
+| JONES  | KING  |
+| SMITH  | FORD  |
++--------+-------+
+13 rows in set (0.00 sec)
+
+mysql> select * from emp where sal = (select  max(sal) from emp);
++-------+-------+-----------+------+------------+---------+------+--------+
+| empno | ename | job       | mgr  | hire       | sal     | comm | deptno |
++-------+-------+-----------+------+------------+---------+------+--------+
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
++-------+-------+-----------+------+------------+---------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp where sal = (select  avg(sal), from emp), sal > avg(sal);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from emp), sal > avg(sal)' at line 1
+mysql> select * from emp where sal > (select  avg(sal), from emp);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from emp)' at line 1
+mysql> select * from emp where sal > (select  AVG(sal) from emp);
++-------+-------+-----------+------+------------+---------+------+--------+
+| empno | ename | job       | mgr  | hire       | sal     | comm | deptno |
++-------+-------+-----------+------+------------+---------+------+--------+
+|  7566 | JONES | MANAGER   | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7698 | BLAKE | MANAGER   | 7839 | 1981-05-01 | 2850.00 | NULL |     30 |
+|  7782 | CLARK | MANAGER   | 7839 | 1981-06-09 | 2450.00 | NULL |     10 |
+|  7788 | SCOTT | ANALYST   | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7902 | FORD  | ANALYST   | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
++-------+-------+-----------+------+------------+---------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from dept where deptno IN (select deptno from emp);
++--------+------------+----------+
+| deptno | dname      | loc      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
++--------+------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from dept where deptno NOT IN (select deptno from emp);
++--------+------------+--------+
+| deptno | dname      | loc    |
++--------+------------+--------+
+|     40 | OPERATIONS | BOSTON |
++--------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ename, sal, (select sum(sal) from emp) from emp;
++--------+---------+----------------------------+
+| ename  | sal     | (select sum(sal) from emp) |
++--------+---------+----------------------------+
+| SMITH  |  800.00 |                   29025.00 |
+| ALLEN  | 1600.00 |                   29025.00 |
+| WARD   | 1250.00 |                   29025.00 |
+| JONES  | 2975.00 |                   29025.00 |
+| MARTIN | 1250.00 |                   29025.00 |
+| BLAKE  | 2850.00 |                   29025.00 |
+| CLARK  | 2450.00 |                   29025.00 |
+| SCOTT  | 3000.00 |                   29025.00 |
+| KING   | 5000.00 |                   29025.00 |
+| TURNER | 1500.00 |                   29025.00 |
+| ADAMS  | 1100.00 |                   29025.00 |
+| JAMES  |  950.00 |                   29025.00 |
+| FORD   | 3000.00 |                   29025.00 |
+| MILLER | 1300.00 |                   29025.00 |
+| john   |    NULL |                   29025.00 |
++--------+---------+----------------------------+
+15 rows in set (0.00 sec)
+
+mysql> SELECT ename, sal, (select sum(sal) from emp) total from emp;
++--------+---------+----------+
+| ename  | sal     | total    |
++--------+---------+----------+
+| SMITH  |  800.00 | 29025.00 |
+| ALLEN  | 1600.00 | 29025.00 |
+| WARD   | 1250.00 | 29025.00 |
+| JONES  | 2975.00 | 29025.00 |
+| MARTIN | 1250.00 | 29025.00 |
+| BLAKE  | 2850.00 | 29025.00 |
+| CLARK  | 2450.00 | 29025.00 |
+| SCOTT  | 3000.00 | 29025.00 |
+| KING   | 5000.00 | 29025.00 |
+| TURNER | 1500.00 | 29025.00 |
+| ADAMS  | 1100.00 | 29025.00 |
+| JAMES  |  950.00 | 29025.00 |
+| FORD   | 3000.00 | 29025.00 |
+| MILLER | 1300.00 | 29025.00 |
+| john   |    NULL | 29025.00 |
++--------+---------+----------+
+15 rows in set (0.00 sec)
+
+mysql>
